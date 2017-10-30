@@ -10,6 +10,6 @@ public class Category {
     private String name;
     private Color color;
     public static enum Categories{
-        
+        STARWARS, INDIANA
     }
 }
