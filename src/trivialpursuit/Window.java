@@ -4,11 +4,11 @@ public class Window {
     public static int xsize = -1;
     public static int ysize = -1;
     
-    static final int XBORDER = 25;
-    static final int YBORDER = 25;
+    static final int XBORDER = 65;
+    static final int YBORDER = 65;
     static final int YTITLE = 25;
-    static final int WINDOW_WIDTH = 1000;
-    static final int WINDOW_HEIGHT = 1000;    
+    static final int WINDOW_WIDTH = 890;
+    static final int WINDOW_HEIGHT = 896;    
     public static int getX(int x) {
         return (x + XBORDER);
     }

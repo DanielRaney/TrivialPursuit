@@ -15,8 +15,10 @@ public class TrivialPursuit extends JFrame implements Runnable {
         TrivialPursuit frame = new TrivialPursuit();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setVisible(true);
+        frame.setTitle("Trivial Pursuit");
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./trivial.png"));
     }
 
     public TrivialPursuit() {
@@ -86,21 +88,12 @@ public class TrivialPursuit extends JFrame implements Runnable {
         }
 //fill background
         
-        g.setColor(Color.cyan);
+        g.setColor(new Color(53,78,102));
         g.fillRect(0, 0, Window.xsize, Window.ysize);
 
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
         int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()),Window.getY(Window.getHeight2()), Window.getY(0)};
-//fill border
-        g.setColor(Color.white);
-        g.fillPolygon(x, y, 4);
-// draw border
-        g.setColor(Color.red);
-        g.drawPolyline(x, y, 5);
 
-        
-        
-        
         if (animateFirstTime) {
             gOld.drawImage(image, 0, 0, null);
             return;
