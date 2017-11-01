@@ -6,8 +6,8 @@ import java.awt.*;
 //Hello World
 public class Board {
     
-    private final static int NUM_ROWS = 19;
-    private final static int NUM_COLUMNS = 19; 
+    private final static int NUM_ROWS = 15;
+    private final static int NUM_COLUMNS = 15; 
     
     public static void Reset() {
         
