@@ -2,10 +2,12 @@
 package trivialpursuit;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Question {
     public static final int NUM_QUESTIONS = 10;
     public static final int NUM_ANSWERS = 3;
+    public static ArrayList<Question> questions = new ArrayList<Question>();
     private Category category;
     private Difficulty difficulty;
     private String answers[] = new String[NUM_ANSWERS];  
@@ -18,7 +20,7 @@ public class Question {
             answers[i]="";
         }
     }
-    Question(String _name, Category _category){
+    Question(String _name, String answer1, String answer2, String answer3, Category _category, Difficulty _difficulty){
         name = _name;
         category = _category;
         for(int i=0; i<NUM_ANSWERS;i++){
@@ -36,6 +38,10 @@ public class Question {
     }
     public Difficulty getDifficulty(){
         return difficulty;
+    }
+    public static void InstantiateQuestions(){
+        Question ep1Q1 = new Question("How many blades does Darth Maul's lightsaber have?", "1", "2","3", Category.EPISODEI, Difficulty.EASY);
+        questions.add(ep1Q1);
     }
     
     
