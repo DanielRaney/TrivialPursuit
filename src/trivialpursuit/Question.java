@@ -23,9 +23,10 @@ public class Question {
     Question(String _name, String answer1, String answer2, String answer3, Category _category, Difficulty _difficulty){
         name = _name;
         category = _category;
-        for(int i=0; i<NUM_ANSWERS;i++){
-            answers[i]="";
-        }
+        difficulty = _difficulty;
+        answers[0] = answer1;
+        answers[1] = answer2;
+        answers[2] = answer3;
     }
     public String getName(){
         return name;
