@@ -8,6 +8,26 @@ public class Board {
     
     private final static int NUM_ROWS = 15;
     private final static int NUM_COLUMNS = 15; 
+    int WALL = 1;
+    int PATH = 0;
+    int SECP = 3;
+    int board1[][] = {
+    {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
+    {WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,WALL,WALL},
+    {WALL,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,PATH,WALL,WALL},
+    {WALL,PATH,PATH,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,PATH,PATH,PATH},
+    {WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
+    {WALL,PATH,WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH},
+    {WALL,PATH,WALL,PATH,WALL,WALL,WALL,PATH,WALL,WALL,WALL,WALL,WALL,PATH},
+    {WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL,PATH,PATH,PATH,PATH,PATH},
+    {WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,WALL,PATH,WALL,WALL,WALL,WALL},
+    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL},
+    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH},
+    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,WALL,WALL,PATH,WALL,WALL,WALL,WALL},
+    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
+    {WALL,PATH,WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH},
+    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},   
+    };
     
     public static void Reset() {
         
@@ -46,7 +66,12 @@ public class Board {
             g.drawLine(Window.getX(zi*xdelta),Window.getY(0),Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
         }
 //Fill in below here
-        
-        
+        for(int zx = 0; zx<NUM_ROWS;zx++) {
+            for(int zy = 0; zy<NUM_COLUMNS;zy++) {
+                /*if(board[zx][zy] == WALL) {
+                g.filloval()
+                }*/
+            }
+        }
     }
 }
