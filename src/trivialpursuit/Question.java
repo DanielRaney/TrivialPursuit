@@ -28,6 +28,9 @@ public class Question {
         answers[1] = answer2;
         answers[2] = answer3;
     }
+    public static ArrayList<Question> getQuestions(){
+        return questions;
+    }
     public String getName(){
         return name;
     }
