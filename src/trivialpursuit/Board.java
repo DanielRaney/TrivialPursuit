@@ -15,7 +15,8 @@ public class Board {
     private final static int EPSIV = 4;
     private final static int EPSV = 5;
     private final static int EPSVI = 6;
-    private static int RAND = (int)(Math.random()*6 + 1);;
+    private final static int ROLLAGAIN = 7;
+    private static int RAND = (int)(Math.random()*7 + 1);;
     static int board[][] = {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
     {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
@@ -38,7 +39,7 @@ public class Board {
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {
                 if(board[zx][zy] != WALL) {
-                    board[zx][zy] = (int)(Math.random() * 6 + 1);
+                    board[zx][zy] = (int)(Math.random() * 7 + 1);
                 } 
             }
         }
@@ -69,7 +70,7 @@ public class Board {
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {  
                 if(board[zx][zy] == WALL) { 
-                    int color = (int)(Math.random() * 5 +30);
+                    int color = (int)(Math.random() * 3 +30);
                     g.setColor(new Color(color,color,color));
                 }
                 else if(board[zx][zy] == EPSI) 
@@ -84,10 +85,13 @@ public class Board {
                     g.setColor(Color.GREEN);
                 else if(board[zx][zy] == EPSVI) 
                     g.setColor(Color.BLUE);
+                else if(board[zx][zy] == ROLLAGAIN) 
+                    g.setColor(Color.WHITE);
                 g.fillRect(Window.getX(zx * xdelta),Window.getY(zy * ydelta),xdelta,ydelta);
             }
         }
-        g.setColor(Color.white);
+        
+        g.setColor(Color.black);
         for (int zi = 1;zi<NUM_ROWS;zi++)
         {
             g.drawLine(Window.getX(0),Window.getY(zi*ydelta), Window.getX(Window.getWidth2()),Window.getY(zi*ydelta));

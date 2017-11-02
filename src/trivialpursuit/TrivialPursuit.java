@@ -40,14 +40,14 @@ public class TrivialPursuit extends JFrame implements Runnable {
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) {
 
-        repaint();
+        //repaint();
       }
     });
 
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseMoved(MouseEvent e) {
 
-        repaint();
+        //repaint();
       }
     });
 

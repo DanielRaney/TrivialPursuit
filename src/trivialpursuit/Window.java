@@ -7,8 +7,8 @@ public class Window {
     static final int XBORDER = 65;
     static final int YBORDER = 65;
     static final int YTITLE = 25;
-    static final int WINDOW_WIDTH = 880;
-    static final int WINDOW_HEIGHT = 890;    
+    static final int WINDOW_WIDTH = 881;
+    static final int WINDOW_HEIGHT = 891;    
     public static int getX(int x) {
         return (x + XBORDER);
     }
