@@ -2,10 +2,8 @@
 package trivialpursuit;
 
 import java.awt.*;
-//Comment
-//Hello World
+
 public class Board {
-    
     private final static int NUM_ROWS = 15;
     private final static int NUM_COLUMNS = 15; 
     private final static int WALL = 0;
@@ -40,7 +38,15 @@ public class Board {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {
                 if(board[zx][zy] != WALL) {
                     board[zx][zy] = (int)(Math.random() * 7 + 1);
-                } 
+                }
+                if(zx > 0 && zy > 0 && zx < NUM_ROWS & zy < NUM_COLUMNS && board[zx][zy] != WALL) {
+                    while(board[zx][zy] == board[zx-1][zy]) {
+                        board[zx][zy] = (int)(Math.random() * 7 + 1);
+                    }
+                    while(board[zx][zy] == board[zx][zy-1]) {
+                        board[zx][zy] = (int)(Math.random() * 7 + 1);
+                    }
+                }
             }
         }
     }
@@ -90,7 +96,6 @@ public class Board {
                 g.fillRect(Window.getX(zx * xdelta),Window.getY(zy * ydelta),xdelta,ydelta);
             }
         }
-        
         g.setColor(Color.black);
         for (int zi = 1;zi<NUM_ROWS;zi++)
         {
@@ -107,9 +112,9 @@ public class Board {
                     g.setColor(Color.darkGray);
             }
         }
+        
+        g.setColor(Color.black);
+        g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
 //Fill in below here
-        
-        
-        
     }
 }
