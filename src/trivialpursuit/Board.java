@@ -34,8 +34,14 @@ public class Board {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},   
     };
     
-    public static void Reset() {
-        
+    public static void reset() {
+        for(int zx = 0; zx<NUM_ROWS;zx++) {
+            for(int zy = 0; zy<NUM_COLUMNS;zy++) {
+                if(board[zx][zy] != WALL) {
+                    board[zx][zy] = (int)(Math.random() * 6 + 1);
+                } 
+            }
+        }
     }
     
     public static void addPiece(int x, int y) {
@@ -61,9 +67,11 @@ public class Board {
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
 //draw grid
         for(int zx = 0; zx<NUM_ROWS;zx++) {
-            for(int zy = 0; zy<NUM_COLUMNS;zy++) {
-                if(board[zx][zy] == WALL) 
-                    g.setColor(Color.darkGray);
+            for(int zy = 0; zy<NUM_COLUMNS;zy++) {  
+                if(board[zx][zy] == WALL) { 
+                    int color = (int)(Math.random() * 5 +30);
+                    g.setColor(new Color(color,color,color));
+                }
                 else if(board[zx][zy] == EPSI) 
                     g.setColor(Color.CYAN);
                 else if(board[zx][zy] == EPSII) 
