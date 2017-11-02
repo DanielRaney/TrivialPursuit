@@ -8,24 +8,30 @@ public class Board {
     
     private final static int NUM_ROWS = 15;
     private final static int NUM_COLUMNS = 15; 
-    static int WALL = 1;
-    static int PATH = 0;
-    static final int board[][] = {
+    private final static int WALL = 0;
+    private final static int EPSI = 1;
+    private final static int EPSII = 2;
+    private final static int EPSIII = 3;
+    private final static int EPSIV = 4;
+    private final static int EPSV = 5;
+    private final static int EPSVI = 6;
+    private static int RAND = (int)(Math.random()*6 + 1);;
+    static int board[][] = {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
-    {WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,WALL,WALL,WALL},
-    {WALL,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,PATH,WALL,WALL,WALL},
-    {WALL,PATH,PATH,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,PATH,PATH,PATH,WALL},
-    {WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
-    {WALL,PATH,WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,WALL},
-    {WALL,PATH,WALL,PATH,WALL,WALL,WALL,PATH,WALL,WALL,WALL,WALL,WALL,PATH,WALL},
-    {WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL,PATH,PATH,PATH,PATH,PATH,WALL},
-    {WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL},
-    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL},
-    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,WALL},
-    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,WALL,WALL,PATH,WALL,WALL,WALL,WALL,WALL},
-    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
-    {WALL,PATH,WALL,PATH,WALL,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,PATH,WALL},
-    {WALL,PATH,WALL,PATH,WALL,PATH,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},   
+    {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,RAND,RAND,RAND,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,RAND,RAND,RAND,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
+    {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
+    {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},   
     };
     
     public static void Reset() {
@@ -65,13 +71,25 @@ public class Board {
             g.drawLine(Window.getX(zi*xdelta),Window.getY(0),Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
         }
 //Fill in below here
-        g.setColor(Color.MAGENTA);
+        
         
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {
-                if(board[zx][zy] == (int)(Math.random()*2)) {
-                    g.fillRect(Window.getX(zx * xdelta),Window.getY(zy * ydelta),xdelta,ydelta);
-                }
+                if(board[zx][zy] == WALL) 
+                    g.setColor(Color.darkGray);
+                else if(board[zx][zy] == EPSI) 
+                    g.setColor(Color.CYAN);
+                else if(board[zx][zy] == EPSII) 
+                    g.setColor(Color.red);
+                else if(board[zx][zy] == EPSIII) 
+                    g.setColor(Color.MAGENTA);
+                else if(board[zx][zy] == EPSIV) 
+                    g.setColor(Color.PINK);
+                else if(board[zx][zy] == EPSV) 
+                    g.setColor(Color.GREEN);
+                else if(board[zx][zy] == EPSVI) 
+                    g.setColor(Color.BLUE);
+                g.fillRect(Window.getX(zx * xdelta),Window.getY(zy * ydelta),xdelta,ydelta);
             }
         }
     }
