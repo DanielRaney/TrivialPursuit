@@ -60,19 +60,6 @@ public class Board {
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
 //draw grid
-        g.setColor(Color.white);
-        for (int zi = 1;zi<NUM_ROWS;zi++)
-        {
-            g.drawLine(Window.getX(0),Window.getY(zi*ydelta), Window.getX(Window.getWidth2()),Window.getY(zi*ydelta));
-        }
-        
-        for (int zi = 1;zi<NUM_COLUMNS;zi++)
-        {
-            g.drawLine(Window.getX(zi*xdelta),Window.getY(0),Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
-        }
-//Fill in below here
-        
-        
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {
                 if(board[zx][zy] == WALL) 
@@ -92,5 +79,25 @@ public class Board {
                 g.fillRect(Window.getX(zx * xdelta),Window.getY(zy * ydelta),xdelta,ydelta);
             }
         }
+        g.setColor(Color.white);
+        for (int zi = 1;zi<NUM_ROWS;zi++)
+        {
+            g.drawLine(Window.getX(0),Window.getY(zi*ydelta), Window.getX(Window.getWidth2()),Window.getY(zi*ydelta));
+        }
+        
+        for (int zi = 1;zi<NUM_COLUMNS;zi++)
+        {
+            g.drawLine(Window.getX(zi*xdelta),Window.getY(0),Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
+        }
+        for(int zx = 0; zx<NUM_ROWS;zx++) {
+            for(int zy = 0; zy<NUM_COLUMNS;zy++) {
+                if(board[zx][zy] == WALL) 
+                    g.setColor(Color.darkGray);
+            }
+        }
+//Fill in below here
+        
+        
+        
     }
 }
