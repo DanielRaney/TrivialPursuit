@@ -14,8 +14,8 @@ public class Board {
     private final static int EPSV = 5;
     private final static int EPSVI = 6;
     private final static int ROLLAGAIN = 7;
-    private static int RAND = (int)(Math.random()*7 + 1);;
-    static int board[][] = {
+    private static int RAND = 8;
+    private static final int board[][] = {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
     {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
     {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
