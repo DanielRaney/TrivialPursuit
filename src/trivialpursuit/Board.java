@@ -14,8 +14,17 @@ public class Board {
     private final static int EPSV = 5;
     private final static int EPSVI = 6;
     private final static int ROLLAGAIN = 7;
-    private static int RAND = 8;
-    private static final int board[][] = {
+    private static int RAND = (int)(Math.random()*7 + 1);
+    
+    private static final Color I = new Color(215, 191, 100);
+    private static final Color II = new Color(217, 98, 98);
+    private static final Color III = new Color(112, 218, 97);
+    private static final Color IV = new Color(96, 201, 219);
+    private static final Color V = new Color(160, 95, 220);
+    private static final Color VI = new Color(222, 92, 200);
+            
+    private static int board[][] = {
+
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
     {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
     {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
@@ -32,6 +41,7 @@ public class Board {
     {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},   
     };
+    
     
     public static void reset() {
         for(int zx = 0; zx<NUM_ROWS;zx++) {
@@ -80,17 +90,17 @@ public class Board {
                     g.setColor(new Color(color,color,color));
                 }
                 else if(board[zx][zy] == EPSI) 
-                    g.setColor(Color.CYAN);
+                    g.setColor(I);
                 else if(board[zx][zy] == EPSII) 
-                    g.setColor(Color.red);
+                    g.setColor(II);
                 else if(board[zx][zy] == EPSIII) 
-                    g.setColor(Color.MAGENTA);
+                    g.setColor(III);
                 else if(board[zx][zy] == EPSIV) 
-                    g.setColor(Color.PINK);
+                    g.setColor(IV);
                 else if(board[zx][zy] == EPSV) 
-                    g.setColor(Color.GREEN);
+                    g.setColor(V);
                 else if(board[zx][zy] == EPSVI) 
-                    g.setColor(Color.BLUE);
+                    g.setColor(VI);
                 else if(board[zx][zy] == ROLLAGAIN) 
                     g.setColor(Color.WHITE);
                 g.fillRect(Window.getX(zx * xdelta),Window.getY(zy * ydelta),xdelta,ydelta);
