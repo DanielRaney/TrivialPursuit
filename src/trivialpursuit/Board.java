@@ -17,14 +17,17 @@ public class Board {
     private final static int ROLLAGAIN = 7;
     private static int RAND = (int)(Math.random()*7 + 1);
     
+
     private static Piece pieces[] = new Piece[NUM_PIECES];
     
-    private static final Color I = new Color(215, 191, 100);
-    private static final Color II = new Color(217, 98, 98);
-    private static final Color III = new Color(112, 218, 97);
-    private static final Color IV = new Color(96, 201, 219);
-    private static final Color V = new Color(160, 95, 220);
-    private static final Color VI = new Color(222, 92, 200);
+    private static final Color I = new Color(215, 191, 100); //orange
+    private static final Color II = new Color(217, 98, 98); //red
+    private static final Color III = new Color(112, 218, 97); //green
+    private static final Color IV = new Color(96, 201, 219); //blue
+    private static final Color V = new Color(160, 95, 220); //purple
+    private static final Color VI = new Color(222, 92, 200); //pink 
+    
+    private static int rollDice = (int)(Math.random() * 7 + 1);; 
             
     private static int board[][] = {
 
