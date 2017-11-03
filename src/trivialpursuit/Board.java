@@ -4,6 +4,7 @@ package trivialpursuit;
 import java.awt.*;
 
 public class Board {
+    private final static int NUM_PIECES = 4;
     private final static int NUM_ROWS = 15;
     private final static int NUM_COLUMNS = 15; 
     private final static int WALL = 0;
@@ -15,6 +16,8 @@ public class Board {
     private final static int EPSVI = 6;
     private final static int ROLLAGAIN = 7;
     private static int RAND = (int)(Math.random()*7 + 1);
+    
+    private static Piece pieces[] = new Piece[NUM_PIECES];
     
     private static final Color I = new Color(215, 191, 100);
     private static final Color II = new Color(217, 98, 98);
@@ -44,6 +47,10 @@ public class Board {
     
     
     public static void reset() {
+        for(int i = 0; i<NUM_PIECES;i++) {
+            int color = (int)(Math.random() * 3 +30);
+            pieces[i] = new Piece(new Color(color,color,color),NUM_ROWS/2,NUM_COLUMNS/2);
+        }
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {
                 if(board[zx][zy] != WALL) {
@@ -59,6 +66,7 @@ public class Board {
                 }
             }
         }
+        board[NUM_ROWS/2][NUM_COLUMNS/2] = ROLLAGAIN;
     }
     
     public static void addPiece(int x, int y) {
@@ -122,7 +130,9 @@ public class Board {
                     g.setColor(Color.darkGray);
             }
         }
-        
+        for(int zp = 0; zp<NUM_PIECES; zp++) {
+            pieces[zp].draw(g,xdelta,ydelta);
+        }
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
 //Fill in below here
