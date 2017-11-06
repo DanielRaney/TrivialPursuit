@@ -16,6 +16,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setTitle("Trivial Pursuit");
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./trivial.png"));
