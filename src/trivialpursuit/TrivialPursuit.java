@@ -10,6 +10,9 @@ public class TrivialPursuit extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
+    public static boolean pressR = false;
+    public static int timeCount = 0;
+    public static int rollDice = 0;
 
     public static void main(String[] args) {
         TrivialPursuit frame = new TrivialPursuit();
@@ -59,14 +62,19 @@ public class TrivialPursuit extends JFrame implements Runnable {
                 } else if (e.VK_DOWN == e.getKeyCode()) {
                 } else if (e.VK_LEFT == e.getKeyCode()) {
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
-                    stop();
+                    //stop();
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
                 if(e.VK_K == e.getKeyCode()) {
                     Board.movePiece();
                 }
-                repaint();
+                if(e.VK_R == e.getKeyCode()) {
+                    pressR = true;
+                    rollDice = (int)(Math.random() * 6 + 1);
+                    
+                }
+               // repaint();
             }
         });
         init();
@@ -103,7 +111,6 @@ public class TrivialPursuit extends JFrame implements Runnable {
             return;
         }   
 //The Rest
-
         Board.Draw(g);
         
         gOld.drawImage(image, 0, 0, null);
@@ -126,9 +133,9 @@ public class TrivialPursuit extends JFrame implements Runnable {
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
         System.out.println("-------reset-------");
-        
         Board.reset();
-    Question.InstantiateQuestions();
+        pressR = false;
+        Question.InstantiateQuestions();
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {
@@ -140,6 +147,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
             }
             reset();
         }
+        timeCount++;
     }
 
 ////////////////////////////////////////////////////////////////////////////

@@ -20,11 +20,11 @@ public class Question {
             answers[i]="";
         }
     }
-    Question(String _name, String answer1, String answer2, String answer3, Category _category, Difficulty _difficulty){
+    Question(String _name, String correctAnswer, String answer2, String answer3, Category _category, Difficulty _difficulty){
         name = _name;
         category = _category;
         difficulty = _difficulty;
-        answers[0] = answer1;
+        answers[0] = correctAnswer;
         answers[1] = answer2;
         answers[2] = answer3;
     }

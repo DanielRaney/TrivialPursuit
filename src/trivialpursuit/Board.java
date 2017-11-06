@@ -2,6 +2,8 @@
 package trivialpursuit;
 
 import java.awt.*;
+import static trivialpursuit.TrivialPursuit.pressR;
+import static trivialpursuit.TrivialPursuit.timeCount;
 
 public class Board {
     private final static int NUM_PIECES = 4;
@@ -31,7 +33,26 @@ public class Board {
     private static final Color V = new Color(160, 95, 220); //purple
     private static final Color VI = new Color(222, 92, 200); //pink 
     
-    private static int rollDice = (int)(Math.random() * 7 + 1);; 
+    public static void RollDice(Graphics2D g){
+        if(pressR){
+            boolean rollOnce = false;
+            int rollDice = 1;
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
+            if(!rollOnce){
+                rollDice = (int)(Math.random() * 7 + 1);
+                rollOnce = true;
+            }
+            g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
+            if(timeCount % 25==24)
+                pressR = false;
+        }
+        else{
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
+            g.drawString("PRESS [R] TO ROLL THE DICE", Window.getWidth2()/2-140,70); 
+        }
+    } 
             
     private static int board[][] = {
 
@@ -154,6 +175,22 @@ public class Board {
         
         
 //Fill in below here
+/////////////////////////If R is pressed / RollDice code //////////////////////////////
+        
+        
+        if(pressR){
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial",Font.BOLD,30));
+            g.drawString("ROLLED A "+TrivialPursuit.rollDice+"!", Window.getWidth2()/2-20,70); 
+            if(timeCount % 25==24)
+                pressR = false;
+        }
+        else{
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial",Font.BOLD,30));
+            g.drawString("PRESS [R] TO ROLL THE DICE", Window.getWidth2()/2-140,70); 
+        }
+////////////////////////////////////////////////////////////////////////////////////////////
     }
     public static void movePiece() {
         
