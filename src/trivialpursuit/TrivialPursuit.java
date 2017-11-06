@@ -63,6 +63,9 @@ public class TrivialPursuit extends JFrame implements Runnable {
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
+                if(e.VK_K == e.getKeyCode()) {
+                    Board.movePiece();
+                }
                 repaint();
             }
         });

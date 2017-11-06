@@ -7,6 +7,7 @@ public class Board {
     private final static int NUM_PIECES = 4;
     private final static int NUM_ROWS = 15;
     private final static int NUM_COLUMNS = 15; 
+    
     private final static int WALL = 0;
     private final static int EPSI = 1;
     private final static int EPSII = 2;
@@ -15,10 +16,13 @@ public class Board {
     private final static int EPSV = 5;
     private final static int EPSVI = 6;
     private final static int ROLLAGAIN = 7;
+    
     private static int RAND = (int)(Math.random()*7 + 1);
     
 
     private static Piece pieces[] = new Piece[NUM_PIECES];
+    private static Piece playerTurn;
+    
     
     private static final Color I = new Color(215, 191, 100); //orange
     private static final Color II = new Color(217, 98, 98); //red
@@ -50,10 +54,17 @@ public class Board {
     
     
     public static void reset() {
-        for(int i = 0; i<NUM_PIECES;i++) {
-            int color = (int)(Math.random() * 3 +30);
-            pieces[i] = new Piece(new Color(color,color,color),NUM_ROWS/2,NUM_COLUMNS/2);
-        }
+        //for(int i = 0; i<NUM_PIECES;i++) {
+        //    int color = (int)(Math.random() * 3 +30);
+        //   pieces[i] = new Piece(new Color(color,color,color),NUM_ROWS/2,NUM_COLUMNS/2);
+        //}
+        pieces[0] = new Piece(Color.PINK, NUM_ROWS/2,NUM_COLUMNS/2 + 1);
+        pieces[1] = new Piece(Color.ORANGE, NUM_ROWS/2,NUM_COLUMNS/2 - 1);
+        pieces[2] = new Piece(Color.DARK_GRAY, NUM_ROWS/2 + 1,NUM_COLUMNS/2);
+        pieces[3] = new Piece(Color.BLUE, NUM_ROWS/2 - 1,NUM_COLUMNS/2);
+        
+        playerTurn = pieces[0];
+        
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {
                 if(board[zx][zy] != WALL) {
@@ -138,6 +149,21 @@ public class Board {
         }
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
+        /////////
+        
+        
+        
 //Fill in below here
+    }
+    public static void movePiece() {
+        
+        int ran = (int)(Math.random() * 6 + 1);
+        if(playerTurn.getY() + ran < NUM_COLUMNS &&(board[playerTurn.getX()][playerTurn.getY() + ran]) != WALL) {
+           playerTurn.moveY(ran);
+        }
+        else if(playerTurn.getX() + ran < NUM_ROWS && playerTurn.getY() < NUM_COLUMNS && (board[playerTurn.getX() + ran][playerTurn.getY()] != WALL)) {
+            playerTurn.moveX(ran);
+        }
+        System.out.println(ran);
     }
 }

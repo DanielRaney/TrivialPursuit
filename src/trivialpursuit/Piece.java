@@ -15,6 +15,18 @@ public class Piece {
         x = _x;
         y = _y;
     }
+    public int getX() {
+        return(x);
+    }
+    public int getY() {
+        return(y);
+    }
+    public void moveX(int increment) {
+        x += increment;
+    }
+    public void moveY(int increment) {
+        y += increment;
+    }
     public Color getColor()
     {
         return (color);
@@ -26,6 +38,7 @@ public class Piece {
         g.setColor(color); 
         g.fillOval(Window.getX(x*xdelta),Window.getY(y*ydelta),xdelta,ydelta);
         
+
 //        g.setColor(Color.white);
 //        g.setFont(new Font("Arial",Font.PLAIN,30));
 //        g.drawString("",Window.getX(column*xdelta)+30,Window.getY(row*ydelta)+40);       
@@ -42,7 +55,6 @@ public class Piece {
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*4, angle-10);
         g.setColor(Color.CYAN);
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*5, angle-10); 
-
 
 
     }
