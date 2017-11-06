@@ -15,6 +15,18 @@ public class Piece {
         x = _x;
         y = _y;
     }
+    public int getX() {
+        return(x);
+    }
+    public int getY() {
+        return(y);
+    }
+    public void moveX(int increment) {
+        x += increment;
+    }
+    public void moveY(int increment) {
+        y += increment;
+    }
     public Color getColor()
     {
         return (color);
