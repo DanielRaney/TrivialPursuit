@@ -34,8 +34,8 @@ public class Question {
     public String getName(){
         return name;
     }
-    public String[] getAnswers(){
-        return answers;
+    public String getAnswers(int k){
+        return answers[k];
     }
     public Category getCategory(){
         return category;

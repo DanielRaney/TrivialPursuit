@@ -3,6 +3,7 @@ package trivialpursuit;
 
 import java.awt.*;
 import static trivialpursuit.TrivialPursuit.*;
+import static trivialpursuit.Category.*;
 
 public class Board {
     private final static int NUM_PIECES = 4;
@@ -171,8 +172,6 @@ public class Board {
         
 //Fill in below here
 /////////////////////////If R is pressed / RollDice code //////////////////////////////
-        
-        
         if(pressR){
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
@@ -199,5 +198,36 @@ public class Board {
             playerTurn.moveX(ran);
         }
         System.out.println(ran);
+    }
+    public static void DrawQuestion(Graphics2D g){
+        //boolean pickOnce = true;
+        //int randomQuestion =(int)(Math.random()*30);
+        //if(pickOnce){
+            //randomQuestion =(int)(Math.random()*30);
+            //pickOnce = false;
+        //}
+        Question question = Question.getQuestions().get(10);
+        int ydelta = Window.getHeight2()/NUM_ROWS;
+        int xdelta = Window.getWidth2()/NUM_COLUMNS;
+        g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
+        if(question.getCategory() == EPISODEI) 
+            g.setColor(I);
+        else if(question.getCategory() == EPISODEII) 
+            g.setColor(II);
+        else if(question.getCategory() == EPISODEIII) 
+            g.setColor(III);
+        else if(question.getCategory() == EPISODEIV) 
+            g.setColor(IV);
+        else if(question.getCategory() == EPISODEV) 
+            g.setColor(V);
+        else if(question.getCategory() == EPISODEVI) 
+            g.setColor(VI);
+        g.drawRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
+        g.setFont(new Font("Arial",Font.BOLD,20));
+        g.drawString(""+question.getName(), Window.getX(2*xdelta),Window.getY(6*ydelta - ydelta/2) ); 
+        g.setFont(new Font("Arial",Font.PLAIN,20));
+        g.drawString(""+question.getAnswers(0), Window.getX(2*xdelta),Window.getY(7*ydelta) ); 
+        g.drawString(""+question.getAnswers(1), Window.getX(3*xdelta),Window.getY(8*ydelta ) ); 
+        g.drawString(""+question.getAnswers(2), Window.getX(4*xdelta),Window.getY(9*ydelta) ); 
     }
 }

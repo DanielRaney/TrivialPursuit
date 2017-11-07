@@ -108,6 +108,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
         }   
 //The Rest
         Board.Draw(g);
+        Board.DrawQuestion(g);
         
         gOld.drawImage(image, 0, 0, null);
     }
