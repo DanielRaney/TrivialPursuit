@@ -2,8 +2,7 @@
 package trivialpursuit;
 
 import java.awt.*;
-import static trivialpursuit.TrivialPursuit.pressR;
-import static trivialpursuit.TrivialPursuit.timeCount;
+import static trivialpursuit.TrivialPursuit.*;
 
 public class Board {
     private final static int NUM_PIECES = 4;
@@ -79,8 +78,8 @@ public class Board {
         //    int color = (int)(Math.random() * 3 +30);
         //   pieces[i] = new Piece(new Color(color,color,color),NUM_ROWS/2,NUM_COLUMNS/2);
         //}
-        pieces[0] = new Piece(Color.PINK, NUM_ROWS/2,NUM_COLUMNS/2 + 1);
-        pieces[1] = new Piece(Color.ORANGE, NUM_ROWS/2,NUM_COLUMNS/2 - 1);
+        pieces[0] = new Piece(Color.LIGHT_GRAY, NUM_ROWS/2,NUM_COLUMNS/2 + 1);
+        pieces[1] = new Piece(Color.yellow, NUM_ROWS/2,NUM_COLUMNS/2 - 1);
         pieces[2] = new Piece(Color.DARK_GRAY, NUM_ROWS/2 + 1,NUM_COLUMNS/2);
         pieces[3] = new Piece(Color.BLUE, NUM_ROWS/2 - 1,NUM_COLUMNS/2);
         
@@ -182,8 +181,10 @@ public class Board {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
             g.drawString("ROLLED A "+TrivialPursuit.rollDice+"!", Window.getWidth2()/2-20,70); 
-            if(timeCount % 25==24)
+            if(timeCount % 25==24) {
                 pressR = false;
+                notCurrently = true;
+            }
         }
         else{
             g.setColor(Color.WHITE);

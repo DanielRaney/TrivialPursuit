@@ -13,6 +13,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
     public static boolean pressR = false;
     public static int timeCount = 0;
     public static int rollDice = 0;
+    public static boolean notCurrently = true;
 
     public static void main(String[] args) {
         TrivialPursuit frame = new TrivialPursuit();
@@ -71,7 +72,11 @@ public class TrivialPursuit extends JFrame implements Runnable {
                 }
                 if(e.VK_R == e.getKeyCode()) {
                     pressR = true;
-                    rollDice = (int)(Math.random() * 6 + 1);
+                    if(pressR && notCurrently) {
+                        rollDice = (int)(Math.random() * 6 + 1);
+                        notCurrently = false;
+                    }
+                    
                     
                 }
                // repaint();
