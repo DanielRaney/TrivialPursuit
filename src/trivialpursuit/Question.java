@@ -127,7 +127,7 @@ public class Question {
         Question ep3Q7 = new Question("What does Anakin find out about Palpatine?", "He is the sith lord", "He is sick","He plans on quiting his job as senator", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q7);
         
-        Question ep3Q8 = new Question("who stops Mace Windu from killing the sith lord?", "Anakin", "Yoda","The droid army", Category.EPISODEIII, Difficulty.EASY);
+        Question ep3Q8 = new Question("Who stops Mace Windu from killing the sith lord?", "Anakin", "Yoda","The droid army", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q8);
         
         Question ep3Q9 = new Question("What order does the sith lord execute to turn the clones against the jedi?", "order 66", "order 556","order 25", Category.EPISODEIII, Difficulty.EASY);
@@ -153,4 +153,4 @@ public class Question {
         
     }
   
-}
+    }
