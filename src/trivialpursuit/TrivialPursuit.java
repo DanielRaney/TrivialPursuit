@@ -10,10 +10,6 @@ public class TrivialPursuit extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
-    public static boolean pressR = false;
-    public static int timeCount = 0;
-    public static int rollDice = 0;
-    public static boolean notCurrently = true;
 
     public static void main(String[] args) {
         TrivialPursuit frame = new TrivialPursuit();
@@ -71,11 +67,8 @@ public class TrivialPursuit extends JFrame implements Runnable {
                     Board.movePiece();
                 }
                 if(e.VK_R == e.getKeyCode()) {
-                    pressR = true;
-                    if(pressR && notCurrently) {
-                        rollDice = (int)(Math.random() * 6 + 1);
-                        notCurrently = false;
-                    }
+                    
+                    Board.RollDice();
                 }
                // repaint();
             }
@@ -137,7 +130,6 @@ public class TrivialPursuit extends JFrame implements Runnable {
     public void reset() {
         System.out.println("-------reset-------");
         Board.reset();
-        pressR = false;
         Question.InstantiateQuestions();
     }
 /////////////////////////////////////////////////////////////////////////
@@ -150,7 +142,6 @@ public class TrivialPursuit extends JFrame implements Runnable {
             }
             reset();
         }
-        timeCount++;
     }
 
 ////////////////////////////////////////////////////////////////////////////

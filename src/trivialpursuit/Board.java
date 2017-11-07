@@ -25,6 +25,11 @@ public class Board {
     private static Piece playerTurn;
     
     
+    public static boolean pressR = false;
+    public static int timeCount = 0;
+    public static int rollDice = 0;
+    public static boolean notCurrently = true;
+    
     private static final Color I = new Color(215, 191, 100); //orange
     private static final Color II = new Color(217, 98, 98); //red
     private static final Color III = new Color(112, 218, 97); //green
@@ -32,24 +37,11 @@ public class Board {
     private static final Color V = new Color(160, 95, 220); //purple
     private static final Color VI = new Color(222, 92, 200); //pink 
     
-    public static void RollDice(Graphics2D g){
-        if(pressR){
-            boolean rollOnce = false;
-            int rollDice = 1;
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
-            if(!rollOnce){
-                rollDice = (int)(Math.random() * 7 + 1);
-                rollOnce = true;
-            }
-            g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
-            if(timeCount % 25==24)
-                pressR = false;
-        }
-        else{
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
-            g.drawString("PRESS [R] TO ROLL THE DICE", Window.getWidth2()/2-140,70); 
+    public static void RollDice(){
+        pressR = true;
+        if(pressR && notCurrently) {
+            rollDice = (int)(Math.random() * 6 + 1);
+            notCurrently = false;
         }
     } 
             
@@ -101,6 +93,8 @@ public class Board {
             }
         }
         board[NUM_ROWS/2][NUM_COLUMNS/2] = ROLLAGAIN;
+        pressR = false;
+        notCurrently = true;
     }
     
     public static void addPiece(int x, int y) {
@@ -169,7 +163,9 @@ public class Board {
         }
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
-        /////////
+    
+        timeCount++;    
+    /////////
         
         
         
@@ -180,7 +176,7 @@ public class Board {
         if(pressR){
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
-            g.drawString("ROLLED A "+TrivialPursuit.rollDice+"!", Window.getWidth2()/2-20,70); 
+            g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
             if(timeCount % 25==24) {
                 pressR = false;
                 notCurrently = true;
