@@ -76,8 +76,6 @@ public class TrivialPursuit extends JFrame implements Runnable {
                         rollDice = (int)(Math.random() * 6 + 1);
                         notCurrently = false;
                     }
-                    
-                    
                 }
                // repaint();
             }
