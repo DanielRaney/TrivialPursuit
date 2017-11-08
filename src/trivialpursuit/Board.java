@@ -3,6 +3,7 @@ package trivialpursuit;
 
 import java.awt.*;
 import static trivialpursuit.TrivialPursuit.*;
+import static trivialpursuit.Category.*;
 
 public class Board {
     private final static int NUM_PIECES = 4;
@@ -21,9 +22,14 @@ public class Board {
     private static int RAND = (int)(Math.random()*7 + 1);
     
 
-    private static Piece pieces[] = new Piece[NUM_PIECES];
-    private static Piece playerTurn;
+    public static Piece pieces[] = new Piece[NUM_PIECES];
+    public static Piece playerTurn;
     
+    
+    public static boolean pressR = false;
+    public static int timeCount = 0;
+    public static int rollDice = 0;
+    public static boolean notCurrently = true;
     
     private static final Color I = new Color(215, 191, 100); //orange
     private static final Color II = new Color(217, 98, 98); //red
@@ -32,24 +38,11 @@ public class Board {
     private static final Color V = new Color(160, 95, 220); //purple
     private static final Color VI = new Color(222, 92, 200); //pink 
     
-    public static void RollDice(Graphics2D g){
-        if(pressR){
-            boolean rollOnce = false;
-            int rollDice = 1;
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
-            if(!rollOnce){
-                rollDice = (int)(Math.random() * 7 + 1);
-                rollOnce = true;
-            }
-            g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
-            if(timeCount % 25==24)
-                pressR = false;
-        }
-        else{
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
-            g.drawString("PRESS [R] TO ROLL THE DICE", Window.getWidth2()/2-140,70); 
+    public static void RollDice(){
+        pressR = true;
+        if(pressR && notCurrently) {
+            rollDice = (int)(Math.random() * 6 + 1);
+            notCurrently = false;
         }
     } 
             
@@ -101,6 +94,8 @@ public class Board {
             }
         }
         board[NUM_ROWS/2][NUM_COLUMNS/2] = ROLLAGAIN;
+        pressR = false;
+        notCurrently = true;
     }
     
     public static void addPiece(int x, int y) {
@@ -169,18 +164,18 @@ public class Board {
         }
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
-        /////////
+    
+        timeCount++;    
+    /////////
         
         
         
 //Fill in below here
 /////////////////////////If R is pressed / RollDice code //////////////////////////////
-        
-        
         if(pressR){
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
-            g.drawString("ROLLED A "+TrivialPursuit.rollDice+"!", Window.getWidth2()/2-20,70); 
+            g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
             if(timeCount % 25==24) {
                 pressR = false;
                 notCurrently = true;
@@ -203,5 +198,36 @@ public class Board {
             playerTurn.moveX(ran);
         }
         System.out.println(ran);
+    }
+    public static void DrawQuestion(Graphics2D g){
+        //boolean pickOnce = true;
+        //int randomQuestion =(int)(Math.random()*30);
+        //if(pickOnce){
+            //randomQuestion =(int)(Math.random()*30);
+            //pickOnce = false;
+        //}
+        Question question = Question.getQuestions().get(10);
+        int ydelta = Window.getHeight2()/NUM_ROWS;
+        int xdelta = Window.getWidth2()/NUM_COLUMNS;
+        g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
+        if(question.getCategory() == EPISODEI) 
+            g.setColor(I);
+        else if(question.getCategory() == EPISODEII) 
+            g.setColor(II);
+        else if(question.getCategory() == EPISODEIII) 
+            g.setColor(III);
+        else if(question.getCategory() == EPISODEIV) 
+            g.setColor(IV);
+        else if(question.getCategory() == EPISODEV) 
+            g.setColor(V);
+        else if(question.getCategory() == EPISODEVI) 
+            g.setColor(VI);
+        g.drawRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
+        g.setFont(new Font("Arial",Font.BOLD,20));
+        g.drawString(""+question.getName(), Window.getX(2*xdelta),Window.getY(6*ydelta - ydelta/2) ); 
+        g.setFont(new Font("Arial",Font.PLAIN,20));
+        g.drawString(""+question.getAnswers(0), Window.getX(2*xdelta),Window.getY(7*ydelta) ); 
+        g.drawString(""+question.getAnswers(1), Window.getX(3*xdelta),Window.getY(8*ydelta ) ); 
+        g.drawString(""+question.getAnswers(2), Window.getX(4*xdelta),Window.getY(9*ydelta) ); 
     }
 }
