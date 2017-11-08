@@ -3,6 +3,7 @@ package trivialpursuit;
 
 import java.awt.*;
 import static trivialpursuit.TrivialPursuit.*;
+import static trivialpursuit.Category.*;
 
 public class Board {
     private final static int NUM_PIECES = 4;
@@ -41,6 +42,7 @@ public class Board {
         pressR = true;
         if(pressR && notCurrently) {
             rollDice = (int)(Math.random() * 6 + 1);
+            movePiece(rollDice);
             notCurrently = false;
         }
     } 
@@ -171,8 +173,6 @@ public class Board {
         
 //Fill in below here
 /////////////////////////If R is pressed / RollDice code //////////////////////////////
-        
-        
         if(pressR){
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
@@ -189,15 +189,106 @@ public class Board {
         }
 ////////////////////////////////////////////////////////////////////////////////////////////
     }
-    public static void movePiece() {
+    
+    public static void DrawQuestion(Graphics2D g){
+        //boolean pickOnce = true;
+        //int randomQuestion =(int)(Math.random()*30);
+        //if(pickOnce){
+            //randomQuestion =(int)(Math.random()*30);
+            //pickOnce = false;
+        //}
+        Question question = Question.getQuestions().get(10);
+        int ydelta = Window.getHeight2()/NUM_ROWS;
+        int xdelta = Window.getWidth2()/NUM_COLUMNS;
+        g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
+        if(question.getCategory() == EPISODEI) 
+            g.setColor(I);
+        else if(question.getCategory() == EPISODEII) 
+            g.setColor(II);
+        else if(question.getCategory() == EPISODEIII) 
+            g.setColor(III);
+        else if(question.getCategory() == EPISODEIV) 
+            g.setColor(IV);
+        else if(question.getCategory() == EPISODEV) 
+            g.setColor(V);
+        else if(question.getCategory() == EPISODEVI) 
+            g.setColor(VI);
+        g.drawRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
+        g.setFont(new Font("Arial",Font.BOLD,20));
+        g.drawString(""+question.getName(), Window.getX(2*xdelta),Window.getY(6*ydelta - ydelta/2) ); 
+        g.setFont(new Font("Arial",Font.PLAIN,20));
+        g.drawString(""+question.getAnswers(0), Window.getX(2*xdelta),Window.getY(7*ydelta) ); 
+        g.drawString(""+question.getAnswers(1), Window.getX(3*xdelta),Window.getY(8*ydelta ) ); 
+        g.drawString(""+question.getAnswers(2), Window.getX(4*xdelta),Window.getY(9*ydelta) ); 
+    }
+    public static void movePiece(int ran) {
         
-        int ran = (int)(Math.random() * 6 + 1);
-        if(playerTurn.getY() + ran < NUM_COLUMNS &&(board[playerTurn.getX()][playerTurn.getY() + ran]) != WALL) {
-           playerTurn.moveY(ran);
-        }
-        else if(playerTurn.getX() + ran < NUM_ROWS && playerTurn.getY() < NUM_COLUMNS && (board[playerTurn.getX() + ran][playerTurn.getY()] != WALL)) {
-            playerTurn.moveX(ran);
-        }
-        System.out.println(ran);
+        //Second iteration (Very Hardcode)
+    //    int ran = (int)(Math.random() * 6 + 1);
+    //    int X = 1;
+    //    int Y = 1;
+    //    if(playerTurn.getX() != (NUM_ROWS-2) &&(playerTurn.getY()+ran) < NUM_ROWS && board[playerTurn.getX()][playerTurn.getY() + ran] != WALL) {
+    //        playerTurn.moveY(ran);
+    //    }
+    //    else if(playerTurn.getX() != (NUM_COLUMNS-2) &&(playerTurn.getX()+ran) < NUM_COLUMNS && board[playerTurn.getX() + ran][playerTurn.getY()] != WALL){
+    //        playerTurn.moveX(ran);
+    //    }
+    //    else if (playerTurn.getX() < NUM_COLUMNS && (playerTurn.getY() - ran) > 0 && board[playerTurn.getX()][playerTurn.getY() - ran] != WALL) {
+    //        playerTurn.moveY(-ran);
+    //    }
+    
+        int amountMovePossible = 0;
+        //STARTING MOVE DEPENDENT ON STARTING LOCATION
+            for(int i = 0; i < ran; i++) {
+                System.out.println("oof");
+                if (playerTurn.getX() != (NUM_COLUMNS-2) && playerTurn.getY() != 1 && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
+                    amountMovePossible += 1;
+                }
+            }
+            System.out.println(amountMovePossible + " is the possible move " + ran + " was the amount total");
+            playerTurn.moveY(amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+            //WIP
+            
+            for(int i = 0; i< ran; i++) {
+                if(playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
+                    amountMovePossible +=1;
+                }
+            }
+            System.out.println(amountMovePossible + "");
+            playerTurn.moveX(amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+            for(int i = 0; i < ran;i++) {
+                if(playerTurn.getY() - i > 1 && board[playerTurn.getX()][playerTurn.getY() - i] != WALL && playerTurn.getX() == NUM_COLUMNS-2) {
+                    amountMovePossible += 1;
+                }
+            }
+            System.out.println(amountMovePossible + "");
+            playerTurn.moveY(-amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+            
+            for(int i = 0; i< ran; i++) {
+                if(playerTurn.getX() - i > (1) && board[playerTurn.getX() - i][playerTurn.getY()] != WALL) {
+                    amountMovePossible += 1;
+                }
+            }
+            
+            System.out.println(amountMovePossible + "");
+            playerTurn.moveX(-amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+            
+            for(int i = 0; i < ran; i++) {
+                System.out.println("oof");
+                if (playerTurn.getX() != (NUM_COLUMNS-2) && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
+                    amountMovePossible += 1;
+                }
+            }
+            System.out.println(amountMovePossible + " is the possible move " + ran + " was the amount total");
+            playerTurn.moveY(amountMovePossible);
+            ran -= amountMovePossible;
     }
 }

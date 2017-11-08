@@ -64,7 +64,6 @@ public class TrivialPursuit extends JFrame implements Runnable {
                     reset();
                 }
                 if(e.VK_K == e.getKeyCode()) {
-                    Board.movePiece();
                 }
                 if(e.VK_R == e.getKeyCode()) {
                     
@@ -108,6 +107,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
         }   
 //The Rest
         Board.Draw(g);
+        //Board.DrawQuestion(g);
         
         gOld.drawImage(image, 0, 0, null);
     }
