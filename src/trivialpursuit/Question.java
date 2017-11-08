@@ -50,7 +50,7 @@ public class Question {
         Question ep1Q2 = new Question("Whos was the jedi that accompanied obi-wan at the meeting with the trade confederation?", "Qui Gon Jinn", "Lando Calrissian","Mace Windu", Category.EPISODEI, Difficulty.MEDIUM);
         questions.add(ep1Q2);
         
-        Question ep1Q3 = new Question("What did the jedi discover on the trade confederation ship?", "A droid army", "A clone army","plans to build a super weapon", Category.EPISODEI, Difficulty.EASY);
+        Question ep1Q3 = new Question("What did the jedi discover on the trade confederation ship?", "A droid army", "A clone army","Plans to build a super weapon", Category.EPISODEI, Difficulty.EASY);
         questions.add(ep1Q3);
         
         Question ep1Q4 = new Question(" What planet did Obi-Wan and Qui-Gon Jinn land on after leaving the trade confederation ship?", "Naboo", "Tatooine","Hoth", Category.EPISODEI, Difficulty.MEDIUM);
@@ -99,10 +99,10 @@ public class Question {
         Question ep2Q8 = new Question("Where was the first battle of the Clone Wars?", "Geonosis", "Coruscant","Kashyyk", Category.EPISODEII, Difficulty.MEDIUM);
         questions.add(ep2Q8);
         
-        Question ep2Q9 = new Question(" Who isn't chained up in the arena on Geonosis?", "Yoda", "Obi-wan","Padme", Category.EPISODEII, Difficulty.EASY);
+        Question ep2Q9 = new Question("Who isn't chained up in the arena on Geonosis?", "Yoda", "Obi-wan","Padme", Category.EPISODEII, Difficulty.EASY);
         questions.add(ep2Q9);
         
-        Question ep2Q10 = new Question("What happens to Anakin in the fight against Count Dooku?", "looses his arm", "switches to the dark side","Looses his leg", Category.EPISODEII, Difficulty.EASY);
+        Question ep2Q10 = new Question("What happens to Anakin in the fight against Count Dooku?", "Looses his arm", "He switches to the dark side","Looses his leg", Category.EPISODEII, Difficulty.EASY);
         questions.add(ep2Q10);
         ////////////////////////////////////////////////////EPISODE III///////////////////////////////////////////////////////////////////////////////////////
         
@@ -112,13 +112,13 @@ public class Question {
         Question ep3Q2 = new Question("Who are Obi-Wan Kenobi and Anakin trying to save during the space battle?", "Senator Palpatine", "Mace Windu","Padme", Category.EPISODEIII, Difficulty.MEDIUM);
         questions.add(ep3Q2);
         
-        Question ep3Q3 = new Question("What does Anakin do to Count Dooku?", "Beheads him", "lets him escape","Inprison him", Category.EPISODEIII, Difficulty.EASY);
+        Question ep3Q3 = new Question("What does Anakin do to Count Dooku?", "Beheads him", "Lets him escape","Inprison him", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q3);
         
         Question ep3Q4 = new Question("How many light sabers does General Grievous have?", "4", "2","1", Category.EPISODEIII, Difficulty.MEDIUM);
         questions.add(ep3Q4);
        
-        Question ep3Q5 = new Question("Where does Senator Palpatine tell the story of Darth Plagus to Anakin?", "an Opera", "while on a ship","a senate meeting", Category.EPISODEIII, Difficulty.HARD);
+        Question ep3Q5 = new Question("Where does Senator Palpatine tell the story of Darth Plagus to Anakin?", "An Opera", "While on a ship","A senate meeting", Category.EPISODEIII, Difficulty.HARD);
         questions.add(ep3Q5);
         
         Question ep3Q6 = new Question("Why is Anakin angry at the jedi counsil?", "They won't grant him the rank of master", "They won't let him join the counsil","They won't let him fight in the war", Category.EPISODEIII, Difficulty.MEDIUM);
@@ -130,27 +130,110 @@ public class Question {
         Question ep3Q8 = new Question("Who stops Mace Windu from killing the sith lord?", "Anakin", "Yoda","The droid army", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q8);
         
-        Question ep3Q9 = new Question("What order does the sith lord execute to turn the clones against the jedi?", "order 66", "order 556","order 25", Category.EPISODEIII, Difficulty.EASY);
+        Question ep3Q9 = new Question("What order does the sith lord execute to turn the clones against the jedi?", "Order 66", "Order 556","Order 25", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q9);
         
         Question ep3Q10 = new Question("What planet does the final fight between Anakin and Obi-Wan take place?", "Mustafar", "Geonosis","Tatooine ", Category.EPISODEIII, Difficulty.HARD);
         questions.add(ep3Q10);
         
+
+        ////////////////////////////////////////////////////EPISODE IV///////////////////////////////////////////////////////////////////////////////////////
         
+        Question ep4Q1 = new Question("What droid does Princess Leia record her message?", "R2D2", "R2D4","C3PO", Category.EPISODEIV, Difficulty.MEDIUM);
+        questions.add(ep4Q1);
         
+        Question ep4Q2 = new Question("What planet does Luke live on?", "Tatooine", "Kashykk","Naboo", Category.EPISODEIV, Difficulty.EASY);
+        questions.add(ep4Q2);
         
+        Question ep4Q3 = new Question("Who is Princess Leia's 'only hope'?", "Obi-Wan Kenobi", "Luke Skywalker","Yoda", Category.EPISODEIV, Difficulty.EASY);
+        questions.add(ep4Q3);
         
+        Question ep4Q4 = new Question("What does Obi-Wan Kenobi give Luke that belonged to his father?", "His lightsaber", "His droid","His land", Category.EPISODEIV, Difficulty.MEDIUM);
+        questions.add(ep4Q4);
         
+        Question ep4Q5 = new Question("Who kills Luke's aunt and uncle?", "Stormtroopers", "Sand people","Bounty hunters", Category.EPISODEIV, Difficulty.MEDIUM);
+        questions.add(ep4Q5);
         
+        Question ep4Q6 = new Question("Who does Obi-Wan hire to take them to Alderon?", "Han Solo", "Boba Fett","Princess Leia", Category.EPISODEIV, Difficulty.EASY);
+        questions.add(ep4Q6);
         
+        Question ep4Q7 = new Question("Who dies from Darth Vader in the death star?", "Obi-Wan", "Chewbaca","Boba Fett", Category.EPISODEIV, Difficulty.EASY);
+        questions.add(ep4Q7);
         
+        Question ep4Q8 = new Question("What is the name of Han Solo's ship", "The Millennium Falcon", "Slave I","The Inercepter", Category.EPISODEIV, Difficulty.MEDIUM);
+        questions.add(ep4Q8);
         
+        Question ep4Q9 = new Question("What planet is the secret rebel base located?", "Yavin-4", "Dantooine","Alderan", Category.EPISODEIV, Difficulty.HARD);
+        questions.add(ep4Q9);
         
+        Question ep4Q10 = new Question("Who destroys the death star?", "Luke SkyWalker", "Poe Dameron","Han Solo", Category.EPISODEIV, Difficulty.MEDIUM);
+        questions.add(ep4Q10);
+        ////////////////////////////////////////////////////EPISODE V ///////////////////////////////////////////////////////////////////////////////////////
         
+        Question ep5Q1 = new Question("What planet is the new rebel base on?", "Hoth", "Scarif","Tatooine", Category.EPISODEV, Difficulty.EASY);
+        questions.add(ep5Q1);
         
+        Question ep5Q2 = new Question("What Imperial machines are present in the Battle of Hoth", "AT-AT", "AD-ST","ST-AA", Category.EPISODEV, Difficulty.HARD);
+        questions.add(ep5Q2);
         
+        Question ep5Q3 = new Question("Who does ghost Obi-Wan tell Luke to visit?", "Yoda", "Mace Windu","Lando Calrissian", Category.EPISODEV, Difficulty.MEDIUM);
+        questions.add(ep5Q3);
         
+        Question ep5Q4 = new Question("Where is Yoda?", "Dagobah", "Coruscant","Mustafar", Category.EPISODEV, Difficulty.HARD);
+        questions.add(ep5Q4);
         
+        Question ep5Q5 = new Question("Where does Han Solo, Chewy, and the rest of the group go to?", "Cloud City", "Naboo","Mos Eisley", Category.EPISODEV, Difficulty.HARD);
+        questions.add(ep5Q5);
+       
+        Question ep5Q6 = new Question("Why does Luke go to Yoda?", "To be trained", "To claim a reward","To be told important information", Category.EPISODEV, Difficulty.MEDIUM);
+        questions.add(ep5Q6);
+        
+        Question ep5Q7 = new Question("What information is told to Darth Vader by the Emperor?", "He has living offspring", "The rebels escaped","There is a traitor", Category.EPISODEV, Difficulty.MEDIUM);
+        questions.add(ep5Q7);
+        
+        Question ep5Q8 = new Question("Who is captured by Boba Fett", "Han Solo", "Chewbaca","Luke", Category.EPISODEV, Difficulty.EASY);
+        questions.add(ep5Q8);
+        
+        Question ep5Q9 = new Question("What limb is lost by luke", "Right hand", "Left hand","Right foot", Category.EPISODEV, Difficulty.HARD);
+        questions.add(ep5Q9);
+        
+        Question ep5Q10 = new Question("Who voiced Darth Vader", "James Earl Jones", "Tommy Lee Jones","Liam Nesson", Category.EPISODEV, Difficulty.HARD);
+        questions.add(ep5Q10);
+ 
+        
+        ////////////////////////////////////////////////////EPISODE VI ///////////////////////////////////////////////////////////////////////////////////////
+        
+        Question ep6Q1 = new Question("What planet does Jabba the Hut live on?", "Tatooine", "Naboo","Endor", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q1);
+        
+        Question ep6Q2 = new Question("What color is Luke's lightsaber?", "Green", "Blue","Yellow", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q2);
+        
+        Question ep6Q3 = new Question("Who kills Jabba the Hut?", "Leia", "Luke","Lando", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q3);
+        
+        Question ep6Q4 = new Question("How old is Yoda when he dies?", "900", "110","500", Category.EPISODEVI, Difficulty.HARD);
+        questions.add(ep6Q4);
+        
+        Question ep6Q5 = new Question("Where is the shield generator for the new death star?", "Endor", "Kashyyk","Mustafar", Category.EPISODEVI, Difficulty.HARD);
+        questions.add(ep6Q5);
+        
+        Question ep6Q6 = new Question("What creatures help the rebels on Endor?", "Ewoks", "Wookies","Gungans", Category.EPISODEVI, Difficulty.HARD);
+        questions.add(ep6Q6);
+        
+        Question ep6Q7 = new Question("Who does Luke fight on the new death star?", "Darth Vader", "The Emperor","Boba Fett", Category.EPISODEVI, Difficulty.MEDIUM);
+        questions.add(ep6Q7);
+        
+        Question ep6Q8 = new Question("Who destroys the new death star?", "Lando", "Luke","Han", Category.EPISODEVI, Difficulty.MEDIUM);
+        questions.add(ep6Q8);
+        
+        Question ep6Q9 = new Question("Who does Darth Vader kill on the death star?", "The Emperor", "Luke","Leia", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q9);
+        
+        Question ep6Q10 = new Question("How is Darth Vader's body disposed?", "By fire", "buried","Released in space", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q10);
+
+
     }
   
     }

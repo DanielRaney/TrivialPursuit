@@ -10,6 +10,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
+   
 
     public static void main(String[] args) {
         TrivialPursuit frame = new TrivialPursuit();
@@ -69,6 +70,9 @@ public class TrivialPursuit extends JFrame implements Runnable {
                     
                     Board.RollDice();
                 }
+                
+                
+                
                // repaint();
             }
         });
@@ -107,7 +111,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
         }   
 //The Rest
         Board.Draw(g);
-        //Board.DrawQuestion(g);
+        Board.DrawQuestion(g);
         
         gOld.drawImage(image, 0, 0, null);
     }

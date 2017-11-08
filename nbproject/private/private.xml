@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/154003389/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Question.java</file>
             <file>file:/C:/Users/154003389/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Difficulty.java</file>
             <file>file:/C:/Users/154003389/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Category.java</file>
@@ -10,6 +11,13 @@
             <file>file:/C:/Users/154003389/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Window.java</file>
             <file>file:/C:/Users/154003389/Desktop/CS2/TrivialPursuit/src/trivialpursuit/TrivialPursuit.java</file>
             <file>file:/C:/Users/154003389/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Board.java</file>
+=======
+            <file>file:/C:/Users/154003356/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Question.java</file>
+            <file>file:/C:/Users/154003356/Desktop/CS2/TrivialPursuit/src/trivialpursuit/TrivialPursuit.java</file>
+            <file>file:/C:/Users/154003356/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Category.java</file>
+            <file>file:/C:/Users/154003356/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Board.java</file>
+            <file>file:/C:/Users/154003356/Desktop/CS2/TrivialPursuit/src/trivialpursuit/Piece.java</file>
+>>>>>>> 55bbcf7a590c41f1afc8a767ec268250fa6dd1fb
         </group>
     </open-files>
 </project-private>

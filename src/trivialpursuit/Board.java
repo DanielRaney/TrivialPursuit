@@ -4,6 +4,7 @@ package trivialpursuit;
 import java.awt.*;
 import static trivialpursuit.TrivialPursuit.*;
 import static trivialpursuit.Category.*;
+import static trivialpursuit.Question.*;
 
 public class Board {
     private final static int NUM_PIECES = 4;
@@ -22,14 +23,19 @@ public class Board {
     private static int RAND = (int)(Math.random()*7 + 1);
     
 
-    private static Piece pieces[] = new Piece[NUM_PIECES];
-    private static Piece playerTurn;
+    public static Piece pieces[] = new Piece[NUM_PIECES];
+    public static Piece playerTurn;
     
     
     public static boolean pressR = false;
     public static int timeCount = 0;
     public static int rollDice = 0;
     public static boolean notCurrently = true;
+    
+    //for randomized questions display
+    public static int random = (int)(Math.random()*3);
+    public static int previous = random;
+     public static boolean stopCounting = false; //for randomized questions
     
     private static final Color I = new Color(215, 191, 100); //orange
     private static final Color II = new Color(217, 98, 98); //red
@@ -215,11 +221,43 @@ public class Board {
             g.setColor(VI);
         g.drawRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
         g.setFont(new Font("Arial",Font.BOLD,20));
-        g.drawString(""+question.getName(), Window.getX(2*xdelta),Window.getY(6*ydelta - ydelta/2) ); 
+        g.drawString(""+question.getName(), Window.getX(2*xdelta + 10),Window.getY(6*ydelta - ydelta/2) ); 
         g.setFont(new Font("Arial",Font.PLAIN,20));
-        g.drawString(""+question.getAnswers(0), Window.getX(2*xdelta),Window.getY(7*ydelta) ); 
-        g.drawString(""+question.getAnswers(1), Window.getX(3*xdelta),Window.getY(8*ydelta ) ); 
-        g.drawString(""+question.getAnswers(2), Window.getX(4*xdelta),Window.getY(9*ydelta) ); 
+        
+        
+        int answerIndex[] = new int[NUM_QUESTIONS];
+        if(!stopCounting){
+            int countQNum = -1;
+            int countLineNum = 6;
+            while(countQNum<2){
+                if(previous == 0){
+                    random = (int)(Math.random()*2 +1);
+                }
+                if(previous == 1){
+                    random = (int)(Math.random()*2);
+                    if(random == 1)
+                        random=0;
+                    else if(random == 2)
+                        random=2;
+                }
+                if(previous == 2){
+                    random = (int)(Math.random()*2);
+                }
+                previous = random;
+                countQNum++;
+                if(countLineNum<9){countLineNum++;}
+                answerIndex[countQNum] = random;
+                System.out.println("countLineNum="+countLineNum+" countQNum="+countQNum+" answerIndex["+countQNum+"] is "+random);
+            }
+            if(countQNum == 2){
+                stopCounting = true;
+                System.out.println("working");
+            }
+        }
+        g.drawString(""+question.getAnswers(answerIndex[0]), Window.getX(3*xdelta),Window.getY(7*ydelta));
+        g.drawString(""+question.getAnswers(answerIndex[1]), Window.getX(3*xdelta),Window.getY(8*ydelta));
+        g.drawString(""+question.getAnswers(answerIndex[2]), Window.getX(3*xdelta),Window.getY(9*ydelta));
+        System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
     }
     public static void movePiece(int ran) {
         
