@@ -136,6 +136,7 @@ public class Question {
         Question ep3Q10 = new Question("What planet does the final fight between Anakin and Obi-Wan take place?", "Mustafar", "Geonosis","Tatooine ", Category.EPISODEIII, Difficulty.HARD);
         questions.add(ep3Q10);
         
+
         ////////////////////////////////////////////////////EPISODE IV///////////////////////////////////////////////////////////////////////////////////////
         
         Question ep4Q1 = new Question("What droid does Princess Leia record her message?", "R2D2", "R2D4","C3PO", Category.EPISODEIV, Difficulty.MEDIUM);
@@ -231,6 +232,7 @@ public class Question {
         
         Question ep6Q10 = new Question("How is Darth Vader's body disposed?", "By fire", "buried","Released in space", Category.EPISODEVI, Difficulty.EASY);
         questions.add(ep6Q10);
+
 
     }
   

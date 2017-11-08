@@ -10,6 +10,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
+   
 
     public static void main(String[] args) {
         TrivialPursuit frame = new TrivialPursuit();
