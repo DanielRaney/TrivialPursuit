@@ -199,8 +199,11 @@ public class Board {
     }
     
     public static void DrawQuestion(Graphics2D g){
-        g.setColor(Color.DARK_GRAY);
-        Question question = Question.getQuestions().get(5);
+        int color = (int)(Math.random() * 8 +30);
+        g.setColor(new Color(color,color,color));
+        
+        Question question = Question.getQuestions().get((int)(Math.random()*60));
+        
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
@@ -242,10 +245,21 @@ public class Board {
             }
             System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
         }
-        g.drawString(""+question.getAnswers(answerIndex[0]), Window.getX(3*xdelta),Window.getY(7*ydelta));
-        g.drawString(""+question.getAnswers(answerIndex[1]), Window.getX(3*xdelta),Window.getY(8*ydelta));
-        g.drawString(""+question.getAnswers(answerIndex[2]), Window.getX(3*xdelta),Window.getY(9*ydelta));
 
+        g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25), 8*xdelta, 35);
+        g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + ydelta), 8*xdelta, 35);
+        g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + 2*ydelta), 8*xdelta, 35);
+        g.drawString(""+question.getAnswers(answerIndex[0]), Window.getX(4*xdelta),Window.getY(7*ydelta));
+        g.drawString(""+question.getAnswers(answerIndex[1]), Window.getX(4*xdelta),Window.getY(8*ydelta));
+        g.drawString(""+question.getAnswers(answerIndex[2]), Window.getX(4*xdelta),Window.getY(9*ydelta));
+        g.drawString("A. ", Window.getX(3*xdelta),Window.getY(7*ydelta));
+        g.drawString("B. ", Window.getX(3*xdelta),Window.getY(8*ydelta));
+        g.drawString("C. ", Window.getX(3*xdelta),Window.getY(9*ydelta));
+        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,15));
+        g.drawString(""+question.getCategory(), Window.getX(11*xdelta),Window.getY(10*ydelta - 8));
+        g.drawString("Difficulty "+question.getDifficulty(), Window.getX(2*xdelta + xdelta/2),Window.getY(10*ydelta - 8));
+        
+        //System.out.println("xdelta "+xdelta+" ydelta "+ydelta);
     }
     public static void movePiece(int ran) {
         
