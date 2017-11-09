@@ -65,6 +65,8 @@ public class Piece {
     public void draw(Graphics2D g,int xdelta,int ydelta) {
         g.setColor(color); 
         g.fillOval(Window.getX(x*xdelta),Window.getY(y*ydelta),xdelta,ydelta);
+        g.setColor(Color.BLACK);
+        g.drawOval(Window.getX(x*xdelta),Window.getY(y*ydelta),xdelta,ydelta);
         
 
 //        g.setColor(Color.white);

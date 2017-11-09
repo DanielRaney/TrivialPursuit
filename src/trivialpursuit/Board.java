@@ -200,7 +200,7 @@ public class Board {
     
     public static void DrawQuestion(Graphics2D g){
         g.setColor(Color.DARK_GRAY);
-        Question question = Question.getQuestions().get(10);
+        Question question = Question.getQuestions().get(15);
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
@@ -245,6 +245,7 @@ public class Board {
         g.drawString(""+question.getAnswers(answerIndex[0]), Window.getX(3*xdelta),Window.getY(7*ydelta));
         g.drawString(""+question.getAnswers(answerIndex[1]), Window.getX(3*xdelta),Window.getY(8*ydelta));
         g.drawString(""+question.getAnswers(answerIndex[2]), Window.getX(3*xdelta),Window.getY(9*ydelta));
+
     }
     public static void movePiece(int ran) {
         
@@ -265,12 +266,11 @@ public class Board {
         int amountMovePossible = 0;
         //STARTING MOVE DEPENDENT ON STARTING LOCATION
             for(int i = 0; i < ran; i++) {
-                System.out.println("oof");
+
                 if (playerTurn.getX() != (NUM_COLUMNS-2) && playerTurn.getY() != 1 && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
                     amountMovePossible += 1;
                 }
             }
-            System.out.println(amountMovePossible + " is the possible move " + ran + " was the amount total");
             playerTurn.moveY(amountMovePossible);
             ran -= amountMovePossible;
             amountMovePossible = 0;
@@ -281,7 +281,6 @@ public class Board {
                     amountMovePossible +=1;
                 }
             }
-            System.out.println(amountMovePossible + "");
             playerTurn.moveX(amountMovePossible);
             ran -= amountMovePossible;
             amountMovePossible = 0;
@@ -290,7 +289,6 @@ public class Board {
                     amountMovePossible += 1;
                 }
             }
-            System.out.println(amountMovePossible + "");
             playerTurn.moveY(-amountMovePossible);
             ran -= amountMovePossible;
             amountMovePossible = 0;
@@ -301,19 +299,33 @@ public class Board {
                 }
             }
             
-            System.out.println(amountMovePossible + "");
             playerTurn.moveX(-amountMovePossible);
             ran -= amountMovePossible;
             amountMovePossible = 0;
             
             for(int i = 0; i < ran; i++) {
-                System.out.println("oof");
                 if (playerTurn.getX() != (NUM_COLUMNS-2) && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
                     amountMovePossible += 1;
                 }
             }
-            System.out.println(amountMovePossible + " is the possible move " + ran + " was the amount total");
             playerTurn.moveY(amountMovePossible);
             ran -= amountMovePossible;
+            
+            ///////////////////////////Space Detection//////////////////////////////////////////
+            if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
+                System.out.println("EPI");}
+            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
+                System.out.println("EPSII");}
+            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
+                System.out.println("EPSIII");}
+            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
+                System.out.println("EPSIV");}
+            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
+                System.out.println("EPSV");}
+            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
+                System.out.println("EPSVI");}
+            else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGAIN){
+                System.out.println("RollAgain");}
+                
     }
 }
