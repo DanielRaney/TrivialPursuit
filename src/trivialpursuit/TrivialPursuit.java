@@ -65,7 +65,6 @@ public class TrivialPursuit extends JFrame implements Runnable {
                     reset();
                 }
                 if(e.VK_K == e.getKeyCode()) {
-                    Board.movePiece();
                 }
                 if(e.VK_R == e.getKeyCode()) {
                     Board.RollDice();
