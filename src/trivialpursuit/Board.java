@@ -200,7 +200,7 @@ public class Board {
     
     public static void DrawQuestion(Graphics2D g){
         g.setColor(Color.DARK_GRAY);
-        Question question = Question.getQuestions().get(15);
+        Question question = Question.getQuestions().get(5);
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);

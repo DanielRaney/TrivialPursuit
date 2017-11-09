@@ -47,13 +47,13 @@ public class Question {
         Question ep1Q1 = new Question("How many blades does Darth Maul's lightsaber have?", "2", "1","3", Category.EPISODEI, Difficulty.EASY);
         questions.add(ep1Q1);
         
-        Question ep1Q2 = new Question("Whos was the jedi that accompanied obi-wan at the meeting with the trade confederation?", "Qui Gon Jinn", "Lando Calrissian","Mace Windu", Category.EPISODEI, Difficulty.MEDIUM);
+        Question ep1Q2 = new Question("Who is Obi-Wan's master?", "Qui Gon Jinn", "Lando Calrissian","Mace Windu", Category.EPISODEI, Difficulty.MEDIUM);
         questions.add(ep1Q2);
         
-        Question ep1Q3 = new Question("What did the jedi discover on the trade confederation ship?", "A droid army", "A clone army","Plans to build a super weapon", Category.EPISODEI, Difficulty.EASY);
+        Question ep1Q3 = new Question("The jedi discovered what on the confederate ship?", "A droid army", "A clone army","Plans to build a super weapon", Category.EPISODEI, Difficulty.EASY);
         questions.add(ep1Q3);
         
-        Question ep1Q4 = new Question(" What planet did Obi-Wan and Qui-Gon Jinn land on after leaving the trade confederation ship?", "Naboo", "Tatooine","Hoth", Category.EPISODEI, Difficulty.MEDIUM);
+        Question ep1Q4 = new Question("What planet does Queen Amidala live on?", "Naboo", "Tatooine","Hoth", Category.EPISODEI, Difficulty.MEDIUM);
         questions.add(ep1Q4);
         
         Question ep1Q5 = new Question("How did Anakin pay for the Queen's ship's broken machinery?", "Pod race", "Shooting contest","Selling his belongings", Category.EPISODEI, Difficulty.EASY);
@@ -65,20 +65,20 @@ public class Question {
         Question ep1Q7 = new Question("Which actress played Padme?", "Natalie Portman", "Charlize Theron","Daisy Ridley", Category.EPISODEI, Difficulty.EASY);
         questions.add(ep1Q7);
         
-        Question ep1Q8 = new Question("In the final fight between the Jedi and the one sith, who get cut in half?", "Darth Maul", "Obi-Wan Kenobi","Qui Gon Jinn", Category.EPISODEI, Difficulty.EASY);
+        Question ep1Q8 = new Question("In the final fight, who got cut in half?", "Darth Maul", "Obi-Wan Kenobi","Qui Gon Jinn", Category.EPISODEI, Difficulty.EASY);
         questions.add(ep1Q8);
         
         Question ep1Q9 = new Question("When was Episode I: The Phantom Menace released?", "1999", "1998","2002", Category.EPISODEI, Difficulty.HARD);
         questions.add(ep1Q9);
         
-        Question ep1Q10 = new Question("How did the planet of Naboo celebrate victory against the trade confederation?", "A parade", "There was no celebration","A big ball in the palace", Category.EPISODEI, Difficulty.MEDIUM);
+        Question ep1Q10 = new Question("How did the planet of Naboo celebrate their victory?", "A parade", "There was no celebration","A big ball in the palace", Category.EPISODEI, Difficulty.MEDIUM);
         questions.add(ep1Q10);
         ////////////////////////////////////////////////////EPISODE II///////////////////////////////////////////////////////////////////////////////////////
         
         Question ep2Q1 = new Question("How did the bounty hunter first try to kill Padme?", "A bomb on her ship", "A blaster shot","A blade", Category.EPISODEII, Difficulty.HARD);
         questions.add(ep2Q1);
         
-        Question ep2Q2 = new Question(" What was the bounty hunter's second attempt on Padme's life?", "Poisonous creature", "speeder crash","A rocket", Category.EPISODEII, Difficulty.MEDIUM);
+        Question ep2Q2 = new Question("How did the bounty hunter try to kill Padme again?", "Poisonous creature", "Speeder crash","A rocket", Category.EPISODEII, Difficulty.MEDIUM);
         questions.add(ep2Q2);
         
         Question ep2Q3 = new Question("What planet did Obi-Wan visit to investigate the bounty hunter?", "Kamino", "Geonosis","Mustafar", Category.EPISODEII, Difficulty.HARD);
@@ -87,7 +87,7 @@ public class Question {
         Question ep2Q4 = new Question("What did Obi-Wan Kenobi find on Kamino?", "A secret clone army", "A droid factory","A hideout for smugglers", Category.EPISODEII, Difficulty.EASY);
         questions.add(ep2Q4);
         
-        Question ep2Q5 = new Question("Which old jedi did Obi-Wan Kenobi discover created the clone army?", "Sifo Dyas", "Plo Koon","Yoda", Category.EPISODEII, Difficulty.HARD);
+        Question ep2Q5 = new Question("Who created the clone army?", "Sifo Dyas", "Plo Koon","Yoda", Category.EPISODEII, Difficulty.HARD);
         questions.add(ep2Q5);
         
         Question ep2Q6 = new Question("Who are the clones cloned after?", "Jango Fett", "Count Dooku","Poe Dameron", Category.EPISODEII, Difficulty.EASY);
@@ -109,7 +109,7 @@ public class Question {
         Question ep3Q1 = new Question("Who are the Republic fighting?", "CIS", "Galactic Empire","The New Order", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q1);
         
-        Question ep3Q2 = new Question("Who are Obi-Wan Kenobi and Anakin trying to save during the space battle?", "Senator Palpatine", "Mace Windu","Padme", Category.EPISODEIII, Difficulty.MEDIUM);
+        Question ep3Q2 = new Question("Who is captured by a CIS ship?", "Senator Palpatine", "Mace Windu","Padme", Category.EPISODEIII, Difficulty.MEDIUM);
         questions.add(ep3Q2);
         
         Question ep3Q3 = new Question("What does Anakin do to Count Dooku?", "Beheads him", "Lets him escape","Inprison him", Category.EPISODEIII, Difficulty.EASY);
@@ -118,7 +118,7 @@ public class Question {
         Question ep3Q4 = new Question("How many light sabers does General Grievous have?", "4", "2","1", Category.EPISODEIII, Difficulty.MEDIUM);
         questions.add(ep3Q4);
        
-        Question ep3Q5 = new Question("Where does Senator Palpatine tell the story of Darth Plagus to Anakin?", "An Opera", "While on a ship","A senate meeting", Category.EPISODEIII, Difficulty.HARD);
+        Question ep3Q5 = new Question("Palpatine tells the story of Darth Plagus at...?", "An Opera", "A ship","A senate meeting", Category.EPISODEIII, Difficulty.HARD);
         questions.add(ep3Q5);
         
         Question ep3Q6 = new Question("Why is Anakin angry at the jedi counsil?", "They won't grant him the rank of master", "They won't let him join the counsil","They won't let him fight in the war", Category.EPISODEIII, Difficulty.MEDIUM);
@@ -133,7 +133,7 @@ public class Question {
         Question ep3Q9 = new Question("What order does the sith lord execute to turn the clones against the jedi?", "Order 66", "Order 556","Order 25", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q9);
         
-        Question ep3Q10 = new Question("What planet does the final fight between Anakin and Obi-Wan take place?", "Mustafar", "Geonosis","Tatooine ", Category.EPISODEIII, Difficulty.HARD);
+        Question ep3Q10 = new Question("Where do Anakin and Obi-Wan fight?", "Mustafar", "Geonosis","Tatooine ", Category.EPISODEIII, Difficulty.HARD);
         questions.add(ep3Q10);
         
 
@@ -148,7 +148,7 @@ public class Question {
         Question ep4Q3 = new Question("Who is Princess Leia's 'only hope'?", "Obi-Wan Kenobi", "Luke Skywalker","Yoda", Category.EPISODEIV, Difficulty.EASY);
         questions.add(ep4Q3);
         
-        Question ep4Q4 = new Question("What does Obi-Wan Kenobi give Luke that belonged to his father?", "His lightsaber", "His droid","His land", Category.EPISODEIV, Difficulty.MEDIUM);
+        Question ep4Q4 = new Question("What does Obi-Wan Kenobi give Luke?", "His lightsaber", "His droid","His land", Category.EPISODEIV, Difficulty.MEDIUM);
         questions.add(ep4Q4);
         
         Question ep4Q5 = new Question("Who kills Luke's aunt and uncle?", "Stormtroopers", "Sand people","Bounty hunters", Category.EPISODEIV, Difficulty.MEDIUM);
@@ -182,7 +182,7 @@ public class Question {
         Question ep5Q4 = new Question("Where is Yoda?", "Dagobah", "Coruscant","Mustafar", Category.EPISODEV, Difficulty.HARD);
         questions.add(ep5Q4);
         
-        Question ep5Q5 = new Question("Where does Han Solo, Chewy, and the rest of the group go to?", "Cloud City", "Naboo","Mos Eisley", Category.EPISODEV, Difficulty.HARD);
+        Question ep5Q5 = new Question("Where do Han Solo, Chewy, and the rest of the group go?", "Cloud City", "Naboo","Mos Eisley", Category.EPISODEV, Difficulty.HARD);
         questions.add(ep5Q5);
        
         Question ep5Q6 = new Question("Why does Luke go to Yoda?", "To be trained", "To claim a reward","To be told important information", Category.EPISODEV, Difficulty.MEDIUM);

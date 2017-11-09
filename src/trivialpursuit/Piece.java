@@ -15,6 +15,7 @@ public class Piece {
     private boolean hasPurple=false;
     private boolean hasPink=false;
     private boolean hasGreen=false;
+    private boolean hasAll=false;
     
 
     Piece(Color _color, int _x, int _y){
@@ -60,6 +61,7 @@ public class Piece {
     public void setPink(){
         hasPink=!hasPink;
     }
+
     
     
     public void draw(Graphics2D g,int xdelta,int ydelta) {
