@@ -35,7 +35,8 @@ public class Board {
     //for randomized questions display
     public static int random = (int)(Math.random()*3);
     public static int previous = random;
-     public static boolean stopCounting = false; //for randomized questions
+    public static int answerIndex[] = new int[NUM_QUESTIONS];
+    public static boolean stopCounting = false; //for randomized questions
     
     private static final Color I = new Color(215, 191, 100); //orange
     private static final Color II = new Color(217, 98, 98); //red
@@ -170,7 +171,8 @@ public class Board {
         }
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
-    
+        
+        Board.DrawQuestion(g);
         timeCount++;    
     /////////
         
@@ -206,12 +208,7 @@ public class Board {
         System.out.println(ran);
     }
     public static void DrawQuestion(Graphics2D g){
-        //boolean pickOnce = true;
-        //int randomQuestion =(int)(Math.random()*30);
-        //if(pickOnce){
-            //randomQuestion =(int)(Math.random()*30);
-            //pickOnce = false;
-        //}
+        g.setColor(Color.DARK_GRAY);
         Question question = Question.getQuestions().get(10);
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
@@ -234,38 +231,28 @@ public class Board {
         g.setFont(new Font("Arial",Font.PLAIN,20));
         
         
-        int answerIndex[] = new int[NUM_QUESTIONS];
         if(!stopCounting){
             int countQNum = -1;
             int countLineNum = 6;
-            while(countQNum<2){
-                if(previous == 0){
-                    random = (int)(Math.random()*2 +1);
-                }
-                if(previous == 1){
-                    random = (int)(Math.random()*2);
-                    if(random == 1)
-                        random=0;
-                    else if(random == 2)
-                        random=2;
-                }
-                if(previous == 2){
-                    random = (int)(Math.random()*2);
-                }
-                previous = random;
+            for(int i=0; i<3; i++){
                 countQNum++;
                 if(countLineNum<9){countLineNum++;}
-                answerIndex[countQNum] = random;
+                answerIndex[i] = random;
                 System.out.println("countLineNum="+countLineNum+" countQNum="+countQNum+" answerIndex["+countQNum+"] is "+random);
+                if(i == 2){
+                    stopCounting = true;
+                    System.out.println("working");
+                }
             }
-            if(countQNum == 2){
-                stopCounting = true;
-                System.out.println("working");
+            while(answerIndex[0] == answerIndex[1] || answerIndex[0] == answerIndex[2] || answerIndex[1] == answerIndex[2]){
+                answerIndex[0]=(int)(Math.random()*3);
+                answerIndex[1]=(int)(Math.random()*3);
+                answerIndex[2]=(int)(Math.random()*3);
             }
+            System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
         }
         g.drawString(""+question.getAnswers(answerIndex[0]), Window.getX(3*xdelta),Window.getY(7*ydelta));
         g.drawString(""+question.getAnswers(answerIndex[1]), Window.getX(3*xdelta),Window.getY(8*ydelta));
         g.drawString(""+question.getAnswers(answerIndex[2]), Window.getX(3*xdelta),Window.getY(9*ydelta));
-        System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
     }
 }

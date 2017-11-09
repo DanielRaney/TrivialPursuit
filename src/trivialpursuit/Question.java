@@ -75,7 +75,7 @@ public class Question {
         questions.add(ep1Q10);
         ////////////////////////////////////////////////////EPISODE II///////////////////////////////////////////////////////////////////////////////////////
         
-        Question ep2Q1 = new Question("How did the bounty hunter first try to kill Padme?", "A bomb on her ship", "A blaster shot","a blade", Category.EPISODEII, Difficulty.HARD);
+        Question ep2Q1 = new Question("How did the bounty hunter first try to kill Padme?", "A bomb on her ship", "A blaster shot","A blade", Category.EPISODEII, Difficulty.HARD);
         questions.add(ep2Q1);
         
         Question ep2Q2 = new Question(" What was the bounty hunter's second attempt on Padme's life?", "Poisonous creature", "speeder crash","A rocket", Category.EPISODEII, Difficulty.MEDIUM);
