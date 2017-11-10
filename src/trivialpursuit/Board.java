@@ -26,7 +26,7 @@ public class Board {
     public static Piece pieces[] = new Piece[NUM_PIECES];
     public static Piece playerTurn;
     
-    
+    private static int currentPlayer = 0;
     public static boolean pressR = false;
     public static int timeCount = 0;
     public static int rollDice = 0;
@@ -75,12 +75,17 @@ public class Board {
         //    int color = (int)(Math.random() * 3 +30);
         //   pieces[i] = new Piece(new Color(color,color,color),NUM_ROWS/2,NUM_COLUMNS/2);
         //}
-        pieces[0] = new Piece(Color.LIGHT_GRAY, NUM_ROWS/2,NUM_COLUMNS/2 + 1);
-        pieces[1] = new Piece(Color.yellow, NUM_ROWS/2,NUM_COLUMNS/2 - 1);
-        pieces[2] = new Piece(Color.DARK_GRAY, NUM_ROWS/2 + 1,NUM_COLUMNS/2);
-        pieces[3] = new Piece(Color.BLUE, NUM_ROWS/2 - 1,NUM_COLUMNS/2);
+        if(NUM_PIECES>0)
+            pieces[0] = new Piece(Color.LIGHT_GRAY, NUM_ROWS/2,NUM_COLUMNS/2 + 1);
+        if(NUM_PIECES>1)
+            pieces[1] = new Piece(Color.DARK_GRAY, NUM_ROWS/2 + 1,NUM_COLUMNS/2);
+        if(NUM_PIECES>2)
+            pieces[2] = new Piece(Color.yellow, NUM_ROWS/2,NUM_COLUMNS/2 - 1);
+        if(NUM_PIECES>3)
+            pieces[3] = new Piece(Color.BLUE, NUM_ROWS/2 - 1,NUM_COLUMNS/2);
         
-        playerTurn = pieces[0];
+        currentPlayer = 0;
+        playerTurn = pieces[currentPlayer];
         
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {
@@ -175,34 +180,34 @@ public class Board {
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
         
-        if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
-            System.out.println("EPI");
-            DrawQuestion(g, EPISODEI);
-        }
-        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
-            System.out.println("EPSII");
-            DrawQuestion(g, EPISODEII);
-        }
-        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
-            System.out.println("EPSIII");
-            DrawQuestion(g, EPISODEIII);
-        }
-        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
-            System.out.println("EPSIV");
-            DrawQuestion(g, EPISODEIV);
-        }
-        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
-            System.out.println("EPSV");
-            DrawQuestion(g, EPISODEV);
-        }
-        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
-            System.out.println("EPSVI");
-            DrawQuestion(g, EPISODEVI);
-        }
-        else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGN){
-            System.out.println("RollAgain");
-            RollDice();
-        }
+//        if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
+//            System.out.println("EPI");
+//            DrawQuestion(g, EPISODEI);
+//        }
+//        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
+//            System.out.println("EPSII");
+//            DrawQuestion(g, EPISODEII);
+//        }
+//        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
+//            System.out.println("EPSIII");
+//            DrawQuestion(g, EPISODEIII);
+//        }
+//        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
+//            System.out.println("EPSIV");
+//            DrawQuestion(g, EPISODEIV);
+//        }
+//        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
+//            System.out.println("EPSV");
+//            DrawQuestion(g, EPISODEV);
+//        }
+//        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
+//            System.out.println("EPSVI");
+//            DrawQuestion(g, EPISODEVI);
+//        }
+//        else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGN){
+//            System.out.println("RollAgain");
+//            RollDice();
+//        }
        
         timeCount++;    
     /////////
@@ -215,10 +220,10 @@ public class Board {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
             g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
-            if(timeCount % 25==24) {
+            //if(timeCount % 25==24) {
                 pressR = false;
                 notCurrently = true;
-            }
+            //}
         }
         else{
             g.setColor(Color.WHITE);
@@ -299,8 +304,6 @@ public class Board {
         //System.out.println("xdelta "+xdelta+" ydelta "+ydelta);
     }
         public static void movePiece(int ran) {
-        
-        playerTurn = pieces[(int)(Math.random() * 4)];
         int amountMovePossible = 0;
 //////////////////// Starting Point Hard Code Hype
             if(playerTurn == pieces[0]) {
@@ -314,6 +317,17 @@ public class Board {
                 amountMovePossible = 0;
             }
             else if(playerTurn == pieces[1] && NUM_PIECES > 1) {
+                for(int i = 0; i< ran; i++) {
+                    if(playerTurn.getInMiddle()&&playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
+                        amountMovePossible +=1;
+                    }
+                }
+                playerTurn.moveX(amountMovePossible);
+                ran -= amountMovePossible;
+                amountMovePossible = 0;
+                
+            }
+            else if(playerTurn == pieces[2] && NUM_PIECES > 2) {
                 amountMovePossible = 0;
                 for(int i = 0; i < ran;i++) {
                     if(playerTurn.getInMiddle() && playerTurn.getX() != 1 && playerTurn.getY() - i > 1 && board[playerTurn.getX()][playerTurn.getY() - i] != WALL) {
@@ -321,17 +335,6 @@ public class Board {
                     }
                 }
                 playerTurn.moveY(-amountMovePossible);
-                ran -= amountMovePossible;
-                amountMovePossible = 0;
-                
-            }
-            else if(playerTurn == pieces[2] && NUM_PIECES > 2) {
-                for(int i = 0; i< ran; i++) {
-                    if(playerTurn.getInMiddle()&&playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
-                        amountMovePossible +=1;
-                    }
-                }
-                playerTurn.moveX(amountMovePossible);
                 ran -= amountMovePossible;
                 amountMovePossible = 0;
             }
@@ -414,5 +417,10 @@ public class Board {
 //            else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGAIN){
 //                System.out.println("RollAgain");
 //            }
+            if(currentPlayer >= NUM_PIECES-1) {
+                currentPlayer = -1;
+            }
+            currentPlayer++;
+            playerTurn = pieces[currentPlayer];
     }
 }
