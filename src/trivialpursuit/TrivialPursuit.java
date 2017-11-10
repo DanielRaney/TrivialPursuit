@@ -131,8 +131,9 @@ public class TrivialPursuit extends JFrame implements Runnable {
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
         System.out.println("-------reset-------");
-        Board.reset();
+        
         Question.InstantiateQuestions();
+        Board.reset();
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {

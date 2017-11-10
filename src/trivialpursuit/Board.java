@@ -18,7 +18,7 @@ public class Board {
     private final static int EPSIV = 4;
     private final static int EPSV = 5;
     private final static int EPSVI = 6;
-    private final static int ROLLAGAIN = 7;
+    private final static int ROLLAGN = 7;
     
     private static int RAND = (int)(Math.random()*7 + 1);
     
@@ -38,6 +38,10 @@ public class Board {
     public static int answerIndex[] = new int[NUM_QUESTIONS];
     public static boolean stopCounting = false; //for randomized questions
     
+    //for random question generater drawquestion
+    public static boolean stopLooping = false;
+    public static Question question = Question.getQuestions().get((int)(Math.random()*60));
+    
     private static final Color I = new Color(215, 191, 100); //orange
     private static final Color II = new Color(217, 98, 98); //red
     private static final Color III = new Color(112, 218, 97); //green
@@ -45,15 +49,7 @@ public class Board {
     private static final Color V = new Color(160, 95, 220); //purple
     private static final Color VI = new Color(222, 92, 200); //pink 
     
-    public static void RollDice(){
-        pressR = true;
-        if(pressR && notCurrently) {
-            rollDice = (int)(Math.random() * 6 + 1);
-            movePiece(rollDice);
-            notCurrently = false;
-        }
-    } 
-            
+       
     private static int board[][] = {
 
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
@@ -101,7 +97,7 @@ public class Board {
                 }
             }
         }
-        board[NUM_ROWS/2][NUM_COLUMNS/2] = ROLLAGAIN;
+        board[NUM_ROWS/2][NUM_COLUMNS/2] = ROLLAGN;
         pressR = false;
         notCurrently = true;
     }
@@ -113,8 +109,14 @@ public class Board {
         int zx = (x - Window.getX(0))/xdelta;
         int zy = (y-Window.getY(0))/ydelta;
     }
-    
-    
+    public static void RollDice(){
+        pressR = true;
+        if(pressR && notCurrently) {
+            rollDice = (int)(Math.random() * 6 + 1);
+            movePiece(rollDice);
+            notCurrently = false;
+        }
+    } 
     public static void Draw(Graphics2D g) {
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
         int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()), Window.getY(Window.getHeight2()), Window.getY(0)};
@@ -146,7 +148,7 @@ public class Board {
                     g.setColor(V);
                 else if(board[zx][zy] == EPSVI) 
                     g.setColor(VI);
-                else if(board[zx][zy] == ROLLAGAIN) 
+                else if(board[zx][zy] == ROLLAGN) 
                     g.setColor(Color.WHITE);
                 g.fillRect(Window.getX(zx * xdelta),Window.getY(zy * ydelta),xdelta,ydelta);
             }
@@ -173,7 +175,35 @@ public class Board {
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
         
-        Board.DrawQuestion(g);
+        if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
+            System.out.println("EPI");
+            DrawQuestion(g, EPISODEI);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
+            System.out.println("EPSII");
+            DrawQuestion(g, EPISODEII);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
+            System.out.println("EPSIII");
+            DrawQuestion(g, EPISODEIII);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
+            System.out.println("EPSIV");
+            DrawQuestion(g, EPISODEIV);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
+            System.out.println("EPSV");
+            DrawQuestion(g, EPISODEV);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
+            System.out.println("EPSVI");
+            DrawQuestion(g, EPISODEVI);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGN){
+            System.out.println("RollAgain");
+            RollDice();
+        }
+       
         timeCount++;    
     /////////
         
@@ -198,11 +228,18 @@ public class Board {
 ////////////////////////////////////////////////////////////////////////////////////////////
     }
     
-    public static void DrawQuestion(Graphics2D g){
+    public static void DrawQuestion(Graphics2D g, Category _category){
         int color = (int)(Math.random() * 8 +30);
         g.setColor(new Color(color,color,color));
         
-        Question question = Question.getQuestions().get((int)(Math.random()*60));
+        if(!stopLooping){
+            while(question.getCategory() != _category){
+                question = Question.getQuestions().get((int)(Math.random()*60));
+            }
+            if(question.getCategory() == _category){
+               stopLooping=true;
+            }
+        }
         
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
@@ -356,19 +393,26 @@ public class Board {
             }
             
             ///////////////////////////Space Detection//////////////////////////////////////////
-            if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
-                System.out.println("EPI");}
-            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
-                System.out.println("EPSII");}
-            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
-                System.out.println("EPSIII");}
-            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
-                System.out.println("EPSIV");}
-            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
-                System.out.println("EPSV");}
-            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
-                System.out.println("EPSVI");}
-            else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGAIN){
-                System.out.println("RollAgain");}
+//            if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
+//                System.out.println("EPI");
+//            }
+//            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
+//                System.out.println("EPSII");
+//            }
+//            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
+//                System.out.println("EPSIII");
+//            }
+//            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
+//                System.out.println("EPSIV");
+//            }
+//            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
+//                System.out.println("EPSV");
+//            }
+//            else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
+//                System.out.println("EPSVI");
+//            }
+//            else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGAIN){
+//                System.out.println("RollAgain");
+//            }
     }
 }
