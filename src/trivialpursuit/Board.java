@@ -2,6 +2,7 @@
 package trivialpursuit;
 
 import java.awt.*;
+import java.util.ArrayList;
 import static trivialpursuit.TrivialPursuit.*;
 import static trivialpursuit.Category.*;
 import static trivialpursuit.Question.*;
@@ -41,6 +42,16 @@ public class Board {
     //for random question generater drawquestion
     public static boolean stopLooping = false;
     public static Question question = Question.getQuestions().get((int)(Math.random()*60));
+    
+    public static boolean DrawingQuestion = false;
+    
+    public static ArrayList<Question> UsedQuestions = new ArrayList<Question>();
+    
+    public static Question CurrentQuestion;
+    public static int CurrentQuestionAnswerIndex[]=new int [NUM_ANSWERS];
+    
+    public static int QuestionTimer = 10;
+    public static boolean stopTimer = false;
     
     private static final Color I = new Color(215, 191, 100); //orange
     private static final Color II = new Color(217, 98, 98); //red
@@ -105,6 +116,7 @@ public class Board {
         board[NUM_ROWS/2][NUM_COLUMNS/2] = ROLLAGN;
         pressR = false;
         notCurrently = true;
+        UsedQuestions.clear();
     }
     
     public static void addPiece(int x, int y) {
@@ -138,7 +150,8 @@ public class Board {
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {  
                 if(board[zx][zy] == WALL) { 
-                    int color = (int)(Math.random() * 3 +30);
+                    //int color = (int)(Math.random() * 3 +30);
+                    int color = 32;
                     g.setColor(new Color(color,color,color));
                 }
                 else if(board[zx][zy] == EPSI) 
@@ -209,11 +222,44 @@ public class Board {
 //            RollDice();
 //        }
        
+        DrawingQuestion=false;
+        if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
+            //System.out.println("EPI");
+            stopLooping=false;
+            DrawQuestion(g, EPISODEI);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
+            //System.out.println("EPSII");
+            stopLooping=false;
+            DrawQuestion(g, EPISODEII);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
+            //System.out.println("EPSIII");
+            stopLooping=false;
+            DrawQuestion(g, EPISODEIII);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
+            //System.out.println("EPSIV");
+            stopLooping=false;
+            DrawQuestion(g, EPISODEIV);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
+            //System.out.println("EPSV");
+            stopLooping=false;
+            DrawQuestion(g, EPISODEV);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
+            //System.out.println("EPSVI");
+            stopLooping=false;
+            DrawQuestion(g, EPISODEVI);
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGN){
+            //System.out.println("RollAgain");
+            stopLooping=false;
+            DrawingQuestion=false;
+            RollDice();
+        }
         timeCount++;    
-    /////////
-        
-        
-        
 //Fill in below here
 /////////////////////////If R is pressed / RollDice code //////////////////////////////
         if(pressR){
@@ -234,76 +280,100 @@ public class Board {
     }
     
     public static void DrawQuestion(Graphics2D g, Category _category){
-        int color = (int)(Math.random() * 8 +30);
+        //int color = (int)(Math.random() * 8 +30);
+        int color =34;
         g.setColor(new Color(color,color,color));
-        
-        if(!stopLooping){
-            while(question.getCategory() != _category){
-                question = Question.getQuestions().get((int)(Math.random()*60));
-            }
-            if(question.getCategory() == _category){
-               stopLooping=true;
-            }
+        DrawingQuestion=true;
+        if(!stopTimer){
+            QuestionTimer=10;
+            stopTimer=true;
         }
-        
-        int ydelta = Window.getHeight2()/NUM_ROWS;
-        int xdelta = Window.getWidth2()/NUM_COLUMNS;
-        g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
-        if(question.getCategory() == EPISODEI) 
-            g.setColor(I);
-        else if(question.getCategory() == EPISODEII) 
-            g.setColor(II);
-        else if(question.getCategory() == EPISODEIII) 
-            g.setColor(III);
-        else if(question.getCategory() == EPISODEIV) 
-            g.setColor(IV);
-        else if(question.getCategory() == EPISODEV) 
-            g.setColor(V);
-        else if(question.getCategory() == EPISODEVI) 
-            g.setColor(VI);
-        g.drawRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
-        g.setFont(new Font("Arial",Font.BOLD,20));
-        g.drawString(""+question.getName(), Window.getX(2*xdelta + 10),Window.getY(6*ydelta - ydelta/2) ); 
-        g.setFont(new Font("Arial",Font.PLAIN,20));
-        
-        
-        if(!stopCounting){
-            int countQNum = -1;
-            int countLineNum = 6;
-            for(int i=0; i<3; i++){
-                countQNum++;
-                if(countLineNum<9){countLineNum++;}
-                answerIndex[i] = random;
-                System.out.println("countLineNum="+countLineNum+" countQNum="+countQNum+" answerIndex["+countQNum+"] is "+random);
-                if(i == 2){
-                    stopCounting = true;
-                    System.out.println("working");
+        if(timeCount %20 ==19){
+            QuestionTimer--;
+        }
+        if(QuestionTimer>=0){
+            if(!stopLooping){
+                if(UsedQuestions.isEmpty()){
+                    while(question.getCategory() != _category){
+                        question = Question.getQuestions().get((int)(Math.random()*60));
+                    }
                 }
+                else{
+                    while(question.getCategory() != _category && !UsedQuestions.contains(questions)){
+                        question = Question.getQuestions().get((int)(Math.random()*60));
+                    }
+                }
+                stopLooping=true;
             }
-            while(answerIndex[0] == answerIndex[1] || answerIndex[0] == answerIndex[2] || answerIndex[1] == answerIndex[2]){
-                answerIndex[0]=(int)(Math.random()*3);
-                answerIndex[1]=(int)(Math.random()*3);
-                answerIndex[2]=(int)(Math.random()*3);
-            }
-            System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
-        }
+            CurrentQuestion = question;
+            UsedQuestions.add(question);
+            int ydelta = Window.getHeight2()/NUM_ROWS;
+            int xdelta = Window.getWidth2()/NUM_COLUMNS;
+            g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
+            if(question.getCategory() == EPISODEI) 
+                g.setColor(I);
+            else if(question.getCategory() == EPISODEII) 
+                g.setColor(II);
+            else if(question.getCategory() == EPISODEIII) 
+                g.setColor(III);
+            else if(question.getCategory() == EPISODEIV) 
+                g.setColor(IV);
+            else if(question.getCategory() == EPISODEV) 
+                g.setColor(V);
+            else if(question.getCategory() == EPISODEVI) 
+                g.setColor(VI);
+            g.drawRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
+            g.setFont(new Font("Arial",Font.BOLD,20));
+            g.drawString(""+question.getName(), Window.getX(2*xdelta + 10),Window.getY(6*ydelta - ydelta/2) ); 
+            g.setFont(new Font("Arial",Font.PLAIN,20));
 
-        g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25), 8*xdelta, 35);
-        g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + ydelta), 8*xdelta, 35);
-        g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + 2*ydelta), 8*xdelta, 35);
-        g.drawString(""+question.getAnswers(answerIndex[0]), Window.getX(4*xdelta),Window.getY(7*ydelta));
-        g.drawString(""+question.getAnswers(answerIndex[1]), Window.getX(4*xdelta),Window.getY(8*ydelta));
-        g.drawString(""+question.getAnswers(answerIndex[2]), Window.getX(4*xdelta),Window.getY(9*ydelta));
-        g.drawString("A. ", Window.getX(3*xdelta),Window.getY(7*ydelta));
-        g.drawString("B. ", Window.getX(3*xdelta),Window.getY(8*ydelta));
-        g.drawString("C. ", Window.getX(3*xdelta),Window.getY(9*ydelta));
-        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,15));
-        g.drawString(""+question.getCategory(), Window.getX(11*xdelta),Window.getY(10*ydelta - 8));
-        g.drawString("Difficulty "+question.getDifficulty(), Window.getX(2*xdelta + xdelta/2),Window.getY(10*ydelta - 8));
-        
+
+            if(!stopCounting){
+                int countQNum = -1;
+                int countLineNum = 6;
+                for(int i=0; i<3; i++){
+                    countQNum++;
+                    if(countLineNum<9){countLineNum++;}
+                    answerIndex[i] = random;
+
+                    System.out.println("countLineNum="+countLineNum+" countQNum="+countQNum+" answerIndex["+countQNum+"] is "+random);
+                    if(i == 2){
+                        stopCounting = true;
+                        System.out.println("working");
+                    }
+                }
+                while(answerIndex[0] == answerIndex[1] || answerIndex[0] == answerIndex[2] || answerIndex[1] == answerIndex[2]){
+                    answerIndex[0]=(int)(Math.random()*3);
+                    answerIndex[1]=(int)(Math.random()*3);
+                    answerIndex[2]=(int)(Math.random()*3);
+                }
+                CurrentQuestionAnswerIndex[0]= answerIndex[0];
+                CurrentQuestionAnswerIndex[1]= answerIndex[1];
+                CurrentQuestionAnswerIndex[2]= answerIndex[2];
+                System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
+            }
+
+
+            g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25), 8*xdelta, 35);
+            g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + ydelta), 8*xdelta, 35);
+            g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + 2*ydelta), 8*xdelta, 35);
+            g.drawString(""+question.getAnswers(answerIndex[0]), Window.getX(4*xdelta),Window.getY(7*ydelta));
+            g.drawString(""+question.getAnswers(answerIndex[1]), Window.getX(4*xdelta),Window.getY(8*ydelta));
+            g.drawString(""+question.getAnswers(answerIndex[2]), Window.getX(4*xdelta),Window.getY(9*ydelta));
+            g.drawString("A. ", Window.getX(3*xdelta),Window.getY(7*ydelta));
+            g.drawString("B. ", Window.getX(3*xdelta),Window.getY(8*ydelta));
+            g.drawString("C. ", Window.getX(3*xdelta),Window.getY(9*ydelta));
+            g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,15));
+            g.drawString(""+question.getCategory(), Window.getX(10*xdelta),Window.getY(10*ydelta - 8));
+            g.drawString("Difficulty "+question.getDifficulty(), Window.getX(2*xdelta + xdelta/2),Window.getY(10*ydelta - 8));
+            g.drawString(""+QuestionTimer, Window.getX(12*xdelta),Window.getY(10*ydelta - 8));
+            //then call some switch turn method
+        }// for ==> if(QuestionTimer>=0){
         //System.out.println("xdelta "+xdelta+" ydelta "+ydelta);
     }
-        public static void movePiece(int ran) {
+    public static void movePiece(int ran) {
+        
+        playerTurn = pieces[(int)(Math.random() * 4)];
         int amountMovePossible = 0;
 //////////////////// Starting Point Hard Code Hype
             if(playerTurn == pieces[0]) {
@@ -423,4 +493,14 @@ public class Board {
             currentPlayer++;
             playerTurn = pieces[currentPlayer];
     }
+    public static boolean CheckCorrectAnswer(int i){
+        if(CurrentQuestion.getAnswers(CurrentQuestionAnswerIndex[i])== CurrentQuestion.getCorrectAnswer()){
+            System.out.println("Correct!");
+            RollDice();
+            return true;
+        }
+        return false;
+    }
+    
 }
+    

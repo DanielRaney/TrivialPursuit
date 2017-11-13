@@ -29,7 +29,21 @@ public class TrivialPursuit extends JFrame implements Runnable {
                 
                 
                 if (e.BUTTON1 == e.getButton()) {
-                    
+                    if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(6*49 + 25) &&
+                       e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(6*49 + 25) + 35) && Board.DrawingQuestion){
+                       System.out.println("*Click* Noice");
+                       Board.CheckCorrectAnswer(0);
+                    }
+                    else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(7*49 + 25) &&
+                       e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(7*49 + 25) + 35) && Board.DrawingQuestion){
+                       System.out.println("*Click* Noice 2");
+                       Board.CheckCorrectAnswer(1);
+                    }
+                    else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(8*49 + 25) &&
+                       e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(8*49 + 25) + 35) && Board.DrawingQuestion){
+                       System.out.println("*Click* Noice 3");
+                       Board.CheckCorrectAnswer(2);
+                    }
                 }
                 if (e.BUTTON3 == e.getButton()) {
                     reset();
@@ -69,6 +83,18 @@ public class TrivialPursuit extends JFrame implements Runnable {
                 if(e.VK_R == e.getKeyCode()) {
                     Board.RollDice();
                 }
+//                if(e.VK_A == e.getKeyCode() ) {
+//                    Board.CheckCorrectAnswer(0);
+//                    System.out.println("A");
+//                }
+//                else if(e.VK_B == e.getKeyCode() ) {
+//                    Board.CheckCorrectAnswer(1);
+//                    System.out.println("B");
+//                }
+//                else if(e.VK_C == e.getKeyCode() ) {
+//                    Board.CheckCorrectAnswer(2);
+//                    System.out.println("C");
+//                }
                 
                 
                 
