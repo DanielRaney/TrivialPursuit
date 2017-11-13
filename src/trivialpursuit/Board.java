@@ -428,6 +428,16 @@ public class Board {
                 ran -= amountMovePossible;
                 amountMovePossible = 0;
 
+                for(int i = 0; i< ran; i++) {
+                    if(playerTurn.getY() == 1 &&playerTurn.getX() - i > (1) && board[playerTurn.getX() - i][playerTurn.getY()] != WALL) {
+                        amountMovePossible += 1;
+                        playerTurn.setInMiddle(false);
+                    }
+                }
+                playerTurn.moveX(-amountMovePossible);
+                ran -= amountMovePossible;
+                amountMovePossible = 0;
+
                 for(int i = 0; i < ran; i++) {
                     if (playerTurn.getX() == 1 && playerTurn.getX() != (NUM_COLUMNS-2) && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
                         amountMovePossible += 1;
@@ -440,6 +450,7 @@ public class Board {
                 loopCount++;
             }
     }
+    
     public static boolean CheckCorrectAnswer(int i){
         if(CurrentQuestion.getAnswers(CurrentQuestionAnswerIndex[i])== CurrentQuestion.getCorrectAnswer()){
             System.out.println("Correct!");
