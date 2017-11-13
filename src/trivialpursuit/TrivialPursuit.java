@@ -36,8 +36,8 @@ public class TrivialPursuit extends JFrame implements Runnable {
                            Board.playerTurn.changeToken(Board.question.getCategory());
                        }
                        else{
-                           Board.RollDice();
                            Board.switchNextPlayerTurn();
+                           Board.RollDice();
                        }
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(7*49 + 25) &&
@@ -47,8 +47,8 @@ public class TrivialPursuit extends JFrame implements Runnable {
                            Board.playerTurn.changeToken(Board.question.getCategory());
                        }
                        else{
-                           Board.RollDice();
                            Board.switchNextPlayerTurn();
+                           Board.RollDice();
                        }
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(8*49 + 25) &&
@@ -58,8 +58,8 @@ public class TrivialPursuit extends JFrame implements Runnable {
                            Board.playerTurn.changeToken(Board.question.getCategory());
                        }
                        else{
-                           Board.RollDice();
                            Board.switchNextPlayerTurn();
+                           Board.RollDice();
                        }
                     }
                 }

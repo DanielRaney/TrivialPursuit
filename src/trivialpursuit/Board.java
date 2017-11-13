@@ -256,6 +256,9 @@ public class Board {
             RollDice();
             switchNextPlayerTurn();
         }
+        g.setColor(playerTurn.getColor());
+        g.setFont(new Font("Arial",Font.BOLD,15));
+        g.drawString("Turn", 100,50); 
         timeCount++;    
 //Fill in below here
 /////////////////////////If R is pressed / RollDice code //////////////////////////////
