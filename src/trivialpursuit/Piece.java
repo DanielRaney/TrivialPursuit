@@ -62,6 +62,24 @@ public class Piece {
     public void setPink(){
         hasPink=!hasPink;
     }
+    public void checkAll(){
+        if(hasPurple && hasGreen && hasBlue && hasOrange && hasRed && hasPink)
+            hasAll=true;
+    }
+    public void changeToken(Category _token){
+        if(_token==Category.EPISODEI)
+            setOrange();
+        if(_token==Category.EPISODEII)
+            setRed();
+        if(_token==Category.EPISODEII)
+            setGreen();
+        if(_token==Category.EPISODEIV)
+            setBlue();
+        if(_token==Category.EPISODEV)
+            setPurple();
+        if(_token==Category.EPISODEVI)
+            setPink();
+    }
     public boolean getInMiddle() {
         return(inMiddle);
     }

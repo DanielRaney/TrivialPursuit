@@ -33,6 +33,13 @@ public class TrivialPursuit extends JFrame implements Runnable {
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(6*49 + 25) + 35) && Board.DrawingQuestion){
                        System.out.println("*Click* Noice");
                        Board.CheckCorrectAnswer(0);
+                       if(Board.CheckCorrectAnswer(0)){
+                           Board.playerTurn.changeToken(Board.question.getCategory());
+                           
+                           
+                           
+                           
+                       }
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(7*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(7*49 + 25) + 35) && Board.DrawingQuestion){
