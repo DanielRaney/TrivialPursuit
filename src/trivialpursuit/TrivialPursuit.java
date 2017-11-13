@@ -19,7 +19,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setTitle("Trivial Pursuit");
+        frame.setTitle("Star Wars Trivial Pursuit");
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./trivial.png"));
     }
 
