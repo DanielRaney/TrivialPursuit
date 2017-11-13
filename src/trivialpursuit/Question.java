@@ -13,6 +13,7 @@ public class Question {
     private String answers[] = new String[NUM_ANSWERS];  
     private String name;
     private Color color; 
+    private String theCorrectAnswer;
     
     Question(){
         name = "";
@@ -27,12 +28,16 @@ public class Question {
         answers[0] = correctAnswer;
         answers[1] = answer2;
         answers[2] = answer3;
+        theCorrectAnswer = correctAnswer;
     }
     public static ArrayList<Question> getQuestions(){
         return questions;
     }
     public String getName(){
         return name;
+    }
+    public String getCorrectAnswer(){
+        return theCorrectAnswer;
     }
     public String getAnswers(int k){
         return answers[k];

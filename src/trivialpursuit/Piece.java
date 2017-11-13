@@ -9,6 +9,7 @@ public class Piece {
     
     private int x;
     private int y;
+    private boolean inMiddle = true;
     private boolean hasOrange=false;
     private boolean hasRed=false;
     private boolean hasBlue=false;
@@ -61,8 +62,30 @@ public class Piece {
     public void setPink(){
         hasPink=!hasPink;
     }
-
-    
+    public void checkAll(){
+        if(hasPurple && hasGreen && hasBlue && hasOrange && hasRed && hasPink)
+            hasAll=true;
+    }
+    public void changeToken(Category _token){
+        if(_token==Category.EPISODEI)
+            setOrange();
+        if(_token==Category.EPISODEII)
+            setRed();
+        if(_token==Category.EPISODEII)
+            setGreen();
+        if(_token==Category.EPISODEIV)
+            setBlue();
+        if(_token==Category.EPISODEV)
+            setPurple();
+        if(_token==Category.EPISODEVI)
+            setPink();
+    }
+    public boolean getInMiddle() {
+        return(inMiddle);
+    }
+    public void setInMiddle(boolean newState) {
+        inMiddle = newState;
+    }
     
     public void draw(Graphics2D g,int xdelta,int ydelta) {
         g.setColor(color); 
@@ -93,8 +116,6 @@ public class Piece {
         g.setColor(Color.CYAN);
         if(hasBlue)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*5, angle-10); 
-
-
     }
     
 }
