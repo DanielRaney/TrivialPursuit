@@ -32,24 +32,35 @@ public class TrivialPursuit extends JFrame implements Runnable {
                     if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(6*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(6*49 + 25) + 35) && Board.DrawingQuestion){
                        System.out.println("*Click* Noice");
-                       Board.CheckCorrectAnswer(0);
                        if(Board.CheckCorrectAnswer(0)){
                            Board.playerTurn.changeToken(Board.question.getCategory());
-                           
-                           
-                           
-                           
+                       }
+                       else{
+                           Board.RollDice();
+                           Board.switchNextPlayerTurn();
                        }
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(7*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(7*49 + 25) + 35) && Board.DrawingQuestion){
                        System.out.println("*Click* Noice 2");
-                       Board.CheckCorrectAnswer(1);
+                       if(Board.CheckCorrectAnswer(1)){
+                           Board.playerTurn.changeToken(Board.question.getCategory());
+                       }
+                       else{
+                           Board.RollDice();
+                           Board.switchNextPlayerTurn();
+                       }
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(8*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(8*49 + 25) + 35) && Board.DrawingQuestion){
                        System.out.println("*Click* Noice 3");
-                       Board.CheckCorrectAnswer(2);
+                       if(Board.CheckCorrectAnswer(2)){
+                           Board.playerTurn.changeToken(Board.question.getCategory());
+                       }
+                       else{
+                           Board.RollDice();
+                           Board.switchNextPlayerTurn();
+                       }
                     }
                 }
                 if (e.BUTTON3 == e.getButton()) {

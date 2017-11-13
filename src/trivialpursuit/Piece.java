@@ -2,6 +2,10 @@
 package trivialpursuit;
 
 import java.awt.*;
+import static trivialpursuit.TrivialPursuit.*;
+import static trivialpursuit.Category.*;
+import static trivialpursuit.Question.*;
+import static trivialpursuit.Board.*;
 
 
 public class Piece {
@@ -98,22 +102,22 @@ public class Piece {
 //        g.setFont(new Font("Arial",Font.PLAIN,30));
 //        g.drawString("",Window.getX(column*xdelta)+30,Window.getY(row*ydelta)+40);       
         int angle = (360/6);
-        g.setColor(Color.red);
+        g.setColor(Board.I);
         if(hasRed)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90, angle-10);
-        g.setColor(Color.ORANGE);
+        g.setColor(Board.II);
         if(hasOrange)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*1, angle-10);
-        g.setColor(Color.magenta);
+        g.setColor(Board.III);
         if(hasPurple)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10,90+angle*2, angle-10);
-        g.setColor(Color.GREEN);
+        g.setColor(Board.IV);
         if(hasGreen)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*3, angle-10);
-        g.setColor(new Color(255,0,128));
+        g.setColor(Board.V);
         if(hasPink)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*4, angle-10);
-        g.setColor(Color.CYAN);
+        g.setColor(Board.VI);
         if(hasBlue)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*5, angle-10); 
     }
