@@ -519,11 +519,11 @@ public class Board {
         return false;
     }
     public static void switchNextPlayerTurn(){
-//        if(currentPlayer >= NUM_PIECES-1) {
-//            currentPlayer = -1;
-//        }
-//        currentPlayer++;
-//        playerTurn = pieces[currentPlayer];
+        if(currentPlayer >= NUM_PIECES-1) {
+            currentPlayer = -1;
+        }
+        currentPlayer++;
+        playerTurn = pieces[currentPlayer];
     }  
     //for test remove
     public static void win() {
