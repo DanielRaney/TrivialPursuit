@@ -74,6 +74,16 @@ public class Piece {
         if(hasPurple && hasGreen && hasBlue && hasOrange && hasRed && hasPink)
             hasAll=true;
     }
+    public void giveAll() {
+        hasAll=true;
+        hasOrange=true;
+        hasRed=true;
+        hasBlue=true;
+        hasPurple=true;
+        hasPink=true;
+        hasGreen=true;
+        hasAll=true;
+    }
     public void changeToken(Category _token){
         if(_token==Category.EPISODEI)
             setOrange();
