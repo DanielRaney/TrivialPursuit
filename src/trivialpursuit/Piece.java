@@ -67,6 +67,9 @@ public class Piece {
     public void setPink(){
         hasPink=true;
     }
+    public boolean getHasAll() {
+        return(hasAll);
+    }
     public void checkAll(){
         if(hasPurple && hasGreen && hasBlue && hasOrange && hasRed && hasPink)
             hasAll=true;
@@ -84,6 +87,7 @@ public class Piece {
             setPurple();
         if(_token==Category.EPISODEVI)
             setPink();
+        checkAll();
     }
     public boolean getInMiddle() {
         return(inMiddle);
