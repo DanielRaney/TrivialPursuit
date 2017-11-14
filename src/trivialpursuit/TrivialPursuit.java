@@ -28,40 +28,48 @@ public class TrivialPursuit extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
                 
                 
-                if (e.BUTTON1 == e.getButton()) {
+                if (e.BUTTON1 == e.getButton() && Board.DrawingQuestion) {
                     if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(6*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(6*49 + 25) + 35) && Board.DrawingQuestion){
                        System.out.println("*Click* Noice");
-                       if(Board.CheckCorrectAnswer(0)){
-                           Board.playerTurn.changeToken(Board.question.getCategory());
-                       }
-                       else{
-                           Board.switchNextPlayerTurn();
-                           Board.RollDice();
-                       }
+                       Board.CheckCorrectAnswer(0);
+//                       if(Board.CheckCorrectAnswer(0)){
+//                           //Board.playerTurn.changeToken(Board.CurrentQuestion.getCategory());
+//                       }
+//                       else{
+//                           //Board.switchNextPlayerTurn();
+//                           //Board.RollDice();
+//                       }
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(7*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(7*49 + 25) + 35) && Board.DrawingQuestion){
                        System.out.println("*Click* Noice 2");
-                       if(Board.CheckCorrectAnswer(1)){
-                           Board.playerTurn.changeToken(Board.question.getCategory());
-                       }
-                       else{
-                           Board.switchNextPlayerTurn();
-                           Board.RollDice();
-                       }
+                       Board.CheckCorrectAnswer(1);
+//                       if(Board.CheckCorrectAnswer(1)) {
+//                           //Board.playerTurn.changeToken(Board.CurrentQuestion.getCategory());
+//                       }
+//                       else{
+//                           //Board.switchNextPlayerTurn();
+//                           //Board.RollDice();
+//                       }
+                       
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(8*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(8*49 + 25) + 35) && Board.DrawingQuestion){
                        System.out.println("*Click* Noice 3");
-                       if(Board.CheckCorrectAnswer(2)){
-                           Board.playerTurn.changeToken(Board.question.getCategory());
-                       }
-                       else{
-                           Board.switchNextPlayerTurn();
-                           Board.RollDice();
-                       }
+                       Board.CheckCorrectAnswer(2);
+//                       if(Board.CheckCorrectAnswer(2)){
+//                           //Board.playerTurn.changeToken(Board.CurrentQuestion.getCategory());
+//                       }
+//                       else{
+//                           //Board.switchNextPlayerTurn();
+//                           //Board.RollDice();
+//                       }
+                       
+                       
                     }
+                    Board.switchNextPlayerTurn();
+                    Board.DrawingQuestion = false;
                 }
                 if (e.BUTTON3 == e.getButton()) {
                     reset();
@@ -92,13 +100,13 @@ public class TrivialPursuit extends JFrame implements Runnable {
                 } else if (e.VK_DOWN == e.getKeyCode()) {
                 } else if (e.VK_LEFT == e.getKeyCode()) {
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
-                    //stop();
+//stop();
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
                 if(e.VK_K == e.getKeyCode()) {
                 }
-                if(e.VK_R == e.getKeyCode()) {
+                if(e.VK_R == e.getKeyCode() && !Board.DrawingQuestion) {
                     Board.RollDice();
                 }
 //                if(e.VK_A == e.getKeyCode() ) {

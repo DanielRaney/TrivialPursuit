@@ -14,6 +14,7 @@ public class Piece {
     private int x;
     private int y;
     private boolean inMiddle = true;
+    
     private boolean hasOrange=false;
     private boolean hasRed=false;
     private boolean hasBlue=false;
@@ -48,23 +49,23 @@ public class Piece {
         
     }
     public void setOrange(){
-        hasOrange=!hasOrange;
+        hasOrange=true;
     }
     
     public void setRed(){
-        hasRed=!hasRed;
+        hasRed=true;
     }
     public void setGreen(){
-        hasGreen=!hasGreen;
+        hasGreen=true;
     }
     public void setBlue(){
-        hasBlue=!hasBlue;
+        hasBlue=true;
     }
     public void setPurple(){
-        hasPurple=!hasPurple;
+        hasPurple=true;
     }
     public void setPink(){
-        hasPink=!hasPink;
+        hasPink=true;
     }
     public void checkAll(){
         if(hasPurple && hasGreen && hasBlue && hasOrange && hasRed && hasPink)
@@ -75,7 +76,7 @@ public class Piece {
             setOrange();
         if(_token==Category.EPISODEII)
             setRed();
-        if(_token==Category.EPISODEII)
+        if(_token==Category.EPISODEIII)
             setGreen();
         if(_token==Category.EPISODEIV)
             setBlue();
@@ -103,22 +104,22 @@ public class Piece {
 //        g.drawString("",Window.getX(column*xdelta)+30,Window.getY(row*ydelta)+40);       
         int angle = (360/6);
         g.setColor(Board.I);
-        if(hasRed)
+        if(hasOrange)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90, angle-10);
         g.setColor(Board.II);
-        if(hasOrange)
+        if(hasRed)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*1, angle-10);
         g.setColor(Board.III);
-        if(hasPurple)
+        if(hasGreen)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10,90+angle*2, angle-10);
         g.setColor(Board.IV);
-        if(hasGreen)
+        if( hasBlue)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*3, angle-10);
         g.setColor(Board.V);
-        if(hasPink)
+        if(hasPurple)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*4, angle-10);
         g.setColor(Board.VI);
-        if(hasBlue)
+        if(hasPink)
         g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*5, angle-10); 
     }
     

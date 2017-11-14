@@ -62,7 +62,6 @@ public class Board {
     
        
     private static int board[][] = {
-
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
     {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
     {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
@@ -133,6 +132,7 @@ public class Board {
             movePiece(rollDice);
             notCurrently = false;
             QuestionTimer=10;
+            DrawingQuestion = true;
         }
     } 
     public static void Draw(Graphics2D g) {
@@ -195,7 +195,7 @@ public class Board {
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
 
-        DrawingQuestion=false;
+        //DrawingQuestion=false;
         if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
             //System.out.println("EPI");
             if(QuestionTimer>0)
@@ -203,6 +203,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
@@ -212,6 +213,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
@@ -221,6 +223,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
@@ -230,6 +233,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
@@ -239,6 +243,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
@@ -248,13 +253,14 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGN){
             //System.out.println("RollAgain");
             DrawingQuestion=false;
-            RollDice();
-            switchNextPlayerTurn();
+            //RollDice();
+            //switchNextPlayerTurn();
         }
         g.setColor(playerTurn.getColor());
         g.setFont(new Font("Arial",Font.BOLD,15));
@@ -280,10 +286,12 @@ public class Board {
     }
     
     public static void DrawQuestion(Graphics2D g, Category _category){
+        if(!DrawingQuestion)
+            return;
         //int color = (int)(Math.random() * 8 +30);
         int color =34;
         g.setColor(new Color(color,color,color));
-        DrawingQuestion=true;
+        //DrawingQuestion=true;
         if(timeCount %12 ==11){
             QuestionTimer--;
         }
@@ -452,12 +460,14 @@ public class Board {
                 amountMovePossible = 0;
                 loopCount++;
             }
+            System.out.println(currentPlayer+"");
     }
     
     public static boolean CheckCorrectAnswer(int i){
         if(CurrentQuestion.getAnswers(CurrentQuestionAnswerIndex[i])== CurrentQuestion.getCorrectAnswer()){
+            playerTurn.changeToken(CurrentQuestion.getCategory());
             System.out.println("Correct!");
-            RollDice();
+            //RollDice();
             return true;
         }
         return false;
@@ -468,7 +478,6 @@ public class Board {
         }
         currentPlayer++;
         playerTurn = pieces[currentPlayer];
-    }
-    
+    }    
 }
     
