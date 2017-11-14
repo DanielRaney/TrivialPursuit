@@ -61,10 +61,10 @@ public class Question {
         Question ep1Q4 = new Question("What planet does Queen Amidala live on?", "Naboo", "Tatooine","Hoth", Category.EPISODEI, Difficulty.MEDIUM);
         questions.add(ep1Q4);
         
-        Question ep1Q5 = new Question("How did Anakin pay for the Queen's ship's broken machinery?", "Pod race", "Shooting contest","Selling his belongings", Category.EPISODEI, Difficulty.EASY);
+        Question ep1Q5 = new Question("How did Anakin pay for the ship's broken machinery?", "Pod race", "Shooting contest","Selling his belongings", Category.EPISODEI, Difficulty.EASY);
         questions.add(ep1Q5);
         
-        Question ep1Q6 = new Question("Why didn't the jedi counsil let Anakin be trained to become a jedi?", "Too old", "He was too dumb","Wasn't rich", Category.EPISODEI, Difficulty.MEDIUM);
+        Question ep1Q6 = new Question("Why didn't the jedi let Anakin become a jedi?", "Too old", "He was too dumb","Wasn't rich", Category.EPISODEI, Difficulty.MEDIUM);
         questions.add(ep1Q6);
         
         Question ep1Q7 = new Question("Which actress played Padme?", "Natalie Portman", "Charlize Theron","Daisy Ridley", Category.EPISODEI, Difficulty.EASY);
@@ -135,7 +135,7 @@ public class Question {
         Question ep3Q8 = new Question("Who stops Mace Windu from killing the sith lord?", "Anakin", "Yoda","The droid army", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q8);
         
-        Question ep3Q9 = new Question("What order does the sith lord execute to turn the clones against the jedi?", "Order 66", "Order 556","Order 25", Category.EPISODEIII, Difficulty.EASY);
+        Question ep3Q9 = new Question("What order turns the clones against the jedi?", "Order 66", "Order 556","Order 25", Category.EPISODEIII, Difficulty.EASY);
         questions.add(ep3Q9);
         
         Question ep3Q10 = new Question("Where do Anakin and Obi-Wan fight?", "Mustafar", "Geonosis","Tatooine ", Category.EPISODEIII, Difficulty.HARD);
