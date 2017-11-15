@@ -436,29 +436,31 @@ public class Board {
     public static void movePiece(int ran) {
         int amountMovePossible = 0;
 //////////////////// Starting Point Hard Code Hype
-            if(playerTurn == pieces[0]) {
-                for(int i = 0; i < ran; i++) {
-                    if (playerTurn.getInMiddle() && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
+        if(playerTurn.getHasAll()) {
+            //Horizontal Left
+            if(playerTurn.getY() == NUM_ROWS/2 && playerTurn.getX() > NUM_COLUMNS/2 && playerTurn.getX() < NUM_COLUMNS-1) {
+                for(int i = 0; i< ran; i++) {
+                    if(playerTurn.getX() - i > (1) && board[playerTurn.getX() - i][playerTurn.getY()] != WALL) {
                         amountMovePossible += 1;
                     }
                 }
-                playerTurn.moveY(amountMovePossible);
+                playerTurn.moveX(-amountMovePossible);
                 ran -= amountMovePossible;
                 amountMovePossible = 0;
             }
-            else if(playerTurn == pieces[1] && NUM_PIECES > 1) {
+            //Horizontal Right
+            if(playerTurn.getY() == NUM_ROWS/2 && playerTurn.getX() > 0 && playerTurn.getX() < NUM_COLUMNS/2) {
                 for(int i = 0; i< ran; i++) {
-                    if(playerTurn.getInMiddle()&&playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
+                    if(playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
                         amountMovePossible +=1;
                     }
                 }
                 playerTurn.moveX(amountMovePossible);
                 ran -= amountMovePossible;
                 amountMovePossible = 0;
-                
-            }
-            else if(playerTurn == pieces[2] && NUM_PIECES > 2) {
-                amountMovePossible = 0;
+            }    
+            //Vertical Up
+            if(playerTurn.getX() == NUM_COLUMNS/2 && playerTurn.getY() > NUM_ROWS/2 && playerTurn.getY() < NUM_ROWS/2) {
                 for(int i = 0; i < ran;i++) {
                     if(playerTurn.getInMiddle() && playerTurn.getX() != 1 && playerTurn.getY() - i > 1 && board[playerTurn.getX()][playerTurn.getY() - i] != WALL) {
                         amountMovePossible += 1;
@@ -467,64 +469,108 @@ public class Board {
                 playerTurn.moveY(-amountMovePossible);
                 ran -= amountMovePossible;
                 amountMovePossible = 0;
-            }
-            else if (playerTurn == pieces [3] &&  NUM_PIECES > 3) {
-                for(int i = 0; i< ran; i++) {
-                    if(playerTurn.getInMiddle() &&playerTurn.getX() - i > (1) && board[playerTurn.getX() - i][playerTurn.getY()] != WALL) {
-                        amountMovePossible += 1;
-                    }
-                }
-                playerTurn.moveX(-amountMovePossible);
-                ran -= amountMovePossible;
-                amountMovePossible = 0;
-            }
-            
-//////////////////// WIP
-            //WIP
-            int loopCount = 0;
-            while(ran != 0 && loopCount < 10) {
-                for(int i = 0; i< ran; i++) {
-                    if(playerTurn.getY() == (NUM_ROWS-2)&&playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
-                        amountMovePossible +=1;
-                        playerTurn.setInMiddle(false);
-                    }
-                }
-                playerTurn.moveX(amountMovePossible);
-                ran -= amountMovePossible;
-                amountMovePossible = 0;
-
-                for(int i = 0; i < ran;i++) {
-                    if(playerTurn.getX() == (NUM_COLUMNS-2)&&playerTurn.getY() - i > 1 && board[playerTurn.getX()][playerTurn.getY() - i] != WALL && playerTurn.getX() == NUM_COLUMNS-2) {
-                        amountMovePossible += 1;
-                        playerTurn.setInMiddle(false);
-                    }
-                }
-                playerTurn.moveY(-amountMovePossible);
-                ran -= amountMovePossible;
-                amountMovePossible = 0;
-
-                for(int i = 0; i< ran; i++) {
-                    if(playerTurn.getY() == 1 &&playerTurn.getX() - i > (1) && board[playerTurn.getX() - i][playerTurn.getY()] != WALL) {
-                        amountMovePossible += 1;
-                        playerTurn.setInMiddle(false);
-                    }
-                }
-                playerTurn.moveX(-amountMovePossible);
-                ran -= amountMovePossible;
-                amountMovePossible = 0;
-
+            }    
+            //Vertical Down
+            if(playerTurn.getX() == NUM_COLUMNS/2 && playerTurn.getY() < NUM_ROWS/2 && playerTurn.getY() > 1) {
                 for(int i = 0; i < ran; i++) {
-                    if (playerTurn.getX() == 1 && playerTurn.getX() != (NUM_COLUMNS-2) && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
+                    if ((playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
                         amountMovePossible += 1;
-                        playerTurn.setInMiddle(false);
                     }
                 }
                 playerTurn.moveY(amountMovePossible);
                 ran -= amountMovePossible;
-                amountMovePossible = 0;
-                loopCount++;
+                amountMovePossible = 0;   
+            }     
+        }
+        if(playerTurn == pieces[0]) {
+            for(int i = 0; i < ran; i++) {
+                if (playerTurn.getInMiddle() && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
+                    amountMovePossible += 1;
+                }
             }
-            System.out.println(currentPlayer+"");
+            playerTurn.moveY(amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+        }
+        else if(playerTurn == pieces[1] && NUM_PIECES > 1) {
+            for(int i = 0; i< ran; i++) {
+                if(playerTurn.getInMiddle()&&playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
+                    amountMovePossible +=1;
+                }
+            }
+            playerTurn.moveX(amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+
+        }
+        else if(playerTurn == pieces[2] && NUM_PIECES > 2) {
+            amountMovePossible = 0;
+            for(int i = 0; i < ran;i++) {
+                if(playerTurn.getInMiddle() && playerTurn.getX() != 1 && playerTurn.getY() - i > 1 && board[playerTurn.getX()][playerTurn.getY() - i] != WALL) {
+                    amountMovePossible += 1;
+                }
+            }
+            playerTurn.moveY(-amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+        }
+        else if (playerTurn == pieces [3] &&  NUM_PIECES > 3) {
+            for(int i = 0; i< ran; i++) {
+                if(playerTurn.getInMiddle() &&playerTurn.getX() - i > (1) && board[playerTurn.getX() - i][playerTurn.getY()] != WALL) {
+                    amountMovePossible += 1;
+                }
+            }
+            playerTurn.moveX(-amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+        }
+
+//////////////////// WIP
+        //WIP
+        int loopCount = 0;
+        while(ran != 0 && loopCount < 10) {
+            for(int i = 0; i< ran; i++) {
+                if(playerTurn.getY() == (NUM_ROWS-2)&&playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
+                    amountMovePossible +=1;
+                    playerTurn.setInMiddle(false);
+                }
+            }
+            playerTurn.moveX(amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+
+            for(int i = 0; i < ran;i++) {
+                if(playerTurn.getX() == (NUM_COLUMNS-2)&&playerTurn.getY() - i > 1 && board[playerTurn.getX()][playerTurn.getY() - i] != WALL && playerTurn.getX() == NUM_COLUMNS-2) {
+                    amountMovePossible += 1;
+                    playerTurn.setInMiddle(false);
+                }
+            }
+            playerTurn.moveY(-amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+
+            for(int i = 0; i< ran; i++) {
+                if(playerTurn.getY() == 1 &&playerTurn.getX() - i > (1) && board[playerTurn.getX() - i][playerTurn.getY()] != WALL) {
+                    amountMovePossible += 1;
+                    playerTurn.setInMiddle(false);
+                }
+            }
+            playerTurn.moveX(-amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+
+            for(int i = 0; i < ran; i++) {
+                if (playerTurn.getX() == 1 && playerTurn.getX() != (NUM_COLUMNS-2) && (playerTurn.getY() + i) < (NUM_ROWS-2) && board[playerTurn.getX()][playerTurn.getY() + i] != WALL) {
+                    amountMovePossible += 1;
+                    playerTurn.setInMiddle(false);
+                }
+            }
+            playerTurn.moveY(amountMovePossible);
+            ran -= amountMovePossible;
+            amountMovePossible = 0;
+            loopCount++;
+        }
+        System.out.println(currentPlayer+"");
     }
     
     public static boolean CheckCorrectAnswer(int i, Graphics2D g){
@@ -544,6 +590,15 @@ public class Board {
         }
         currentPlayer++;
         playerTurn = pieces[currentPlayer];
-    }    
+
+    }  
+    //for test remove
+    public static void win() {
+        playerTurn.giveAll();
+    }
 }   
+
+   
+    
+
     

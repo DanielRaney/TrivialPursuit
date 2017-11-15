@@ -8,24 +8,11 @@ import static trivialpursuit.Question.*;
 import static trivialpursuit.Board.*;
 
 
-public class Piece {
-    private Color color;
-    
+public class Piece extends Player{
     private int x;
-    private int y;
-    private boolean inMiddle = true;
-    
-    private boolean hasOrange=false;
-    private boolean hasRed=false;
-    private boolean hasBlue=false;
-    private boolean hasPurple=false;
-    private boolean hasPink=false;
-    private boolean hasGreen=false;
-    private boolean hasAll=false;
-    
-
+    private int y; 
     Piece(Color _color, int _x, int _y){
-        color = _color;
+        super(_color);
         x = _x;
         y = _y;
     }
@@ -41,59 +28,26 @@ public class Piece {
     public void moveY(int increment) {
         y += increment;
     }
-    public Color getColor()
-    {
-        return (color);
-    }
     public void setLocation() {
         
     }
-    public void setOrange(){
+    public boolean getHasAll() {
+        return(hasAll);
+    }
+    public void giveAll() {
+        hasAll=true;
         hasOrange=true;
-    }
-    
-    public void setRed(){
         hasRed=true;
-    }
-    public void setGreen(){
-        hasGreen=true;
-    }
-    public void setBlue(){
         hasBlue=true;
-    }
-    public void setPurple(){
         hasPurple=true;
-    }
-    public void setPink(){
         hasPink=true;
+        hasGreen=true;
+        hasAll=true;
     }
-    public void checkAll(){
-        if(hasPurple && hasGreen && hasBlue && hasOrange && hasRed && hasPink)
-            hasAll=true;
-    }
-    public void changeToken(Category _token){
-        if(_token==Category.EPISODEI)
-            setOrange();
-        if(_token==Category.EPISODEII)
-            setRed();
-        if(_token==Category.EPISODEIII)
-            setGreen();
-        if(_token==Category.EPISODEIV)
-            setBlue();
-        if(_token==Category.EPISODEV)
-            setPurple();
-        if(_token==Category.EPISODEVI)
-            setPink();
-    }
-    public boolean getInMiddle() {
-        return(inMiddle);
-    }
-    public void setInMiddle(boolean newState) {
-        inMiddle = newState;
-    }
+
     
     public void draw(Graphics2D g,int xdelta,int ydelta) {
-        g.setColor(color); 
+        g.setColor(getColor()); 
         g.fillOval(Window.getX(x*xdelta),Window.getY(y*ydelta),xdelta,ydelta);
         g.setColor(Color.BLACK);
         g.drawOval(Window.getX(x*xdelta),Window.getY(y*ydelta),xdelta,ydelta);
