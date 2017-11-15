@@ -28,9 +28,6 @@ public class Piece extends Player{
     public void moveY(int increment) {
         y += increment;
     }
-    public void setLocation() {
-        
-    }
     public boolean getHasAll() {
         return(hasAll);
     }

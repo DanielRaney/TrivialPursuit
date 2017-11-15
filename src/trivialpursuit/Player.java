@@ -57,6 +57,7 @@ public class Player {
             setPurple();
         if(_token==Category.EPISODEVI)
             setPink();
+        checkAll();
     }
     public void checkAll(){
         if(hasPurple && hasGreen && hasBlue && hasOrange && hasRed && hasPink)
