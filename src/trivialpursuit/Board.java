@@ -28,41 +28,46 @@ public class Board {
     public static Piece playerTurn;
     
     private static int currentPlayer = 0;
-    public static boolean pressR = false;
-    public static int timeCount = 0;
-    public static int rollDice = 0;
-    public static boolean notCurrently = true;
+    private static boolean pressR = false;
+    private static int timeCount = 0;
+    private static int rollDice = 0;
+    private static boolean notCurrently = true;
     
     //for randomized questions display
-    public static int random = (int)(Math.random()*3);
-    public static int previous = random;
-    public static int answerIndex[] = new int[NUM_QUESTIONS];
-    public static boolean stopCounting = false; //for randomized questions
+    private static int random = (int)(Math.random()*3);
+    private static int previous = random;
+    private static int answerIndex[] = new int[NUM_QUESTIONS];
+    private static int randomIndex0;
+    private static int randomIndex1;
+    private static int randomIndex2;
+    
+    private static boolean stopCounting = false; //for randomized questions
     
     //for random question generater drawquestion
-    public static boolean stopLooping = false;
-    public static Question question = Question.getQuestions().get((int)(Math.random()*60));
+    private static boolean stopLooping = false;
+    private static Question question = Question.getQuestions().get((int)(Math.random()*60));
     
     public static boolean DrawingQuestion = false;
     
-    public static ArrayList<Question> UsedQuestions = new ArrayList<Question>();
+    private static ArrayList<Question> UsedQuestions = new ArrayList<Question>();
     
-    public static Question CurrentQuestion;
-    public static int CurrentQuestionAnswerIndex[]=new int [NUM_ANSWERS];
+    private static Question CurrentQuestion;
+    private static int CurrentQuestionAnswerIndex[]=new int [NUM_ANSWERS];
     
-    public static int QuestionTimer = 10;
-    public static boolean stopTimer = false;
+    private static int QuestionTimer = 10;
+    private static boolean stopTimer = false;
     
-    public static final Color I = new Color(215, 191, 100); //orange
-    public static final Color II = new Color(217, 98, 98); //red
-    public static final Color III = new Color(112, 218, 97); //green
-    public static final Color IV = new Color(96, 201, 219); //blue
-    public static final Color V = new Color(160, 95, 220); //purple
-    public static final Color VI = new Color(222, 92, 200); //pink 
+    private static final Color I = new Color(215, 191, 100); //orange
+    private static final Color II = new Color(217, 98, 98); //red
+    private static final Color III = new Color(112, 218, 97); //green
+    private static final Color IV = new Color(96, 201, 219); //blue
+    private static final Color V = new Color(160, 95, 220); //purple
+    private static final Color VI = new Color(222, 92, 200); //pink 
     
+    private static boolean correctAnswer=false;
+    private static int randomCorrectAnswerDisplay=(int)(Math.random()*5); 
        
     private static int board[][] = {
-
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
     {WALL,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,RAND,WALL},
     {WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL,WALL,WALL,WALL,WALL,RAND,WALL},
@@ -80,6 +85,27 @@ public class Board {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},   
     };
     
+    public static Color getI(){
+        return(I);
+    }
+    public static Color getII(){
+        return(II);
+    }
+    public static Color getIII(){
+        return(III);
+    }
+    public static Color getIV(){
+        return(IV);
+    }
+    public static Color getV(){
+        return(V);
+    }
+    public static Color getVI(){
+        return(VI);
+    }
+    public static ArrayList<Question> getUsedQuestions(){
+        return(UsedQuestions);
+    }
     
     public static void reset() {
         //for(int i = 0; i<NUM_PIECES;i++) {
@@ -117,6 +143,9 @@ public class Board {
         pressR = false;
         notCurrently = true;
         UsedQuestions.clear();
+        randomIndex0= (int)(Math.random() * 3);
+        randomIndex1= (int)(Math.random() * 3);
+        randomIndex2= (int)(Math.random() * 3);
     }
     
     public static void addPiece(int x, int y) {
@@ -133,6 +162,8 @@ public class Board {
             movePiece(rollDice);
             notCurrently = false;
             QuestionTimer=10;
+            DrawingQuestion = true;
+            
         }
     } 
     public static void Draw(Graphics2D g) {
@@ -148,7 +179,8 @@ public class Board {
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
 //draw grid
-        
+        if(UsedQuestions.size() >= 60)
+            UsedQuestions.clear();
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {  
                 if(board[zx][zy] == WALL) { 
@@ -195,7 +227,7 @@ public class Board {
         g.setColor(Color.black);
         g.drawRect(Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2());
 
-        DrawingQuestion=false;
+        //DrawingQuestion=false;
         if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
             //System.out.println("EPI");
             if(QuestionTimer>0)
@@ -203,6 +235,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
@@ -212,6 +245,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
@@ -221,6 +255,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
@@ -230,6 +265,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
@@ -239,6 +275,7 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
@@ -248,14 +285,24 @@ public class Board {
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
                 switchNextPlayerTurn();
+                DrawingQuestion = false;
             }
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==ROLLAGN){
             //System.out.println("RollAgain");
             DrawingQuestion=false;
-            RollDice();
-            switchNextPlayerTurn();
+            //RollDice();
+            //switchNextPlayerTurn();
         }
+        int turnXThing = Window.getHeight2() - 135;
+        int turnYThing = Window.getHeight2()+125;
+        g.setColor(playerTurn.getColor());
+        g.setFont(new Font("Arial",Font.BOLD,25));
+        g.drawString("This", turnXThing,turnYThing); 
+        g.setColor(Color.white);
+        g.drawString("player's", turnXThing+60,turnYThing); 
+        g.setColor(Color.white);
+        g.drawString("turn", turnXThing+162,turnYThing); 
         timeCount++;    
 //Fill in below here
 /////////////////////////If R is pressed / RollDice code //////////////////////////////
@@ -263,7 +310,7 @@ public class Board {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
             g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
-            //if(timeCount % 25==24) {
+            //if(timeCount % 50==49) {
                 pressR = false;
                 notCurrently = true;
             //}
@@ -273,29 +320,53 @@ public class Board {
             g.setFont(new Font("Arial",Font.BOLD,30));
             g.drawString("PRESS [R] TO ROLL THE DICE", Window.getWidth2()/2-140,70); 
         }
+        if(correctAnswer){
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial",Font.BOLD,25));
+            if(randomCorrectAnswerDisplay==0)
+            g.drawString("Correct!", Window.getX(0),130+Window.getHeight2());
+            if(randomCorrectAnswerDisplay==1)
+            g.drawString("You didn't fail!", Window.getX(0),130+Window.getHeight2());
+            if(randomCorrectAnswerDisplay==2)
+            g.drawString("Got 'eem", Window.getX(0),130+Window.getHeight2());
+            if(randomCorrectAnswerDisplay==3)
+            g.drawString("Plus one participation point",Window.getX(0),130+Window.getHeight2());
+            if(randomCorrectAnswerDisplay==4)
+            g.drawString("One point to Griffindor", Window.getX(0),130+Window.getHeight2());
+            if(timeCount % 50==49) {
+                correctAnswer = false;
+                randomCorrectAnswerDisplay= (int)(Math.random()*5);
+            }
+        }
+
 ////////////////////////////////////////////////////////////////////////////////////////////
     }
     
     public static void DrawQuestion(Graphics2D g, Category _category){
+        if(!DrawingQuestion)
+            return;
         //int color = (int)(Math.random() * 8 +30);
         int color =34;
         g.setColor(new Color(color,color,color));
-        DrawingQuestion=true;
+        //DrawingQuestion=true;
         if(timeCount %12 ==11){
             QuestionTimer--;
         }
+        for(Question  obj:  getUsedQuestions()){
+            System.out.println(""+ obj.getName());    
+        }
+        System.out.println(""+ UsedQuestions.size());  
         if(UsedQuestions.isEmpty()){
             while(question.getCategory() != _category){
                 question = Question.getQuestions().get((int)(Math.random()*60));
             }
         }
         else{
-            while(question.getCategory() != _category && !UsedQuestions.contains(questions)){
+            while(question.getCategory() != _category || UsedQuestions.contains(question)){
                 question = Question.getQuestions().get((int)(Math.random()*60));
             }
         }
         CurrentQuestion = question;
-        UsedQuestions.add(question);
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(5*ydelta - ydelta/4), 11*xdelta + xdelta/2, 5*ydelta + ydelta/2);
@@ -331,10 +402,14 @@ public class Board {
                     System.out.println("working");
                 }
             }
-            while(answerIndex[0] == answerIndex[1] || answerIndex[0] == answerIndex[2] || answerIndex[1] == answerIndex[2]){
-                answerIndex[0]=(int)(Math.random()*3);
-                answerIndex[1]=(int)(Math.random()*3);
-                answerIndex[2]=(int)(Math.random()*3);
+            while(answerIndex[0] == answerIndex[1] || answerIndex[0] == answerIndex[2] || answerIndex[1] == answerIndex[2] 
+                    || randomIndex0 == randomIndex1 || randomIndex0 == randomIndex2 || randomIndex1 == randomIndex2){
+                randomIndex0= (int)(Math.random() * 3);
+                randomIndex1= (int)(Math.random() * 3);
+                randomIndex2= (int)(Math.random() * 3);
+                answerIndex[randomIndex0]=(int)(Math.random()*3);
+                answerIndex[randomIndex1]=(int)(Math.random()*3);
+                answerIndex[randomIndex2]=(int)(Math.random()*3);
             }
             CurrentQuestionAnswerIndex[0]= answerIndex[0];
             CurrentQuestionAnswerIndex[1]= answerIndex[1];
@@ -449,12 +524,16 @@ public class Board {
                 amountMovePossible = 0;
                 loopCount++;
             }
+            System.out.println(currentPlayer+"");
     }
     
-    public static boolean CheckCorrectAnswer(int i){
+    public static boolean CheckCorrectAnswer(int i, Graphics2D g){
         if(CurrentQuestion.getAnswers(CurrentQuestionAnswerIndex[i])== CurrentQuestion.getCorrectAnswer()){
-            System.out.println("Correct!");
-            RollDice();
+            playerTurn.changeToken(CurrentQuestion.getCategory());
+            correctAnswer = true;
+            //RollDice();
+            if(!UsedQuestions.contains(question))
+                UsedQuestions.add(question);
             return true;
         }
         return false;
@@ -465,7 +544,6 @@ public class Board {
         }
         currentPlayer++;
         playerTurn = pieces[currentPlayer];
-    }
-    
-}
+    }    
+}   
     
