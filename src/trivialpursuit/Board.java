@@ -143,6 +143,7 @@ public class Board {
         pressR = false;
         notCurrently = true;
         UsedQuestions.clear();
+        beginningTimer=25;
     }
     
     public static void addPiece(int x, int y) {
