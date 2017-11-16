@@ -98,6 +98,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
             public void keyPressed(KeyEvent e) {
                 if (e.VK_UP == e.getKeyCode()) {
                 } else if (e.VK_DOWN == e.getKeyCode()) {
+                    Board.resetBeginningTimer();
                 } else if (e.VK_LEFT == e.getKeyCode()) {
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
 //stop();

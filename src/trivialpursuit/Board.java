@@ -66,6 +66,13 @@ public class Board {
     private static int randomCorrectAnswerDisplay=(int)(Math.random()*5); 
     
     private static int beginningTimer=25;
+    
+    private static int numEI = 0;
+    private static int numEII = 0;
+    private static int numEIII = 0;
+    private static int numEIV = 0;
+    private static int numEV = 0;
+    private static int numEVI = 0;
        
     private static int board[][] = {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
@@ -85,6 +92,9 @@ public class Board {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},   
     };
     
+    public static void resetBeginningTimer(){
+        beginningTimer = 0;
+    }
     public static Color getI(){
         return(I);
     }
@@ -144,6 +154,12 @@ public class Board {
         notCurrently = true;
         UsedQuestions.clear();
         beginningTimer=25;
+        numEI = 0;
+        numEII = 0;
+        numEIII = 0;
+        numEIV = 0;
+        numEV = 0;
+        numEVI = 0;
     }
     
     public static void addPiece(int x, int y) {
@@ -397,9 +413,9 @@ public class Board {
         if(timeCount %12 ==11){
             QuestionTimer--;
         }
-        for(Question  obj:  getUsedQuestions()){
-            System.out.println(""+ obj.getName()+" "+obj.getCategory());    
-        }
+//        for(Question  obj:  getUsedQuestions()){
+//            System.out.println(""+ obj.getName()+" "+obj.getCategory());    
+//        }
         System.out.println(""+ UsedQuestions.size());  
         if(UsedQuestions.isEmpty()){
             while(question.getCategory() != _category){
@@ -411,6 +427,7 @@ public class Board {
                 question = Question.getQuestions().get((int)(Math.random()*60));
             }
         }
+        
         CurrentQuestion = question;
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
@@ -490,15 +507,17 @@ public class Board {
         g.drawString("STAR WARS EDITION", Window.getX(Window.getHeight2()/2 - (2*xdelta +15) + 2),Window.getY(5*ydelta + 7) );
         
         g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,17));
-        g.drawString("Basic instructions:", Window.getX(Window.getHeight2()/2 - xdelta - xdelta/2),Window.getY(7*ydelta - ydelta/2 - 10) );
+        g.drawString("Basic instructions:", Window.getX(Window.getHeight2()/2 - xdelta - xdelta/2),Window.getY(6*ydelta - 10) );
         //g.drawString("Answer a Star Wars based trivia question correct to ear", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +lineSpace) );                  reference
-        g.drawString("Answer a Star Wars based trivia question correct to", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +lineSpace) );
-        g.drawString("earn 1 out of the 6 total tokens. Once you have obtained", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +2*lineSpace) );
-        g.drawString("all 6 tokens, you'll have the ability to travel back to the", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +3*lineSpace) );
-        g.drawString("center where you'll have to answer 1 final trivia question", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +4*lineSpace) );
-        g.drawString("correct to win. First player to do so wins. By default,", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +5*lineSpace) );
-        g.drawString("the game requires 4 people to play, or 1 lonely person", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +6*lineSpace) );
-        g.drawString("who desires to play against themselves.", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +7*lineSpace) );
+        g.drawString("Answer a Star Wars based trivia question correct to", Window.getX(3*xdelta),Window.getY(6*ydelta +lineSpace) );
+        g.drawString("earn 1 out of the 6 total tokens. Once you have obtained", Window.getX(3*xdelta),Window.getY(6*ydelta +2*lineSpace) );
+        g.drawString("all 6 tokens, you'll have the ability to travel back to the", Window.getX(3*xdelta),Window.getY(6*ydelta  +3*lineSpace) );
+        g.drawString("center where you'll have to answer 1 final trivia question", Window.getX(3*xdelta),Window.getY(6*ydelta  +4*lineSpace) );
+        g.drawString("correct to win. First player to do so wins. By default,", Window.getX(3*xdelta),Window.getY(6*ydelta  +5*lineSpace) );
+        g.drawString("the game requires 4 people to play, or 1 lonely person", Window.getX(3*xdelta),Window.getY(6*ydelta  +6*lineSpace) );
+        g.drawString("who desires to play against themselves. Each colored square", Window.getX(3*xdelta),Window.getY(6*ydelta +7*lineSpace) );
+        g.drawString("has a categorized set of questions, and if you land on a ", Window.getX(3*xdelta),Window.getY(6*ydelta  +8*lineSpace) );
+        g.drawString("white piece, you get to roll again.", Window.getX(3*xdelta),Window.getY(6*ydelta +9*lineSpace) );
         
         g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,23));
         g.setColor(Board.getV()); 
@@ -668,11 +687,68 @@ public class Board {
             playerTurn.changeToken(CurrentQuestion.getCategory());
             correctAnswer = true;
             //RollDice();
-            if(!UsedQuestions.contains(question))
+            if(!UsedQuestions.contains(question)){
                 UsedQuestions.add(question);
+                if(question.getCategory()==Category.EPISODEI)
+                    numEI++;
+                else if(question.getCategory()==Category.EPISODEII)
+                    numEII++;
+                else if(question.getCategory()==Category.EPISODEIII)
+                    numEIII++;
+                else if(question.getCategory()==Category.EPISODEIV)
+                    numEIV++;
+                else if(question.getCategory()==Category.EPISODEV)
+                    numEV++;
+                else if(question.getCategory()==Category.EPISODEVI)
+                    numEVI++;
+                System.out.println("numEI "+numEI+" numEII "+numEII+" numEIII "+numEIII+" numEIV "+numEIV+" numEV "+numEV+" numEVI "+numEVI);
+                if(numEI==NUM_QUESTIONS||numEII==NUM_QUESTIONS||numEIII==NUM_QUESTIONS||numEIV==NUM_QUESTIONS||numEV==NUM_QUESTIONS||numEVI==NUM_QUESTIONS){
+                    UsedQuestions.clear();
+                    numEI = 0;numEII = 0;numEIII = 0;numEIV = 0;numEV = 0;numEVI = 0;
+                }
+                
+            }
             return true;
         }
         return false;
+    }
+    public static void CheckAndRemoveUsedQuestions(){
+        if(numEI==10){
+            for(Question obj : UsedQuestions){
+                if(obj.getCategory() == Category.EPISODEI)
+                    UsedQuestions.remove(obj);
+            }
+        }
+        else if(numEII==10){
+            for(Question obj : UsedQuestions){
+                if(obj.getCategory() == Category.EPISODEII)
+                    UsedQuestions.remove(obj);
+            }
+        }
+        else if(numEIII==10){
+            for(Question obj : UsedQuestions){
+                if(obj.getCategory() == Category.EPISODEIII)
+                    UsedQuestions.remove(obj);
+            }
+        }
+        else if(numEIV==10){
+            for(Question obj : UsedQuestions){
+                if(obj.getCategory() == Category.EPISODEIV)
+                    UsedQuestions.remove(obj);
+            }
+        }
+        else if(numEV==10){
+            for(Question obj : UsedQuestions){
+                if(obj.getCategory() == Category.EPISODEV)
+                    UsedQuestions.remove(obj);
+            }
+        }
+        else if(numEVI==10){
+            for(Question obj : UsedQuestions){
+                if(obj.getCategory() == Category.EPISODEVI)
+                    UsedQuestions.remove(obj);
+            }
+        }
     }
     public static void switchNextPlayerTurn(){
         if(currentPlayer >= NUM_PIECES-1) {
