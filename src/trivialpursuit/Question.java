@@ -86,6 +86,12 @@ public class Question {
         
         Question ep1Q10 = new Question("How did the planet of Naboo celebrate their victory?", "A parade", "There was no celebration","A big ball in the palace", Category.EPISODEI, Difficulty.MEDIUM);
         questions.add(ep1Q10);
+        
+        Question ep1Q11 = new Question("How many lines did Darth Maul speak?", "3", "2","1", Category.EPISODEI, Difficulty.HARD);
+        questions.add(ep1Q11);
+        
+        Question ep1Q12 = new Question("What was the budget for The Phantom menace?", "$115,000,000", "112,000,000","100,000,000", Category.EPISODEI, Difficulty.HARD);
+        questions.add(ep1Q12);
         ////////////////////////////////////////////////////EPISODE II///////////////////////////////////////////////////////////////////////////////////////
         
         Question ep2Q1 = new Question("How did the bounty hunter first try to kill Padme?", "A bomb on her ship", "A blaster shot","A blade", Category.EPISODEII, Difficulty.HARD);
@@ -117,6 +123,12 @@ public class Question {
         
         Question ep2Q10 = new Question("What happens to Anakin in the fight against Count Dooku?", "Looses his arm", "He switches to the dark side","Looses his leg", Category.EPISODEII, Difficulty.EASY);
         questions.add(ep2Q10);
+        
+        Question ep2Q11 = new Question("When was this movie released?", "2002", "2004","2001", Category.EPISODEII, Difficulty.MEDIUM);
+        questions.add(ep2Q11);
+        
+        Question ep2Q12 = new Question("How much did the movie make on opening weekend in the US?", "$80,027,814 ", "$125,068,815","$85,251,265", Category.EPISODEII, Difficulty.MEDIUM);
+        questions.add(ep2Q12);
         ////////////////////////////////////////////////////EPISODE III///////////////////////////////////////////////////////////////////////////////////////
         
         Question ep3Q1 = new Question("Who are the Republic fighting?", "CIS", "Galactic Empire","The New Order", Category.EPISODEIII, Difficulty.EASY);
@@ -149,7 +161,17 @@ public class Question {
         Question ep3Q10 = new Question("Where do Anakin and Obi-Wan fight?", "Mustafar", "Geonosis","Tatooine ", Category.EPISODEIII, Difficulty.HARD);
         questions.add(ep3Q10);
         
-
+        Question ep3Q11 = new Question("How many costumes were created for the clone troopers?", "0", "200","350 ", Category.EPISODEIII, Difficulty.HARD);
+        questions.add(ep3Q11);
+        
+        Question ep3Q12 = new Question("How many lines did Count Dooku speak in Episode III?", "4", "27","31 ", Category.EPISODEIII, Difficulty.HARD);
+        questions.add(ep3Q12);
+        
+        Question ep3Q13 = new Question("How many minuets is General Grievous on screen?", "6", "8","13 ", Category.EPISODEIII, Difficulty.HARD);
+        questions.add(ep3Q13);
+        
+        Question ep3Q14 = new Question("How many minuets is General Grievous on screen?", "6", "8","13 ", Category.EPISODEIII, Difficulty.HARD);
+        questions.add(ep3Q14);
         ////////////////////////////////////////////////////EPISODE IV///////////////////////////////////////////////////////////////////////////////////////
         
         Question ep4Q1 = new Question("What droid does Princess Leia record her message?", "R2D2", "R2D4","C3PO", Category.EPISODEIV, Difficulty.MEDIUM);
@@ -161,7 +183,7 @@ public class Question {
         Question ep4Q3 = new Question("Who is Princess Leia's 'only hope'?", "Obi-Wan Kenobi", "Luke Skywalker","Yoda", Category.EPISODEIV, Difficulty.EASY);
         questions.add(ep4Q3);
         
-        Question ep4Q4 = new Question("What does Obi-Wan Kenobi give Luke?", "His lightsaber", "His droid","His land", Category.EPISODEIV, Difficulty.MEDIUM);
+        Question ep4Q4 = new Question("What does Obi-Wan Kenobi give Luke?", "A lightsaber", "His droid","His land", Category.EPISODEIV, Difficulty.MEDIUM);
         questions.add(ep4Q4);
         
         Question ep4Q5 = new Question("Who kills Luke's aunt and uncle?", "Stormtroopers", "Sand people","Bounty hunters", Category.EPISODEIV, Difficulty.MEDIUM);
@@ -181,6 +203,21 @@ public class Question {
         
         Question ep4Q10 = new Question("Who destroys the death star?", "Luke SkyWalker", "Poe Dameron","Han Solo", Category.EPISODEIV, Difficulty.MEDIUM);
         questions.add(ep4Q10);
+        
+        Question ep4Q11 = new Question("When was the first star wars released?", "1977", "1979","1976", Category.EPISODEIV, Difficulty.MEDIUM);
+        questions.add(ep4Q11);
+        
+        Question ep4Q12 = new Question("Who shot first?", "Han", "Greedo","They shot at the same time", Category.EPISODEIV, Difficulty.HARD);
+        questions.add(ep4Q12);
+        
+        Question ep4Q13 = new Question("Which friend of George Lucas inspired the character Han Solo?", "Francis Ford Coppola", "Steven Spielberg","Stanley Kubrick", Category.EPISODEIV, Difficulty.HARD);
+        questions.add(ep4Q13);
+        
+        Question ep4Q14 = new Question("How much was Harrison Ford paid a week?", "$1,000", "$500","$1,200", Category.EPISODEIV, Difficulty.HARD);
+        questions.add(ep4Q14);
+        
+        Question ep4Q15 = new Question("How many minutes of screen time does Darth Vader have?", "12", "31","$26", Category.EPISODEIV, Difficulty.HARD);
+        questions.add(ep4Q15);
         ////////////////////////////////////////////////////EPISODE V ///////////////////////////////////////////////////////////////////////////////////////
         
         Question ep5Q1 = new Question("What planet is the new rebel base on?", "Hoth", "Scarif","Tatooine", Category.EPISODEV, Difficulty.EASY);
@@ -207,13 +244,26 @@ public class Question {
         Question ep5Q8 = new Question("Who is captured by Boba Fett", "Han Solo", "Chewbaca","Luke", Category.EPISODEV, Difficulty.EASY);
         questions.add(ep5Q8);
         
-        Question ep5Q9 = new Question("What limb is lost by luke", "Right hand", "Left hand","Right foot", Category.EPISODEV, Difficulty.HARD);
+        Question ep5Q9 = new Question("What limb is lost by luke", "Right hand", "Left hand","Right foot", Category.EPISODEV, Difficulty.MEDIUM);
         questions.add(ep5Q9);
         
-        Question ep5Q10 = new Question("Who voiced Darth Vader", "James Earl Jones", "Tommy Lee Jones","Liam Nesson", Category.EPISODEV, Difficulty.HARD);
+        Question ep5Q10 = new Question("Who voiced Darth Vader", "James Earl Jones", "Tommy Lee Jones","Liam Nesson", Category.EPISODEV, Difficulty.MEDIUM);
         questions.add(ep5Q10);
  
+        Question ep5Q11 = new Question("Who voiced Yoda", "Frank Oz", "Jim Henson","Peter Mayhew", Category.EPISODEV, Difficulty.MEDIUM);
+        questions.add(ep5Q11);
         
+        Question ep5Q12 = new Question("How many sets were constructed for this film?", "64", "54","87", Category.EPISODEV, Difficulty.HARD);
+        questions.add(ep5Q12);
+        
+        Question ep5Q13 = new Question("Who got bitten by a snake on set?", "Mark Hamill", "George Lucas","Billy-Dee Williams", Category.EPISODEV, Difficulty.HARD);
+        questions.add(ep5Q13);
+        
+        Question ep5Q14 = new Question("Which actor wanted to have their character killed?", "Harrison Ford", "Carrie Fisher","Billy Dee Williams", Category.EPISODEV, Difficulty.EASY);
+        questions.add(ep5Q14);
+        
+        Question ep5Q15 = new Question("How many lines does Boba Fett have?", "5", "8","14", Category.EPISODEV, Difficulty.HARD);
+        questions.add(ep5Q15);
         ////////////////////////////////////////////////////EPISODE VI ///////////////////////////////////////////////////////////////////////////////////////
         
         Question ep6Q1 = new Question("What planet does Jabba the Hut live on?", "Tatooine", "Naboo","Endor", Category.EPISODEVI, Difficulty.EASY);
@@ -245,8 +295,21 @@ public class Question {
         
         Question ep6Q10 = new Question("How is Darth Vader's body disposed?", "By fire", "buried","Released in space", Category.EPISODEVI, Difficulty.EASY);
         questions.add(ep6Q10);
+        
+        Question ep6Q11 = new Question("Only Star Wars to not have...", "A blue lightsaber", "Obi-Wan","Space battle", Category.EPISODEVI, Difficulty.HARD);
+        questions.add(ep6Q11);
+        
+        Question ep6Q12 = new Question("What brand new lightsaber color was introduced?", "Green", "Yellow","Purple", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q12);
 
-
+        Question ep6Q13 = new Question("What is revealed to be Darth Vader's name?", "Anakin", "Rex","Ric", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q13);
+        
+        Question ep6Q14 = new Question("What is th MPAA rating for this film?", "PG", "G","PG-13", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q14);
+        
+        Question ep6Q15 = new Question("Who composed the score for the movie?", "John Williams", "Hans Zimmer","Howard Shore", Category.EPISODEVI, Difficulty.EASY);
+        questions.add(ep6Q15);
     }
   
     }
