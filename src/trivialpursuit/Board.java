@@ -170,16 +170,17 @@ public class Board {
         int zy = (y-Window.getY(0))/ydelta;
     }
     public static void RollDice(){
+//        if(playerTurn.getX() == NUM_COLUMNS/2 && playerTurn.getY() == NUM_ROWS/2) {
+//            switchNextPlayerTurn();
+//            return;
+//        }
         pressR = true;
-        if(playerTurn.getX() == NUM_COLUMNS/2 && playerTurn.getY() == NUM_ROWS/2)
-            switchNextPlayerTurn();
         if(pressR && notCurrently) {
             rollDice = (int)(Math.random() * 6 + 1);
             movePiece(rollDice);
             notCurrently = false;
             QuestionTimer=20;
             DrawingQuestion = true;
-            
         }
     } 
     public static void Draw(Graphics2D g) {
@@ -332,6 +333,9 @@ public class Board {
             DrawingQuestion=false;
             //RollDice();
             //switchNextPlayerTurn();
+        }
+        else if(board[playerTurn.getX()][playerTurn.getY()] == CENT) {
+            switchNextPlayerTurn();
         }
         int turnXThing = Window.getHeight2() - 135;
         int turnYThing = Window.getHeight2()+125;
@@ -637,8 +641,7 @@ public class Board {
 
 //////////////////// WIP
         //WIP
-        int loopCount = 0;
-        while(ran != 0 && loopCount < 10) {
+        for(int l = 0; l < 10 && ran!=0; l++) {
             for(int i = 0; i< ran; i++) {
                 if(playerTurn.getY() == (NUM_ROWS-2)&&playerTurn.getY() != 1 && playerTurn.getX() + i < (NUM_COLUMNS - 2) && board[playerTurn.getX() + i][playerTurn.getY()] != WALL) {
                     amountMovePossible +=1;
@@ -678,7 +681,6 @@ public class Board {
             playerTurn.moveY(amountMovePossible);
             ran -= amountMovePossible;
             amountMovePossible = 0;
-            loopCount++;
         }
     }
     
