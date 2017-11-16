@@ -14,6 +14,9 @@ public class Question {
     private String name;
     private Color color; 
     private String theCorrectAnswer;
+    private int randomIndex0;
+    private int randomIndex1;
+    private int randomIndex2; 
     
     Question(){
         name = "";
@@ -25,9 +28,14 @@ public class Question {
         name = _name;
         category = _category;
         difficulty = _difficulty;
-        answers[0] = correctAnswer;
-        answers[1] = answer2;
-        answers[2] = answer3;
+        while(randomIndex0 == randomIndex1 || randomIndex0 == randomIndex2 || randomIndex1 == randomIndex2){
+            randomIndex0= (int)(Math.random() * 3);
+            randomIndex1= (int)(Math.random() * 3);
+            randomIndex2= (int)(Math.random() * 3);
+            answers[randomIndex0] = correctAnswer;
+            answers[randomIndex1] = answer2;
+            answers[randomIndex2] = answer3;
+        }
         theCorrectAnswer = correctAnswer;
     }
     public static ArrayList<Question> getQuestions(){

@@ -38,9 +38,6 @@ public class Board {
     private static int random = (int)(Math.random()*3);
     private static int previous = random;
     private static int answerIndex[] = new int[NUM_QUESTIONS];
-    private static int randomIndex0;
-    private static int randomIndex1;
-    private static int randomIndex2;
     
     private static boolean stopCounting = false; //for randomized questions
     
@@ -55,7 +52,7 @@ public class Board {
     private static Question CurrentQuestion;
     private static int CurrentQuestionAnswerIndex[]=new int [NUM_ANSWERS];
     
-    private static int QuestionTimer = 10;
+    private static int QuestionTimer = 20;
     private static boolean stopTimer = false;
     
     private static final Color I = new Color(215, 191, 100); //orange
@@ -67,6 +64,8 @@ public class Board {
     
     private static boolean correctAnswer=false;
     private static int randomCorrectAnswerDisplay=(int)(Math.random()*5); 
+    
+    private static int beginningTimer=25;
        
     private static int board[][] = {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
@@ -144,9 +143,6 @@ public class Board {
         pressR = false;
         notCurrently = true;
         UsedQuestions.clear();
-        randomIndex0= (int)(Math.random() * 3);
-        randomIndex1= (int)(Math.random() * 3);
-        randomIndex2= (int)(Math.random() * 3);
     }
     
     public static void addPiece(int x, int y) {
@@ -164,7 +160,7 @@ public class Board {
             rollDice = (int)(Math.random() * 6 + 1);
             movePiece(rollDice);
             notCurrently = false;
-            QuestionTimer=10;
+            QuestionTimer=20;
             DrawingQuestion = true;
             
         }
@@ -182,8 +178,6 @@ public class Board {
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
 //draw grid
-        if(UsedQuestions.size() >= 60)
-            UsedQuestions.clear();
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {  
                 if(board[zx][zy] == WALL) { 
@@ -331,6 +325,10 @@ public class Board {
         g.drawString("player's", turnXThing+60,turnYThing); 
         g.setColor(Color.white);
         g.drawString("turn", turnXThing+162,turnYThing); 
+        
+        if(beginningTimer >0)
+            DrawInstructions(g);
+        
         timeCount++;    
 //Fill in below here
 /////////////////////////If R is pressed / RollDice code //////////////////////////////
@@ -338,10 +336,10 @@ public class Board {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
             g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
-            //if(timeCount % 50==49) {
+            if(timeCount % 10==9) {
                 pressR = false;
                 notCurrently = true;
-            //}
+            }
         }
         else{
             g.setColor(Color.WHITE);
@@ -352,20 +350,38 @@ public class Board {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,25));
             if(randomCorrectAnswerDisplay==0)
-            g.drawString("Correct!", Window.getX(0),130+Window.getHeight2());
-            if(randomCorrectAnswerDisplay==1)
-            g.drawString("You didn't fail!", Window.getX(0),130+Window.getHeight2());
-            if(randomCorrectAnswerDisplay==2)
-            g.drawString("Got 'eem", Window.getX(0),130+Window.getHeight2());
-            if(randomCorrectAnswerDisplay==3)
-            g.drawString("Plus one participation point",Window.getX(0),130+Window.getHeight2());
-            if(randomCorrectAnswerDisplay==4)
-            g.drawString("One point to Griffindor", Window.getX(0),130+Window.getHeight2());
+                g.drawString("Correct!", Window.getX(0),130+Window.getHeight2());
+            else if(randomCorrectAnswerDisplay==1)
+                g.drawString("You didn't fail!", Window.getX(0),130+Window.getHeight2());
+            else if(randomCorrectAnswerDisplay==2)
+                g.drawString("Got 'eem", Window.getX(0),130+Window.getHeight2());
+            else if(randomCorrectAnswerDisplay==3)
+                g.drawString("Plus one participation point",Window.getX(0),130+Window.getHeight2());
+            else if(randomCorrectAnswerDisplay==4)
+                g.drawString("One point to Griffindor", Window.getX(0),130+Window.getHeight2());
             if(timeCount % 50==49) {
                 correctAnswer = false;
                 randomCorrectAnswerDisplay= (int)(Math.random()*5);
             }
         }
+//        else if(!correctAnswer){
+//            g.setColor(Color.WHITE);
+//            g.setFont(new Font("Arial",Font.BOLD,25));
+//            if(randomCorrectAnswerDisplay==0)
+//                g.drawString("Wrong", Window.getX(0),130+Window.getHeight2());
+//            else if(randomCorrectAnswerDisplay==1)
+//                g.drawString("You failed!", Window.getX(0),130+Window.getHeight2());
+//            else if(randomCorrectAnswerDisplay==2)
+//                g.drawString("Incorrect", Window.getX(0),130+Window.getHeight2());
+//            else if(randomCorrectAnswerDisplay==3)
+//                g.drawString("Minus one participation point",Window.getX(0),130+Window.getHeight2());
+//            else if(randomCorrectAnswerDisplay==4)
+//                g.drawString("Nope", Window.getX(0),130+Window.getHeight2());
+//            if(timeCount % 50==49) {
+//                correctAnswer = false;
+//                randomCorrectAnswerDisplay= (int)(Math.random()*5);
+//            }
+//        }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
     }
@@ -373,15 +389,15 @@ public class Board {
     public static void DrawQuestion(Graphics2D g, Category _category){
         if(!DrawingQuestion)
             return;
-        //int color = (int)(Math.random() * 8 +30);
-        int color =34;
+        int color = (int)(Math.random() * 8 +30);
+        //int color =34;
         g.setColor(new Color(color,color,color));
         //DrawingQuestion=true;
         if(timeCount %12 ==11){
             QuestionTimer--;
         }
         for(Question  obj:  getUsedQuestions()){
-            System.out.println(""+ obj.getName());    
+            System.out.println(""+ obj.getName()+" "+obj.getCategory());    
         }
         System.out.println(""+ UsedQuestions.size());  
         if(UsedQuestions.isEmpty()){
@@ -416,35 +432,16 @@ public class Board {
         g.drawString(""+question.getName(), Window.getX(2*xdelta + 10),Window.getY(6*ydelta - ydelta/2) ); 
         g.setFont(new Font("Arial",Font.PLAIN,20));
 
-
-        if(!stopCounting){
-            int countQNum = -1;
-            int countLineNum = 6;
-            for(int i=0; i<3; i++){
-                countQNum++;
-                if(countLineNum<9){countLineNum++;}
-                answerIndex[i] = random;
-
-                System.out.println("countLineNum="+countLineNum+" countQNum="+countQNum+" answerIndex["+countQNum+"] is "+random);
-                if(i == 2){
-                    stopCounting = true;
-                    System.out.println("working");
-                }
-            }
-            while(answerIndex[0] == answerIndex[1] || answerIndex[0] == answerIndex[2] || answerIndex[1] == answerIndex[2] 
-                    || randomIndex0 == randomIndex1 || randomIndex0 == randomIndex2 || randomIndex1 == randomIndex2){
-                randomIndex0= (int)(Math.random() * 3);
-                randomIndex1= (int)(Math.random() * 3);
-                randomIndex2= (int)(Math.random() * 3);
-                answerIndex[randomIndex0]=(int)(Math.random()*3);
-                answerIndex[randomIndex1]=(int)(Math.random()*3);
-                answerIndex[randomIndex2]=(int)(Math.random()*3);
-            }
-            CurrentQuestionAnswerIndex[0]= answerIndex[0];
-            CurrentQuestionAnswerIndex[1]= answerIndex[1];
-            CurrentQuestionAnswerIndex[2]= answerIndex[2];
-            System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
+        while(answerIndex[0] == answerIndex[1] || answerIndex[0] == answerIndex[2] || answerIndex[1] == answerIndex[2]){
+            answerIndex[0]=(int)(Math.random()*3);
+            answerIndex[1]=(int)(Math.random()*3);
+            answerIndex[2]=(int)(Math.random()*3);
         }
+        CurrentQuestionAnswerIndex[0]= answerIndex[0];
+        CurrentQuestionAnswerIndex[1]= answerIndex[1];
+        CurrentQuestionAnswerIndex[2]= answerIndex[2];
+        System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
+        
         g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25), 8*xdelta, 35);
         g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + ydelta), 8*xdelta, 35);
         g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + 2*ydelta), 8*xdelta, 35);
@@ -461,6 +458,56 @@ public class Board {
         //then call some switch turn method
     // for ==> if(QuestionTimer>=0){
     //System.out.println("xdelta "+xdelta+" ydelta "+ydelta);
+    }
+    public static void DrawInstructions(Graphics2D g){
+        int color =150;
+        g.setColor(new Color(color,color,color));
+        int ydelta = Window.getHeight2()/NUM_ROWS;
+        int xdelta = Window.getWidth2()/NUM_COLUMNS;
+        g.fillRect(Window.getX(2*xdelta - xdelta/4), Window.getY(3*ydelta - ydelta/4), 11*xdelta + xdelta/2, 8*ydelta + ydelta/2);
+        g.setColor(Color.black);
+        g.drawRect(Window.getX(2*xdelta - xdelta/4), Window.getY(3*ydelta - ydelta/4), 11*xdelta + xdelta/2, 8*ydelta + ydelta/2);
+        
+        int lineSpace = 18;
+        if(timeCount %15 ==14)
+            beginningTimer--;
+        
+        g.setColor(Color.white); 
+        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,15));
+        g.drawString("WELCOME TO", Window.getX(Window.getHeight2()/2 - xdelta),Window.getY(4*ydelta - ydelta/2 -6) );
+        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,60));
+        g.setColor(Board.getII()); 
+        g.drawString("TRIVIAL PURSUIT", Window.getX(2*xdelta + xdelta/2 - 10),Window.getY(5*ydelta - ydelta/2 +4) ); 
+        g.setColor(Board.getVI()); 
+        g.drawString("TRIVIAL PURSUIT", Window.getX(2*xdelta + xdelta/2 - 5),Window.getY(5*ydelta - ydelta/2 +2) ); 
+        g.setColor(Board.getV()); 
+        g.drawString("TRIVIAL PURSUIT", Window.getX(2*xdelta + xdelta/2),Window.getY(5*ydelta - ydelta/2) ); 
+        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,22));
+        g.setColor(Board.getII()); 
+        g.drawString("STAR WARS EDITION", Window.getX(Window.getHeight2()/2 - (2*xdelta +15)),Window.getY(5*ydelta + 7) );
+        g.setColor(Color.white); 
+        g.drawString("STAR WARS EDITION", Window.getX(Window.getHeight2()/2 - (2*xdelta +15) + 2),Window.getY(5*ydelta + 7) );
+        
+        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,17));
+        g.drawString("Basic instructions:", Window.getX(Window.getHeight2()/2 - xdelta - xdelta/2),Window.getY(7*ydelta - ydelta/2 - 10) );
+        //g.drawString("Answer a Star Wars based trivia question correct to ear", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +lineSpace) );                  reference
+        g.drawString("Answer a Star Wars based trivia question correct to", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +lineSpace) );
+        g.drawString("earn 1 out of the 6 total tokens. Once you have obtained", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +2*lineSpace) );
+        g.drawString("all 6 tokens, you'll have the ability to travel back to the", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +3*lineSpace) );
+        g.drawString("center where you'll have to answer 1 final trivia question", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +4*lineSpace) );
+        g.drawString("correct to win. First player to do so wins. By default,", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +5*lineSpace) );
+        g.drawString("the game requires 4 people to play, or 1 lonely person", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +6*lineSpace) );
+        g.drawString("who desires to play against themselves.", Window.getX(3*xdelta),Window.getY(7*ydelta - ydelta/2 +7*lineSpace) );
+        
+        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,23));
+        g.setColor(Board.getV()); 
+        g.drawString("Good luck, and may the force be with you", Window.getX(3*xdelta -4),Window.getY(7*ydelta+ ydelta/2+7*lineSpace +2) );
+        g.setColor(Board.getVI());
+        g.drawString("Good luck, and may the force be with you", Window.getX(3*xdelta -2),Window.getY(7*ydelta+ ydelta/2+7*lineSpace +1) );
+        g.setColor(Color.white);
+        g.drawString("Good luck, and may the force be with you", Window.getX(3*xdelta),Window.getY(7*ydelta+ ydelta/2+7*lineSpace) );
+        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,15));
+        g.drawString("This message will disappear in "+beginningTimer+" seconds", Window.getX(5*xdelta -xdelta/2 -xdelta/4),Window.getY(8*ydelta+15+7*lineSpace) );
     }
     public static void movePiece(int ran) {
         int amountMovePossible = 0;
