@@ -73,6 +73,10 @@ public class Board {
     private static int numEIV = 0;
     private static int numEV = 0;
     private static int numEVI = 0;
+    
+    private static boolean APlayerHasAll;
+    
+    private static boolean DrawWin;
        
     private static int board[][] = {
     {WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL,WALL},
@@ -116,6 +120,9 @@ public class Board {
     public static ArrayList<Question> getUsedQuestions(){
         return(UsedQuestions);
     }
+    public static boolean getDrawWin(){
+        return(DrawWin);
+    }
     
     public static void reset() {
         //for(int i = 0; i<NUM_PIECES;i++) {
@@ -154,12 +161,15 @@ public class Board {
         notCurrently = true;
         UsedQuestions.clear();
         beginningTimer=25;
+        DrawingQuestion = false;
         numEI = 0;
         numEII = 0;
         numEIII = 0;
         numEIV = 0;
         numEV = 0;
         numEVI = 0;
+        APlayerHasAll = false;
+        DrawWin=false;
     }
     
     public static void addPiece(int x, int y) {
@@ -180,7 +190,15 @@ public class Board {
             movePiece(rollDice);
             notCurrently = false;
             QuestionTimer=20;
-            DrawingQuestion = true;
+            if(!playerTurn.getHasAll())
+                DrawingQuestion = true;
+            else if(playerTurn.getHasAll() && board[playerTurn.getX()][playerTurn.getY()]!=ROLLAGN){
+                if(board[playerTurn.getX()][playerTurn.getY()] == CENT) {
+                    DrawWin = true;
+                    return;
+                }
+                switchNextPlayerTurn();
+            }
         }
     } 
     public static void Draw(Graphics2D g) {
@@ -196,6 +214,10 @@ public class Board {
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
 //draw grid
+
+        if(playerTurn.getHasAll()){
+            APlayerHasAll = true;
+        }
         for(int zx = 0; zx<NUM_ROWS;zx++) {
             for(int zy = 0; zy<NUM_COLUMNS;zy++) {  
                 if(board[zx][zy] == WALL) { 
@@ -218,29 +240,33 @@ public class Board {
                 else if(board[zx][zy] == ROLLAGN) 
                     g.setColor(Color.WHITE);
                 else if(board[zx][zy] == CENT) {
-                    int color = (int)(Math.random() * 6) + 1;
-                    switch (color) {
-                        case 1:
-                            g.setColor(I);
-                            break;
-                        case 2:
-                            g.setColor(II);
-                            break;
-                        case 3:
-                            g.setColor(III);
-                            break;
-                        case 4:
-                            g.setColor(IV);
-                            break;
-                        case 5:
-                            g.setColor(V);
-                            break;
-                        case 6:
-                            g.setColor(VI);
-                            break;
-                        default:
-                            break;
+                    if(APlayerHasAll){
+                        int color = (int)(Math.random() * 6) + 1;
+                        switch (color) {
+                            case 1:
+                                g.setColor(I);
+                                break;
+                            case 2:
+                                g.setColor(II);
+                                break;
+                            case 3:
+                                g.setColor(III);
+                                break;
+                            case 4:
+                                g.setColor(IV);
+                                break;
+                            case 5:
+                                g.setColor(V);
+                                break;
+                            case 6:
+                                g.setColor(VI);
+                                break;
+                            default:
+                                break;
+                        }
                     }
+                    else{
+                        g.setColor(Color.white);        }
                 }
                 g.fillRect(Window.getX(zx * xdelta),Window.getY(zy * ydelta),xdelta,ydelta);
             }
@@ -270,7 +296,7 @@ public class Board {
         //DrawingQuestion=false;
         if(board[playerTurn.getX()][playerTurn.getY()]==EPSI){
             //System.out.println("EPI");
-            if(QuestionTimer>0)
+            if(QuestionTimer>0 && !playerTurn.getHasAll())
                 DrawQuestion(g, EPISODEI);
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
@@ -280,7 +306,7 @@ public class Board {
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSII){
             //System.out.println("EPSII");
-            if(QuestionTimer>0)
+            if(QuestionTimer>0 && !playerTurn.getHasAll())
                 DrawQuestion(g, EPISODEII);
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
@@ -290,7 +316,7 @@ public class Board {
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIII){
             //System.out.println("EPSIII");
-            if(QuestionTimer>0)
+            if(QuestionTimer>0 && !playerTurn.getHasAll())
                 DrawQuestion(g, EPISODEIII);
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
@@ -300,7 +326,7 @@ public class Board {
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSIV){
             //System.out.println("EPSIV");
-            if(QuestionTimer>0)
+            if(QuestionTimer>0 && !playerTurn.getHasAll())
                 DrawQuestion(g, EPISODEIV);
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
@@ -310,7 +336,7 @@ public class Board {
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSV){
             //System.out.println("EPSV");
-            if(QuestionTimer>0)
+            if(QuestionTimer>0 && !playerTurn.getHasAll())
                 DrawQuestion(g, EPISODEV);
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
@@ -320,7 +346,7 @@ public class Board {
         }
         else if(board[playerTurn.getX()][playerTurn.getY()]==EPSVI){
             //System.out.println("EPSVI");
-            if(QuestionTimer>0)
+            if(QuestionTimer>0 && !playerTurn.getHasAll())
                 DrawQuestion(g, EPISODEVI);
             else if(QuestionTimer==0){
                 QuestionTimer=-1;
@@ -334,9 +360,7 @@ public class Board {
             //RollDice();
             //switchNextPlayerTurn();
         }
-        else if(board[playerTurn.getX()][playerTurn.getY()] == CENT) {
-            switchNextPlayerTurn();
-        }
+        
         int turnXThing = Window.getHeight2() - 135;
         int turnYThing = Window.getHeight2()+125;
         g.setColor(playerTurn.getColor());
@@ -357,7 +381,7 @@ public class Board {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
             g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
-            if(timeCount % 10==9) {
+            if(timeCount % 5==4) {
                 pressR = false;
                 notCurrently = true;
             }
@@ -385,6 +409,9 @@ public class Board {
                 randomCorrectAnswerDisplay= (int)(Math.random()*5);
             }
         }
+        if(DrawWin)
+            DrawWin(g);
+            
 //        else if(!correctAnswer){
 //            g.setColor(Color.WHITE);
 //            g.setFont(new Font("Arial",Font.BOLD,25));
@@ -532,6 +559,25 @@ public class Board {
         g.drawString("Good luck, and may the force be with you", Window.getX(3*xdelta),Window.getY(7*ydelta+ ydelta/2+7*lineSpace) );
         g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,15));
         g.drawString("This message will disappear in "+beginningTimer+" seconds", Window.getX(5*xdelta -xdelta/2 -xdelta/4),Window.getY(8*ydelta+15+7*lineSpace) );
+    }
+    
+    public static void DrawWin(Graphics2D g){
+        int offset = 2;
+        int ydelta = Window.getHeight2()/NUM_ROWS;
+        int xdelta = Window.getWidth2()/NUM_COLUMNS;
+        g.setFont(new Font("Arial",Font.BOLD,34));
+        g.setColor(I);
+        g.drawString("This", Window.getX(5*xdelta -5)+offset/2,Window.getY(4*ydelta)); 
+        g.setColor(VI);
+        g.drawString("This", Window.getX(5*xdelta -5)-offset,Window.getY(4*ydelta)+offset); 
+        g.setColor(playerTurn.getColor());
+        g.drawString("This", Window.getX(5*xdelta -5),Window.getY(4*ydelta)); 
+        g.setColor(I);
+        g.drawString("player's won!", Window.getX(5*xdelta +15)+60 +offset/2,Window.getY(4*ydelta)); 
+        g.setColor(VI);
+        g.drawString("player's won!", Window.getX(5*xdelta +15)+60 -offset,Window.getY(4*ydelta)+offset);
+        g.setColor(Color.white);
+        g.drawString("player's won!", Window.getX(5*xdelta +15)+60,Window.getY(4*ydelta));
     }
     public static void movePiece(int ran) {
         int amountMovePossible = 0;
@@ -704,7 +750,7 @@ public class Board {
                 else if(question.getCategory()==Category.EPISODEVI)
                     numEVI++;
                 System.out.println("numEI "+numEI+" numEII "+numEII+" numEIII "+numEIII+" numEIV "+numEIV+" numEV "+numEV+" numEVI "+numEVI);
-                if(numEI==NUM_QUESTIONS||numEII==NUM_QUESTIONS||numEIII==NUM_QUESTIONS||numEIV==NUM_QUESTIONS||numEV==NUM_QUESTIONS||numEVI==NUM_QUESTIONS){
+                if(numEI==10||numEII==10||numEIII==10||numEIV==10||numEV==10||numEVI==10){
                     UsedQuestions.clear();
                     numEI = 0;numEII = 0;numEIII = 0;numEIV = 0;numEV = 0;numEVI = 0;
                 }

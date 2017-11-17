@@ -32,14 +32,13 @@ public class Piece extends Player{
         return(hasAll);
     }
     public void giveAll() {
-        hasAll=true;
         hasOrange=true;
         hasRed=true;
         hasBlue=true;
         hasPurple=true;
         hasPink=true;
         hasGreen=true;
-        hasAll=true;
+        //hasAll=true;
     }
 
     
@@ -56,22 +55,25 @@ public class Piece extends Player{
         int angle = (360/6);
         g.setColor(Board.getI());
         if(hasOrange)
-        g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90, angle-10);
+            g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90, angle-10);
         g.setColor(Board.getII());
         if(hasRed)
-        g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*1, angle-10);
+            g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*1, angle-10);
         g.setColor(Board.getIII());
         if(hasGreen)
-        g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10,90+angle*2, angle-10);
+            g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10,90+angle*2, angle-10);
         g.setColor(Board.getIV());
         if( hasBlue)
-        g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*3, angle-10);
+            g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*3, angle-10);
         g.setColor(Board.getV());
         if(hasPurple)
-        g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*4, angle-10);
+            g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*4, angle-10);
         g.setColor(Board.getVI());
         if(hasPink)
-        g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*5, angle-10); 
+            g.fillArc(Window.getX(x*xdelta)+5,  Window.getY(y*ydelta)+4, xdelta-10, ydelta-10, 90+angle*5, angle-10); 
+        
+        if(hasOrange && hasRed&& hasGreen&& hasBlue&& hasPurple&&hasPink)
+            hasAll=true;
     }
     
 }

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.*;
+import static trivialpursuit.Board.playerTurn;
 
 public class TrivialPursuit extends JFrame implements Runnable {
     boolean animateFirstTime = true;
@@ -101,7 +102,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
                     Board.resetBeginningTimer();
                 } else if (e.VK_LEFT == e.getKeyCode()) {
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
-//stop();
+//stop();               
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
@@ -163,6 +164,9 @@ public class TrivialPursuit extends JFrame implements Runnable {
             return;
         }   
 //The Rest
+        if(Board.getDrawWin()){
+            //return;
+        }
         Board.Draw(g);
         
         
