@@ -4,9 +4,8 @@ package trivialpursuit;
 import java.awt.Color;
 
 public class Player {
-        private Color color;
+    private Color color;
     
-
     private boolean inMiddle = true;
     
     public boolean hasOrange=false;

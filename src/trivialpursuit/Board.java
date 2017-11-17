@@ -8,7 +8,7 @@ import static trivialpursuit.Category.*;
 import static trivialpursuit.Question.*;
 
 public class Board {
-    private final static int NUM_PIECES = 4;
+    private static int NUM_PIECES = 4;
     private final static int NUM_ROWS = 15;
     private final static int NUM_COLUMNS = 15; 
     
@@ -98,6 +98,12 @@ public class Board {
     
     public static void resetBeginningTimer(){
         beginningTimer = 0;
+    }
+    public static void setNUM_PIECES(int num){
+        NUM_PIECES=num;
+    }
+    public static int getBeginningTimer(){
+        return beginningTimer;
     }
     public static Color getI(){
         return(I);
@@ -381,7 +387,7 @@ public class Board {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",Font.BOLD,30));
             g.drawString("ROLLED A "+rollDice+"!", Window.getWidth2()/2-20,70); 
-            if(timeCount % 5==4) {
+            if(timeCount % 10==9) {
                 pressR = false;
                 notCurrently = true;
             }
@@ -447,7 +453,7 @@ public class Board {
 //        for(Question  obj:  getUsedQuestions()){
 //            System.out.println(""+ obj.getName()+" "+obj.getCategory());    
 //        }
-        System.out.println(""+ UsedQuestions.size());  
+        //System.out.println(""+ UsedQuestions.size());  
         if(UsedQuestions.isEmpty()){
             while(question.getCategory() != _category){
                 question = Question.getQuestions().get((int)(Math.random()*60));
@@ -489,7 +495,7 @@ public class Board {
         CurrentQuestionAnswerIndex[0]= answerIndex[0];
         CurrentQuestionAnswerIndex[1]= answerIndex[1];
         CurrentQuestionAnswerIndex[2]= answerIndex[2];
-        System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
+        //System.out.println("answerIndex[0] is "+answerIndex[0]+" answerIndex[1] is "+answerIndex[1]+" answerIndex[2] is "+answerIndex[2]);
         
         g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25), 8*xdelta, 35);
         g.drawRect(Window.getX(4*xdelta - 10), Window.getY(6*ydelta + 25 + ydelta), 8*xdelta, 35);
@@ -545,10 +551,10 @@ public class Board {
         g.drawString("all 6 tokens, you'll have the ability to travel back to the", Window.getX(3*xdelta),Window.getY(6*ydelta  +3*lineSpace) );
         g.drawString("center where you'll have to answer 1 final trivia question", Window.getX(3*xdelta),Window.getY(6*ydelta  +4*lineSpace) );
         g.drawString("correct to win. First player to do so wins. By default,", Window.getX(3*xdelta),Window.getY(6*ydelta  +5*lineSpace) );
-        g.drawString("the game requires 4 people to play, or 1 lonely person", Window.getX(3*xdelta),Window.getY(6*ydelta  +6*lineSpace) );
-        g.drawString("who desires to play against themselves. Each colored square", Window.getX(3*xdelta),Window.getY(6*ydelta +7*lineSpace) );
-        g.drawString("has a categorized set of questions, and if you land on a ", Window.getX(3*xdelta),Window.getY(6*ydelta  +8*lineSpace) );
-        g.drawString("white piece, you get to roll again.", Window.getX(3*xdelta),Window.getY(6*ydelta +9*lineSpace) );
+        g.drawString("the game requires 4 people to play, but that can be changed", Window.getX(3*xdelta),Window.getY(6*ydelta  +6*lineSpace) );
+        g.drawString("to 1, 2 or 3 by pressing 1, 2 or 3 respectively. Each colored", Window.getX(3*xdelta),Window.getY(6*ydelta +7*lineSpace) );
+        g.drawString("square has a categorized set of questions, and if you land", Window.getX(3*xdelta),Window.getY(6*ydelta  +8*lineSpace) );
+        g.drawString("on a white piece, you get to roll again.", Window.getX(3*xdelta),Window.getY(6*ydelta +9*lineSpace) );
         
         g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,23));
         g.setColor(Board.getV()); 
@@ -559,6 +565,9 @@ public class Board {
         g.drawString("Good luck, and may the force be with you", Window.getX(3*xdelta),Window.getY(7*ydelta+ ydelta/2+7*lineSpace) );
         g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,15));
         g.drawString("This message will disappear in "+beginningTimer+" seconds", Window.getX(5*xdelta -xdelta/2 -xdelta/4),Window.getY(8*ydelta+15+7*lineSpace) );
+        g.setColor(Color.white);
+        g.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,17));
+        g.drawString("Number of Players: "+NUM_PIECES, Window.getX(5*xdelta +xdelta/2 +10),Window.getY(10*ydelta + ydelta/3 +9) );
     }
     
     public static void DrawWin(Graphics2D g){

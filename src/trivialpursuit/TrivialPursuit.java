@@ -11,7 +11,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
-   
+    private static boolean setOnce;
 
     public static void main(String[] args) {
         TrivialPursuit frame = new TrivialPursuit();
@@ -20,7 +20,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setTitle("Star Wars Trivial Pursuit");
+        frame.setTitle("Star Wars Trivial Pursuit  Alpha v.0.0.1");
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./trivial.png"));
     }
 
@@ -32,7 +32,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
                 if (e.BUTTON1 == e.getButton() && Board.DrawingQuestion) {
                     if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(6*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(6*49 + 25) + 35) && Board.DrawingQuestion){
-                       System.out.println("*Click* Noice");
+                       //System.out.println("*Click* Noice");
                        Board.CheckCorrectAnswer(0,g);
 //                       if(Board.CheckCorrectAnswer(0)){
 //                           //Board.playerTurn.changeToken(Board.CurrentQuestion.getCategory());
@@ -44,7 +44,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(7*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(7*49 + 25) + 35) && Board.DrawingQuestion){
-                       System.out.println("*Click* Noice 2");
+                       //System.out.println("*Click* Noice 2");
                        Board.CheckCorrectAnswer(1,g);
 //                       if(Board.CheckCorrectAnswer(1)) {
 //                           //Board.playerTurn.changeToken(Board.CurrentQuestion.getCategory());
@@ -57,7 +57,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
                     }
                     else if(e.getX() > Window.getX(4*50 - 10) && e.getY() > Window.getY(8*49 + 25) &&
                        e.getX() < (Window.getX(4*50 - 10)+ 8*49) && e.getY() < ( Window.getY(8*49 + 25) + 35) && Board.DrawingQuestion){
-                       System.out.println("*Click* Noice 3");
+                       //System.out.println("*Click* Noice 3");
                        Board.CheckCorrectAnswer(2,g);
 //                       if(Board.CheckCorrectAnswer(2)){
 //                           //Board.playerTurn.changeToken(Board.CurrentQuestion.getCategory());
@@ -106,10 +106,27 @@ public class TrivialPursuit extends JFrame implements Runnable {
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
-                if(e.VK_K == e.getKeyCode()) {
-                    Board.win();
+                else if (e.VK_1 == e.getKeyCode() && Board.getBeginningTimer()>0 && !setOnce) {
+                    Board.setNUM_PIECES(1);
+                    setOnce = true;
                 }
-                if(e.VK_R == e.getKeyCode() && !Board.DrawingQuestion) {
+                else if (e.VK_2 == e.getKeyCode() && Board.getBeginningTimer()>0 && !setOnce) {
+                    Board.setNUM_PIECES(2);
+                    setOnce = true;
+                }
+                else if (e.VK_3 == e.getKeyCode() && Board.getBeginningTimer()>0 && !setOnce) {
+                    Board.setNUM_PIECES(3);
+                    setOnce = true;
+                }
+                else if (e.VK_4 == e.getKeyCode() && Board.getBeginningTimer()>0 && !setOnce) {
+                    Board.setNUM_PIECES(4);
+                    setOnce = true;
+                }
+                if(e.VK_K == e.getKeyCode()) {
+                    //Board.win();
+                }
+                if(e.VK_R == e.getKeyCode() && !Board.DrawingQuestion && Board.getBeginningTimer()<=0) {
+                    System.out.println(""+Board.getBeginningTimer());
                     Board.RollDice();
                 }
 //                if(e.VK_A == e.getKeyCode() ) {
@@ -191,6 +208,7 @@ public class TrivialPursuit extends JFrame implements Runnable {
     public void reset() {
         System.out.println("-------reset-------");
         Question.InstantiateQuestions();
+        setOnce = false;
         Board.reset();
     }
 /////////////////////////////////////////////////////////////////////////
